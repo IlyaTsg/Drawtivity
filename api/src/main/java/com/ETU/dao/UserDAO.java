@@ -21,20 +21,20 @@ public class UserDAO {
     }
 
     public User show(int id){
-        List<User> response = jdbcTemplate.query("select user_id, firstname, lastname, email, number " +
+        List<User> response = jdbcTemplate.query("select user_id, firstname, lastname, email, password " +
                                       "from users " +
                                       "where user_id=?", new UserMapper(), id);
         return response.get(0);
     }
 
     public void save(User user){
-        jdbcTemplate.update("insert into users (firstname, lastname, email, number) values(?,?,?,?)",
-                user.getFirstname(), user.getLastname(), user.getEmail(), user.getNumber());
+        jdbcTemplate.update("insert into users (firstname, lastname, email, password) values(?,?,?,?)",
+                user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword());
     }
 
     public void edit(User user){
-        jdbcTemplate.update("update users set firstname=?, lastname=?, email=?, number=? where user_id=?",
-                user.getFirstname(), user.getLastname(), user.getEmail(), user.getNumber(), user.getUserNo());
+        jdbcTemplate.update("update users set firstname=?, lastname=?, email=?, password=? where user_id=?",
+                user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword(), user.getUser_id());
     }
 
     public void delete(int id){

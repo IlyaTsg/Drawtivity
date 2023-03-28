@@ -943,7 +943,7 @@ users\\_db|schema||user_users_db|localhost|grant option|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="293" parent="292" name="user_id">
-      <AutoIncrement>2</AutoIncrement>
+      <AutoIncrement>5</AutoIncrement>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -963,8 +963,8 @@ users\\_db|schema||user_users_db|localhost|grant option|G</Grants>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="297" parent="292" name="number">
-      <DataType>varchar(45)|0s</DataType>
+    <column id="297" parent="292" name="password">
+      <DataType>varchar(35)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>

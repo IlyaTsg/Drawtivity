@@ -41,7 +41,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/Drawtivity/api"
+    "last_opened_file_path": "D:/Drawtivity/api",
+    "spring.configuration.checksum": "8a5da52ed126447d359e70c05721a8aa"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -153,6 +154,7 @@
       <updated>1679489586418</updated>
       <workItem from="1679489587681" duration="4003000" />
       <workItem from="1679493735937" duration="14000" />
+      <workItem from="1680018107913" duration="1902000" />
     </task>
     <servers />
   </component>

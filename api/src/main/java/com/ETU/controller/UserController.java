@@ -43,6 +43,6 @@ public class UserController {
     @DeleteMapping("/{id}")
     public int deleteUser(@PathVariable("id") int id){
         userDAO.delete(id);
-        return  200;
+        return  204;
     }
 }

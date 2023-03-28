@@ -4,53 +4,51 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class User {
-    private int userNo;
+    private int user_id;
     private String firstname;
     private String lastname;
     private String email;
-    private String number;
+    private String password;
 
     public User(){};
-    public User(int userNo, String firstname, String lastname, String email, String number)
+    public User(int user_id, String firstname, String lastname, String email, String password)
     {
-        this.userNo = userNo;
+        this.user_id = user_id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
-        this.number = number;
+        this.password = password;
     }
 
-    public int getUserNo() { return userNo; }
-    public void setUserNo(int userNo) { this.userNo = userNo; }
+    public int getUser_id(){ return user_id; }
+    public void setUser_id(int user_id) { this.user_id = user_id; }
 
     public String getFirstname() {
         return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getNumber() {
-        return number;
     }
     public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
+    public String getLastname() {
+        return lastname;
+    }
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
+    public String getEmail() {
+        return email;
+    }
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
