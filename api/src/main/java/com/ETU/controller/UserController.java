@@ -28,10 +28,9 @@ public class UserController {
         return userDAO.show(id);
     }
 
-    @PostMapping(value = "/CreateUser", consumes = "application/json")
+    @PostMapping(consumes = "application/json")
     public int addUser(@RequestBody User user){
-        userDAO.save(user);
-        return 200;
+        return userDAO.save(user);
     }
 
     @PatchMapping("/{id}")

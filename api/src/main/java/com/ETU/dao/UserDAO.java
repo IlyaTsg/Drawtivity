@@ -27,9 +27,15 @@ public class UserDAO {
         return response.get(0);
     }
 
-    public void save(User user){
+    public int save(User user){
         jdbcTemplate.update("insert into users (firstname, lastname, email, password) values(?,?,?,?)",
                 user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword());
+        // ДОДЕЛАТЬ
+        // Необходимо возвращать id нового пользователя
+        // Т.к. последний пользователь может поменяться, то (надо использовать транзакции?)
+
+        List<User> response = jdbcTemplate.query("select * from users", new UserMapper());
+        return response.get(response.size()-1).getUser_id(); // Возвращаем id последнего в списке
     }
 
     public void edit(User user){
