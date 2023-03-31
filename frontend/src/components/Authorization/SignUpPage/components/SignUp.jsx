@@ -21,7 +21,7 @@ const SignUp = () => {
     }
     return (
         <div className={classes.wrapper}>
-            <CustomForm btnText={'Sign In'}
+            <CustomForm btnText={'Sign Up'}
                         submitHandler={submitHandler}
                         handlerSubmit={handleSubmit}
                         isValid={isValid}
