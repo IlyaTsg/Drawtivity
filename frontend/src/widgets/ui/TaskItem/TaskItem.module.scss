@@ -1,0 +1,41 @@
+.itemRow{
+  background: none;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border-bottom: 1px solid #CCCCCC;
+  border-radius: 10px;
+  margin-top: 7px;
+  div{
+    background: none;
+  }
+}
+.indClasses{
+  background: none;
+  margin-right: 12px;
+  text-align: left;
+}
+.itemRow__item{
+  width: 310px;
+  text-align: center;
+  background: none;
+  &:nth-child(5){
+    width: 80px;
+    color: cornflowerblue;
+    margin-right: 20px;
+  }
+}
+
+.headerRow__item{
+  width: 290px;
+  background: none;
+  text-align: center;
+  &:nth-child(5){
+    width: 80px;
+    margin-right: 20px;
+  }
+}
+
+.header__numb{
+  width: 20px;
+}
