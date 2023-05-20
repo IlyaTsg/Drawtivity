@@ -1,0 +1,23 @@
+services:
+  app:
+    image: beetlejuice21/api:latest
+    ports:
+      - 80:8080
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: H12ksd_Yh2
+      MYSQL_DB: drawtivity_db
+  mysql:
+    image: beetlejuice21/drawtivity_db_mysql:latest
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: H12ksd_Yh2
+      MYSQL_DATABASE: drawtivity_db
+
+volumes:
+  todo-mysql-data:
