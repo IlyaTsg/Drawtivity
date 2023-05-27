@@ -1,0 +1,15 @@
+.wrapper{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40px;
+  //height: 700px;
+}
+
+.form{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  min-height: 570px;
+}
