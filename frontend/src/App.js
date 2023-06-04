@@ -1,17 +1,17 @@
 import './App.css';
 import React from "react";
-import SignUp from "./components/Authorization/SignUpPage/components/SignUp";
+import SignUp from "./pages/ui/Authorization/SignUpPage/components/SignUp";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import SignIn from "./components/Authorization/SignInPage/components/SignIn";
-import Header from "./components/Header/components/Header";
-import Info from "./components/Info/Components/Info";
+import SignIn from "./pages/ui/Authorization/SignInPage/components/SignIn";
+import Header from "./entities/ui/Header/components/Header";
+import Info from "./pages/ui/Info/Components/Info";
 import {Provider} from "react-redux";
 import store from "./store";
-import Constructor from "./components/Constructor/components/Constructor";
-import EditTaskPage from "./components/EditTaskPage/components/EditTaskPage";
-import Tasks from "./components/Tasks/components/Tasks";
-import TaskPage from "./components/TaskPage/components/TaskPage";
-import DocumentationPage from "./components/Documentation/components/DocumentationPage";
+import Constructor from "./pages/ui/Constructor/components/Constructor";
+import EditTaskPage from "./pages/ui/EditTaskPage/components/EditTaskPage";
+import Tasks from "./pages/ui/Tasks/components/Tasks";
+import TaskPage from "./pages/ui/TaskPage/components/TaskPage";
+import DocumentationPage from "./pages/ui/Documentation/components/DocumentationPage";
 
 
 function App() {

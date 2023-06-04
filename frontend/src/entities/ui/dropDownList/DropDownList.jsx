@@ -8,7 +8,7 @@ const DropDownList = ({title, children}) => {
                 id="nav-dropdown-dark-example"
                 title={title}
             >
-                {children.map( (item, i) => <NavDropdown.Item eventKey={i}>{item}</NavDropdown.Item>)}
+                {children.map( (item, i) => <NavDropdown.Item eventKey={i} key={i}>{item}</NavDropdown.Item>)}
             </NavDropdown>
         </div>
     );

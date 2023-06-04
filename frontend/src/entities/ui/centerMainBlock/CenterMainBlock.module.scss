@@ -8,7 +8,7 @@
 .info{
   display: flex;
   justify-content: flex-start;
-  margin-right: 80px;
+  //margin-right: 80px;
   border-radius: 10px;
   border: 1px solid #CCCCCC;
   background: white;
@@ -19,4 +19,7 @@
 .large{
   width: 1350px;
   margin-left: 75px;
+}
+.task{
+  width: 350px
 }
