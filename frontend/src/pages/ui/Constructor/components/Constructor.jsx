@@ -39,7 +39,7 @@ const Constructor = () => {
     const coordinates = useSelector(state => state.task.coordinates)
     const addTask = (data) => {
         const task = data
-        task["image"] = image.payload
+        task["image"] = image
         task["dots"] = coordinates
         //console.log(JSON.stringify(data))
         console.log("task: ", task)

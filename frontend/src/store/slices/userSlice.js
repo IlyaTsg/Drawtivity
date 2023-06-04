@@ -23,8 +23,8 @@ export const signUpThunk = createAsyncThunk(
 const initialState={
     email: null,
     token: null,
-    firstName: '',
-    secondName:'',
+    firstname: '',
+    lastname:'',
     id: null
 }
 

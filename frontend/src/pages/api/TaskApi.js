@@ -1,4 +1,4 @@
-import AxiosApiBasedClass from "../../shared/api /AxiosApiBasedClass";
+import AxiosApiBasedClass from "../../shared/api/AxiosApiBasedClass";
 import axios from "axios";
 
 export class TaskApi extends AxiosApiBasedClass{

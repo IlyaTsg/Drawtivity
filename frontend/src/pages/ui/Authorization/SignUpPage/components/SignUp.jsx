@@ -30,8 +30,8 @@ const SignUp = () => {
                         isValid={isValid}
                         formCl={classes.form}
             >
-                <InputName label={'First name'} errors={errors} register={register} name={'firstName'}/>
-                <InputName label={'Second name'} errors={errors} register={register} name={'secondName'}/>
+                <InputName label={'First name'} errors={errors} register={register} name={'firstname'}/>
+                <InputName label={'Second name'} errors={errors} register={register} name={'lastname'}/>
                 <InputEmail errors={errors} register={register}/>
                 <PasswordInput errors={errors} register={register}/>
             </CustomForm>
