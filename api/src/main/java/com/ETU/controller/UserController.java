@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RequestMapping("/users")
 public class UserController {
     private UserDAO userDAO;
@@ -46,5 +45,10 @@ public class UserController {
     public int deleteUser(@PathVariable("id") int id){
         userDAO.delete(id);
         return  204;
+    }
+
+    @PostMapping(value = "/auth",consumes = "application/json")
+    public int Auth(@RequestBody User user){
+        return userDAO.auth(user);
     }
 }

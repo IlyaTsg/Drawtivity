@@ -46,4 +46,12 @@ public class UserDAO {
     public void delete(int id){
         jdbcTemplate.update("delete from users where user_id=?", id);
     }
+
+    public int auth(User user){
+        List<User> response = jdbcTemplate.query("select user_id, firstname, lastname, email, password from users where email=? and password=?",new UserMapper(), user.getEmail(), user.getPassword());
+        if(response.size() != 0){
+            return response.get(response.size()-1).getUser_id();
+        }
+        return -1;
+    }
 }

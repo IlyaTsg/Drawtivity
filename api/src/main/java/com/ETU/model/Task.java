@@ -1,6 +1,13 @@
 package com.ETU.model;
 
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @Component
 public class Task {
@@ -13,6 +20,8 @@ public class Task {
     private String img_url;
     private float deviation;
 
+    private ArrayList<Point> points;
+
     public Task(){}
 
     public Task(int task_id, int owner_id, String title, String description, String category, String type, String img_url, float deviation) {
@@ -24,6 +33,18 @@ public class Task {
         this.type = type;
         this.img_url = img_url;
         this.deviation = deviation;
+    }
+
+    public Task(int task_id, int owner_id, String title, String description, String category, String type, String img_url, float deviation, ArrayList<Point> points) {
+        this.task_id = task_id;
+        this.owner_id = owner_id;
+        this.title = title;
+        this.description = description;
+        this.category = category;
+        this.type = type;
+        this.img_url = img_url;
+        this.deviation = deviation;
+        this.points = points;
     }
 
     public int getTask_id() {
@@ -80,5 +101,24 @@ public class Task {
     }
     public void setDeviation(float deviation) {
         this.deviation = deviation;
+    }
+
+    public ArrayList<Point> getPoints() {
+        return points;
+    }
+    public void setPointsSave(ArrayList<Point> points) {
+        this.points = points;
+    }
+    public void setPointsShow(String JsonString) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        this.points = objectMapper.readValue(JsonString, new TypeReference<ArrayList<Point>>(){});
+    }
+    public String ListTOJsonString() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(this.points);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
