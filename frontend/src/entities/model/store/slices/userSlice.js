@@ -1,21 +1,21 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import UserApi from "../../pages/api/UserApi";
+import UserApi from "../../../../pages/api/UserApi";
 
 export const signInThunk = createAsyncThunk(
     "user/signInThunk",
     async function(reqBody){
-        console.log(reqBody)
+       //console.log(reqBody)
         const id = await UserApi.singIn(reqBody);
-        return id
+        return id.data
     }
 )
 
 export const signUpThunk = createAsyncThunk(
     "user/signUpThunk",
     async function(reqBody){
-        console.log(reqBody)
+        //console.log(reqBody)
         const id = await UserApi.signUp(reqBody);
-        return id
+        return id.data
     }
 )
 
@@ -48,13 +48,15 @@ const userSlice = createSlice({
 
         })
         builder.addCase(signInThunk.fulfilled, (state, action) =>{
-
+            console.log(action.payload)
+            state.id = action.payload
         })
         builder.addCase(signUpThunk.pending, (state, action) =>{
             console.log(action)
         })
         builder.addCase(signUpThunk.fulfilled, (state, action) => {
-
+            console.log(action.payload)
+            state.id = action.payload
         })
     }
 })

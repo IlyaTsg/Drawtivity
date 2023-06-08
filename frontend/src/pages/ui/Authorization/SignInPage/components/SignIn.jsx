@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import classes from "./SignIn.module.scss";
 import InputEmail from "../../UI/InputEmail/InputEmail";
 import PasswordInput from "../../UI/PasswordInput/PasswordInput";
-import {signInThunk} from "../../../../../store/slices/userSlice";
+import {signInThunk} from "../../../../../entities/model/store/slices/userSlice";
 import {useDispatch} from "react-redux";
 
 const SignIn = () => {

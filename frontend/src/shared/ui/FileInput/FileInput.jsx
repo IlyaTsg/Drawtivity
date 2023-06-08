@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from "react-bootstrap/Form";
 import {useDispatch} from "react-redux";
-import {setImage} from "../../../store/slices/tasksSlice";
+import {setImage} from "../../../entities/model/store/slices/tasksSlice";
 const FileInput = ({register, name}) => {
     //const [selectedImage, setSelectedImage] = useState(null);
     const dispatch = useDispatch()
