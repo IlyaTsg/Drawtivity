@@ -45,7 +45,7 @@ public class TaskController {
         return  204;
     }
 
-    @GetMapping(value = "solution", consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "/solution", consumes = "application/json", produces = "application/json")
     public float solution(@RequestBody JsonNode req_json) throws IOException {
         int task_id = req_json.get("task_id").intValue();
         Task task = taskDAO.show(task_id);
