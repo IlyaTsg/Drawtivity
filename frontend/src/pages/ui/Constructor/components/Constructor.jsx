@@ -9,14 +9,13 @@ import FileInput from "../../../../shared/ui/FileInput/FileInput";
 import CustomSelect from "../../../../shared/ui/CustomSelect/CustomSelect";
 import ImageUploadBlock from "../../../../entities/ui/ImageUploadBlock/ImageUploadBlock";
 import classNames from "classnames";
-import useImage from "../../../../store/hooks/useImage";
+import useImage from "../../../../entities/model/store/hooks/useImage";
 import {useDispatch, useSelector} from "react-redux";
-import {createTask, setPercent} from "../../../../store/slices/tasksSlice";
-import {signInThunk} from "../../../../store/slices/userSlice";
+import {createTask, getTasks, setPercent} from "../../../../entities/model/store/slices/tasksSlice";
+import {signInThunk} from "../../../../entities/model/store/slices/userSlice";
 const Constructor = () => {
     const selectedImage = useImage()
     const dispatch = useDispatch()
-    console.log(selectedImage.payload !== null,selectedImage.payload === null || selectedImage.payload === '', selectedImage)
     const classname = classNames(classes.wrapper, {
         [classes.imagesActive]: selectedImage.payload !== null,
         [classes.imagesNotActive]: selectedImage.payload === null || selectedImage === ''
@@ -37,13 +36,16 @@ const Constructor = () => {
         }})
     const image = useSelector(state => state.task.image)
     const coordinates = useSelector(state => state.task.coordinates)
+    const id = useSelector(state => state.user.id)
     const addTask = (data) => {
         const task = data
-        task["image"] = image
-        task["dots"] = coordinates
+        //task["image"] = image
+        task["img_url"] = 'test'
+        task["points"] = coordinates
+        task["owner_id"] = id
         //console.log(JSON.stringify(data))
-        console.log("task: ", task)
         dispatch(createTask(task))
+        dispatch(getTasks())
     }
     const percentAdd = (event) => {
         dispatch(setPercent(event.target.value))
@@ -60,7 +62,7 @@ const Constructor = () => {
                             <CustomSelect errors={errors} title={'Выберите категорию задачи'} optionName={"Категория"} register={register} name={"category"}/>
                             <CustomSelect errors={errors} title={'Выберите тип задачи'} optionName={"Тип задачи"} register={register} name={'type'}/>
                             <FileInput register={register} name={'image'}/>
-                            <NumberInput errors={errors} register={register} name={"percent"} label={"Пример: 15"} inputHandler={percentAdd}/>
+                            <NumberInput errors={errors} register={register} name={"deviation"} label={"Пример: 15"} inputHandler={percentAdd}/>
                     </div>
                     <div>
                         <ImageUploadBlock errors={errors} register={register}/>

@@ -5,7 +5,7 @@ import CustomForm from "../../UI/Form/CustomForm";
 import InputEmail from "../../UI/InputEmail/InputEmail";
 import PasswordInput from "../../UI/PasswordInput/PasswordInput";
 import InputName from "../UI/InputName/InputName";
-import {signUpThunk} from "../../../../../store/slices/userSlice";
+import {signUpThunk} from "../../../../../entities/model/store/slices/userSlice";
 import {useDispatch} from "react-redux";
 const SignUp = () => {
     const {

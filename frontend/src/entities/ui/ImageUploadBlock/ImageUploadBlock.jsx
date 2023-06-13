@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import useImage from "../../../store/hooks/useImage";
+import useImage from "../../model/store/hooks/useImage";
 import classes from "./ImageUploadBlock.module.scss";
 import DotsInput from "../../../shared/ui/DotsInput/DotsInput";
 import Form from "react-bootstrap/Form";
@@ -19,7 +19,6 @@ const ImageUploadBlock = ({errors, register}) => {
     }
     const dispatch = useDispatch()
     const [lowerDots, highDots] = calcRadius(dots, percent)
-    console.log(lowerDots, ': lower ', highDots, ': high')
     useEffect(() => {
         if(canvasRef.current){
             const context = canvasRef.current.getContext("2d");
@@ -33,7 +32,6 @@ const ImageUploadBlock = ({errors, register}) => {
         }
 
     }, [canvasRef, dots]);
-    console.log(selectedImage)
     return (
         <div className={classes.wrapper}>
             {selectedImage && (

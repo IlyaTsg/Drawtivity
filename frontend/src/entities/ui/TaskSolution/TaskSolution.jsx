@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {drawAllLines} from "../../lib/drawAllLines";
-import useImage from "../../../store/hooks/useImage";
+import useImage from "../../model/store/hooks/useImage";
 import {useDispatch} from "react-redux";
 import {dotsParsClick} from "../../lib/dotsParsClick";
 
-const TaskSolution = () => {
+const TaskSolution = ({setCoord}) => {
     const selectedImage = useImage()
     const [dots,setDots] = useState([])
     const canvasRef = useRef(null)
@@ -31,6 +31,7 @@ const TaskSolution = () => {
             }
             //console.log('test')
             drawAllLines(context, dots, [{x:0, y:0}],[{x:0, y:0}])
+            setCoord(dots)
         }
 
     }, [canvasRef, dots]);
