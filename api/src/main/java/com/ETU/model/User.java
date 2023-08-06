@@ -1,16 +1,21 @@
 package com.ETU.model;
 
-import org.springframework.stereotype.Component;
+import org.hibernate.annotations.GenericGenerator;
 
-@Component
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
+    @GenericGenerator(name = "native", strategy = "native")
     private int user_id;
     private String firstname;
     private String lastname;
     private String email;
     private String password;
-
-    public User(){};
+    public User(){}
     public User(int user_id, String firstname, String lastname, String email, String password)
     {
         this.user_id = user_id;
@@ -43,7 +48,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public String getPassword() {
         return password;
