@@ -3,6 +3,7 @@ package com.ETU.dao;
 import com.ETU.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Transactional
 @Service
+@Component
 public class UserDAO {
     @Autowired
     private HibernateTemplate hibernateTemplate;

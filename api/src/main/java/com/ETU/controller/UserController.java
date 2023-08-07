@@ -36,6 +36,7 @@ public class UserController {
 
     @PatchMapping("/{id}")
     public int updateUser(@PathVariable("id") int id, @RequestBody User user){
+        user.setUser_id(id);
         userDAO.updateUser(user);
         return 200;
     }
