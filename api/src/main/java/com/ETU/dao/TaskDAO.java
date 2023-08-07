@@ -1,6 +1,9 @@
 package com.ETU.dao;
 
 import com.ETU.model.Task;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Component;
@@ -22,6 +25,13 @@ public class TaskDAO {
 
     public Task getTaskById(int id){
         return hibernateTemplate.get(Task.class, id);
+    }
+
+    public List<Task> getTasksByOwnerId(int owner_id){
+        DetachedCriteria c = DetachedCriteria.forClass(Task.class);
+        c.add(Restrictions.eq("owner_id", owner_id))
+                .setResultTransformer(DetachedCriteria.DISTINCT_ROOT_ENTITY);
+        return (List<Task>) hibernateTemplate.findByCriteria(c);
     }
 
     public int addTask(Task task){

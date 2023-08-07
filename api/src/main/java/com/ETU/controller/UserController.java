@@ -1,6 +1,8 @@
 package com.ETU.controller;
 
+import com.ETU.dao.TaskDAO;
 import com.ETU.dao.UserDAO;
+import com.ETU.model.Task;
 import com.ETU.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +15,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class UserController {
     private UserDAO userDAO;
+    private TaskDAO taskDAO;
 
     @Autowired
-    public UserController(UserDAO userDAO) {
+    public UserController(UserDAO userDAO, TaskDAO taskDAO) {
         this.userDAO = userDAO;
+        this.taskDAO = taskDAO;
     }
 
     @GetMapping(produces = "application/json")
@@ -28,6 +32,12 @@ public class UserController {
     public User show(@PathVariable("id") int id){
         return userDAO.getUserById(id);
     }
+
+    @GetMapping(value = "/tasks/{id}", produces = "application/json")
+    public List<Task> getTasksByUserId(@PathVariable("id") int id){
+        return taskDAO.getTasksByOwnerId(id);
+    }
+
 
     @PostMapping(consumes = "application/json")
     public int addUser(@RequestBody User user){
