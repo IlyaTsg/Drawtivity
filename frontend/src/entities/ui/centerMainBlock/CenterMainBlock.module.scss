@@ -1,0 +1,25 @@
+.wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.info{
+  display: flex;
+  justify-content: flex-start;
+  //margin-right: 80px;
+  border-radius: 10px;
+  border: 1px solid #CCCCCC;
+  background: white;
+}
+.medium{
+  width: 650px;
+}
+.large{
+  width: 1350px;
+  margin-left: 75px;
+}
+.task{
+  width: 350px
+}
