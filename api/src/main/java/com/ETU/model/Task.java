@@ -1,16 +1,20 @@
 package com.ETU.model;
 
-import com.fasterxml.jackson.annotation.JsonRawValue;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import javax.persistence.*;
+import java.util.List;
 
 @Component
+@Entity
+@Table(name = "tasks")
 public class Task {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
+    @GenericGenerator(name = "native", strategy = "native")
     private int task_id;
     private int owner_id;
     private String title;
@@ -20,22 +24,15 @@ public class Task {
     private String img_url;
     private float deviation;
 
-    private ArrayList<Point> points;
+    @OneToMany(cascade=CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name="task_id", nullable=false)
+    private List<Point> points;
 
-    public Task(){}
-
-    public Task(int task_id, int owner_id, String title, String description, String category, String type, String img_url, float deviation) {
-        this.task_id = task_id;
-        this.owner_id = owner_id;
-        this.title = title;
-        this.description = description;
-        this.category = category;
-        this.type = type;
-        this.img_url = img_url;
-        this.deviation = deviation;
+    public Task() {
     }
 
-    public Task(int task_id, int owner_id, String title, String description, String category, String type, String img_url, float deviation, ArrayList<Point> points) {
+    public Task(int task_id, int owner_id, String title, String description, String category, String type, String img_url, float deviation, List<Point> points) {
         this.task_id = task_id;
         this.owner_id = owner_id;
         this.title = title;
@@ -50,6 +47,7 @@ public class Task {
     public int getTask_id() {
         return task_id;
     }
+
     public void setTask_id(int task_id) {
         this.task_id = task_id;
     }
@@ -57,6 +55,7 @@ public class Task {
     public int getOwner_id() {
         return owner_id;
     }
+
     public void setOwner_id(int owner_id) {
         this.owner_id = owner_id;
     }
@@ -64,6 +63,7 @@ public class Task {
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -71,6 +71,7 @@ public class Task {
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -78,6 +79,7 @@ public class Task {
     public String getCategory() {
         return category;
     }
+
     public void setCategory(String category) {
         this.category = category;
     }
@@ -85,6 +87,7 @@ public class Task {
     public String getType() {
         return type;
     }
+
     public void setType(String type) {
         this.type = type;
     }
@@ -92,6 +95,7 @@ public class Task {
     public String getImg_url() {
         return img_url;
     }
+
     public void setImg_url(String img_url) {
         this.img_url = img_url;
     }
@@ -99,26 +103,17 @@ public class Task {
     public float getDeviation() {
         return deviation;
     }
+
     public void setDeviation(float deviation) {
         this.deviation = deviation;
     }
 
-    public ArrayList<Point> getPoints() {
+    public List<Point> getPoints() {
         return points;
     }
-    public void setPointsSave(ArrayList<Point> points) {
+
+    public void setPoints(List<Point> points) {
         this.points = points;
     }
-    public void setPointsShow(String JsonString) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        this.points = objectMapper.readValue(JsonString, new TypeReference<ArrayList<Point>>(){});
-    }
-    public String ListTOJsonString() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.writeValueAsString(this.points);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
+
