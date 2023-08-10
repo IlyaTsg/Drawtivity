@@ -1,51 +1,41 @@
 package com.ETU.dao;
 
 import com.ETU.model.Task;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
-@Service
-@Transactional
 public class TaskDAO {
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    private HibernateTemplate hibernateTemplate;
-
-    public List<Task> getAllTasks(){
-        return hibernateTemplate.loadAll(Task.class);
+    public TaskDAO(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Task getTaskById(int id){
-        return hibernateTemplate.get(Task.class, id);
+    public List<Task> index(){
+        return jdbcTemplate.query("select * from tasks", new TaskMapper());
     }
 
-    public List<Task> getTasksByOwnerId(int owner_id){
-        DetachedCriteria c = DetachedCriteria.forClass(Task.class);
-        c.add(Restrictions.eq("owner_id", owner_id))
-                .setResultTransformer(DetachedCriteria.DISTINCT_ROOT_ENTITY);
-        return (List<Task>) hibernateTemplate.findByCriteria(c);
+    public Task show(int id){
+        List<Task> response = jdbcTemplate.query("select task_id, owner_id, title, description, category, type, img_url, deviation, points " +
+                "from tasks " +
+                "where task_id=?", new TaskMapper(), id);
+        return response.get(0);
     }
 
-    public int addTask(Task task){
-        return (int) hibernateTemplate.save(task);
+    public int save(Task task){
+        jdbcTemplate.update("insert into tasks (owner_id, title, description, category, type, img_url, deviation, points) values(?,?,?,?,?,?,?,?)",
+                task.getOwner_id(), task.getTitle(), task.getDescription(), task.getCategory(), task.getType(), task.getImg_url(), task.getDeviation(), task.ListTOJsonString());
+
+        List<Task> response = jdbcTemplate.query("select * from tasks", new TaskMapper());
+        return response.get(response.size()-1).getTask_id(); // Возвращаем id последнего в списке
     }
 
-    public void updateTask(Task task){
-        hibernateTemplate.update(task);
-    }
-
-    public void deletebyTaskId(int id){
-        Task task = hibernateTemplate.get(Task.class, id);
-        if(task != null){
-            hibernateTemplate.delete(task);
-        }
+    public void delete(int id){
+        jdbcTemplate.update("delete from tasks where task_id=?", id);
     }
 }

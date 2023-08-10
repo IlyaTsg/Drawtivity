@@ -1,0 +1,24 @@
+.wrapper{
+  display: flex;
+  //flex-flow: ;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+  //height: 700px;
+}
+
+.form{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  min-height: 570px;
+}
+
+.imagesActive{
+  flex-flow:row;
+  margin-right: 350px;
+  margin-left: 350px;
+}
+.imagesNotActive{
+  flex-flow: column;
+}

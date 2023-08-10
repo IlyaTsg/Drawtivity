@@ -1,52 +1,26 @@
 package com.ETU.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.stereotype.Component;
-
-import javax.persistence.*;
-
-@Component
-@Entity
-@Table(name = "points")
 public class Point {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
-    @GenericGenerator(name = "native", strategy = "native")
-    @JsonIgnore
-    private int point_id;
+    private float x;
+    private float y;
 
-    private int x,y;
-
-    public Point() {}
-
-    public Point(int point_id, int x, int y) {
-        this.point_id = point_id;
+    public Point(){};
+    public Point(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getPoint_id() {
-        return point_id;
-    }
-
-    public void setPoint_id(int point_id) {
-        this.point_id = point_id;
-    }
-
-    public int getX() {
+    public float getX() {
         return x;
     }
-
-    public void setX(int x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
-
-    public void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
 }
