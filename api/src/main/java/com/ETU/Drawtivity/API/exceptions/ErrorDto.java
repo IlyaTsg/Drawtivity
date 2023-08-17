@@ -1,4 +1,4 @@
-package com.ETU.DemoApi.exceptions;
+package com.ETU.Drawtivity.API.exceptions;
 
 import lombok.Data;
 

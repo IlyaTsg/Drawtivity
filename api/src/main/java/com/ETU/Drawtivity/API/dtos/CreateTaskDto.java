@@ -1,6 +1,6 @@
-package com.ETU.DemoApi.dtos;
+package com.ETU.Drawtivity.API.dtos;
 
-import com.ETU.DemoApi.entities.Point;
+import com.ETU.Drawtivity.API.entities.Point;
 import lombok.Data;
 
 import java.util.List;

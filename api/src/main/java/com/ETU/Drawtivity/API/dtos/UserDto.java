@@ -1,6 +1,4 @@
-package com.ETU.DemoApi.dtos;
-
-import javax.persistence.Column;
+package com.ETU.Drawtivity.API.dtos;
 
 public class UserDto {
     private Integer user_id;

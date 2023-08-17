@@ -1,7 +1,7 @@
-package com.ETU.DemoApi.controllers;
+package com.ETU.Drawtivity.API.controllers;
 
-import com.ETU.DemoApi.dtos.CreateTaskDto;
-import com.ETU.DemoApi.service.TaskService;
+import com.ETU.Drawtivity.API.dtos.CreateTaskDto;
+import com.ETU.Drawtivity.API.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

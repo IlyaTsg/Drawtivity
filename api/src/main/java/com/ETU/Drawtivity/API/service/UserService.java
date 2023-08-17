@@ -1,15 +1,14 @@
-package com.ETU.DemoApi.service;
+package com.ETU.Drawtivity.API.service;
 
-import com.ETU.DemoApi.dtos.RegistrationUserDto;
-import com.ETU.DemoApi.entities.User;
-import com.ETU.DemoApi.repositories.UserRepository;
+import com.ETU.Drawtivity.API.dtos.RegistrationUserDto;
+import com.ETU.Drawtivity.API.entities.User;
+import com.ETU.Drawtivity.API.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {

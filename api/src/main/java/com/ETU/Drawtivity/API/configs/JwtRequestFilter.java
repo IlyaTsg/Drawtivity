@@ -1,6 +1,6 @@
-package com.ETU.DemoApi.configs;
+package com.ETU.Drawtivity.API.configs;
 
-import com.ETU.DemoApi.utils.JwtTokenUtils;
+import com.ETU.Drawtivity.API.utils.JwtTokenUtils;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import lombok.extern.slf4j.Slf4j;

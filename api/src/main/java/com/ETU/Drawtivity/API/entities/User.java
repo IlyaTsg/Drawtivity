@@ -1,4 +1,4 @@
-package com.ETU.DemoApi.entities;
+package com.ETU.Drawtivity.API.entities;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;

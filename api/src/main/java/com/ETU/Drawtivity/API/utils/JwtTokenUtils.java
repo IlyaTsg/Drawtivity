@@ -1,4 +1,4 @@
-package com.ETU.DemoApi.utils;
+package com.ETU.Drawtivity.API.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

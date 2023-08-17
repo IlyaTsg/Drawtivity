@@ -1,15 +1,9 @@
-package com.ETU.DemoApi.configs;
+package com.ETU.Drawtivity.API.configs;
 
-import com.ETU.DemoApi.service.DetailsService;
-import org.apache.commons.dbcp2.BasicDataSource;
-import org.hibernate.SessionFactory;
+import com.ETU.Drawtivity.API.service.DetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
-import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -21,10 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import javax.sql.DataSource;
-import java.io.IOException;
-import java.util.Properties;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)

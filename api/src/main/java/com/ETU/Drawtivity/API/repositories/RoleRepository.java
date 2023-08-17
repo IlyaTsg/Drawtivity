@@ -1,6 +1,6 @@
-package com.ETU.DemoApi.repositories;
+package com.ETU.Drawtivity.API.repositories;
 
-import com.ETU.DemoApi.entities.Role;
+import com.ETU.Drawtivity.API.entities.Role;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,12 +1,12 @@
-package com.ETU.DemoApi.service;
+package com.ETU.Drawtivity.API.service;
 
-import com.ETU.DemoApi.dtos.JwtRequest;
-import com.ETU.DemoApi.dtos.JwtResponse;
-import com.ETU.DemoApi.dtos.RegistrationUserDto;
-import com.ETU.DemoApi.dtos.UserDto;
-import com.ETU.DemoApi.entities.User;
-import com.ETU.DemoApi.exceptions.ErrorDto;
-import com.ETU.DemoApi.utils.JwtTokenUtils;
+import com.ETU.Drawtivity.API.dtos.JwtRequest;
+import com.ETU.Drawtivity.API.dtos.JwtResponse;
+import com.ETU.Drawtivity.API.dtos.RegistrationUserDto;
+import com.ETU.Drawtivity.API.dtos.UserDto;
+import com.ETU.Drawtivity.API.entities.User;
+import com.ETU.Drawtivity.API.exceptions.ErrorDto;
+import com.ETU.Drawtivity.API.utils.JwtTokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

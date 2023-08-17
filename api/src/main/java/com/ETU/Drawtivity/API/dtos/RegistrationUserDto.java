@@ -1,4 +1,4 @@
-package com.ETU.DemoApi.dtos;
+package com.ETU.Drawtivity.API.dtos;
 
 import lombok.Data;
 

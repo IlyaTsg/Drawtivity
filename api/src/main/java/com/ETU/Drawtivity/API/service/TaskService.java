@@ -1,12 +1,12 @@
-package com.ETU.DemoApi.service;
+package com.ETU.Drawtivity.API.service;
 
-import com.ETU.DemoApi.dtos.CreateTaskDto;
-import com.ETU.DemoApi.dtos.TaskDto;
-import com.ETU.DemoApi.entities.Point;
-import com.ETU.DemoApi.entities.Task;
-import com.ETU.DemoApi.exceptions.ErrorDto;
-import com.ETU.DemoApi.repositories.PointReposiroty;
-import com.ETU.DemoApi.repositories.TaskRepository;
+import com.ETU.Drawtivity.API.dtos.CreateTaskDto;
+import com.ETU.Drawtivity.API.dtos.TaskDto;
+import com.ETU.Drawtivity.API.entities.Point;
+import com.ETU.Drawtivity.API.entities.Task;
+import com.ETU.Drawtivity.API.exceptions.ErrorDto;
+import com.ETU.Drawtivity.API.repositories.PointReposiroty;
+import com.ETU.Drawtivity.API.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TaskService {

@@ -1,8 +1,8 @@
-package com.ETU.DemoApi.controllers;
+package com.ETU.Drawtivity.API.controllers;
 
-import com.ETU.DemoApi.dtos.JwtRequest;
-import com.ETU.DemoApi.dtos.RegistrationUserDto;
-import com.ETU.DemoApi.service.AuthService;
+import com.ETU.Drawtivity.API.dtos.JwtRequest;
+import com.ETU.Drawtivity.API.dtos.RegistrationUserDto;
+import com.ETU.Drawtivity.API.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
