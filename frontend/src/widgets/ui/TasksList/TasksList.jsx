@@ -6,23 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getTasks} from "../../../entities/model/store/slices/tasksSlice";
 
 const TasksList = () => {
-    /*const tasks =[
-        {
-            title:'sa',
-            category: 'dsa',
-            type: 'dss'
-        },
-        {
-            title:'sa2',
-            category: 'dsa2',
-            type: 'dss2'
-        },
-        {
-            title:'sadasfsfasdfsadfsad2',
-            category: 'dsadsfasdfasdfasdf2',
-            type: 'dss2dsffasdfasdfasdf'
-        },
-    ]*/
+
     const [tasks, setTasks] = useState([])
     const dispatch = useDispatch()
 
