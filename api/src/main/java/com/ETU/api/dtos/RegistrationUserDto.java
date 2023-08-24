@@ -1,35 +1,20 @@
-package com.ETU.model;
+package com.ETU.api.dtos;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.stereotype.Component;
+import lombok.Data;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "users")
-@Component
-public class User {
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
-    @GenericGenerator(name = "native", strategy = "native")
-    private int user_id;
+@Data
+public class RegistrationUserDto {
     private String firstname;
     private String lastname;
     private String email;
     private String password;
 
-    public User(){}
-    public User(int user_id, String firstname, String lastname, String email, String password)
-    {
-        this.user_id = user_id;
+    public RegistrationUserDto(String firstname, String lastname, String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
     }
-
-    public int getUser_id(){ return user_id; }
-    public void setUser_id(int user_id) { this.user_id = user_id; }
 
     public String getFirstname() {
         return firstname;

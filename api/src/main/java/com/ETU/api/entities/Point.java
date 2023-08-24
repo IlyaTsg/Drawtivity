@@ -1,52 +1,62 @@
-package com.ETU.model;
+package com.ETU.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
-@Component
 @Entity
+@Data
 @Table(name = "points")
 public class Point {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native", strategy = "native")
     @JsonIgnore
-    private int point_id;
+    private Integer point_id;
 
-    private int x,y;
+    private Float x,y;
+
+    @ManyToOne
+    @JoinColumn(name="task_id", referencedColumnName = "task_id")
+    @JsonIgnore
+    private Task task;
 
     public Point() {}
 
-    public Point(int point_id, int x, int y) {
+    public Point(Integer point_id, Float x, Float y) {
         this.point_id = point_id;
         this.x = x;
         this.y = y;
     }
 
-    public int getPoint_id() {
+    public Integer getPoint_id() {
         return point_id;
     }
-
-    public void setPoint_id(int point_id) {
+    public void setPoint_id(Integer point_id) {
         this.point_id = point_id;
     }
 
-    public int getX() {
+    public Float getX() {
         return x;
     }
-
-    public void setX(int x) {
+    public void setX(Float x) {
         this.x = x;
     }
 
-    public int getY() {
+    public Float getY() {
         return y;
     }
-
-    public void setY(int y) {
+    public void setY(Float y) {
         this.y = y;
+    }
+
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
     }
 }
