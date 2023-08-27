@@ -32,6 +32,7 @@ public class LtiService {
     }
 
     public ResponseEntity<LtiRegistrationResponse> createLtiRegistration(){
+        // Построение токена по которому Moodle определит, что запрос пришел от нужного Tool Provider
         String client_assertion = ltiJwtTokenUtils.generateLtiJwtToken();
 
         LtiRegistrationResponse ltiRegistrationResponse = new LtiRegistrationResponse(grant_type, client_assertion_type, client_assertion, redirect_uri, state, response_type, scope, login_hint);
