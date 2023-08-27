@@ -5,9 +5,9 @@ import com.ETU.api.dtos.RegistrationUserDto;
 import com.ETU.api.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
 
 @RestController
 public class AuthController {
@@ -26,5 +26,10 @@ public class AuthController {
     @PostMapping("/registration")
     public ResponseEntity<?> createUser(@RequestBody RegistrationUserDto registrationRequest){
         return authService.createUser(registrationRequest);
+    }
+
+    @GetMapping("/test")
+    public String test(@PathParam("user") String user){
+        return "Hello " + user;
     }
 }
