@@ -18,6 +18,7 @@ import {getTasks} from "./entities/model/store/slices/tasksSlice";
 
 function App() {
     store.dispatch(getTasks())
+    console.log(localStorage.getItem('token'))
   return (
       <Provider store={store}>
           <BrowserRouter>

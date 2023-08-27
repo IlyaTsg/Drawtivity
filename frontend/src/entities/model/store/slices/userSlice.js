@@ -4,9 +4,11 @@ import UserApi from "../../../../pages/api/UserApi";
 export const signInThunk = createAsyncThunk(
     "user/signInThunk",
     async function(reqBody){
-       //console.log(reqBody)
-        const id = await UserApi.singIn(reqBody);
-        return id.data
+            const response = await UserApi.singIn(reqBody);
+            console.log(response)
+            localStorage.setItem('token', response.data.accessToken)
+            return response.data.id
+
     }
 )
 
@@ -14,8 +16,12 @@ export const signUpThunk = createAsyncThunk(
     "user/signUpThunk",
     async function(reqBody){
         //console.log(reqBody)
-        const id = await UserApi.signUp(reqBody);
-        return id.data
+
+            const response = await UserApi.signUp(reqBody);
+            console.log(response)
+            localStorage.setItem('token', response.data.accessToken)
+            return response.data.id
+
     }
 )
 
