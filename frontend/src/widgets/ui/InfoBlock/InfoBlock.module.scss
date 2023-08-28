@@ -1,5 +1,9 @@
 .wrap{
   display: flex;
+  height: 96vh;
   width: 100%;
   justify-content: space-around;
+  padding-bottom: 25px;
+  @apply border-b border-gray-400;
+  //background: none;
 }

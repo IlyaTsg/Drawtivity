@@ -1,12 +1,15 @@
 .header{
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
   align-items: center;
+  justify-content: space-around;
   width: 100%;
+  @apply bg-gradient-to-r from-white to-gray-400;
 }
 .logo{
   overflow: hidden;
-  height: 70px;
-  width: 50%;
-  background-color: #EFEFEF;
+  height: 30px;
+  margin-top: 5px;
+  width: 20%;
+  @apply border border-gray-500;
 }

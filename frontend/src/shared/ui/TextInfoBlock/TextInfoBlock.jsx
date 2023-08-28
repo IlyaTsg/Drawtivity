@@ -1,14 +1,25 @@
 import React from 'react';
 import classes from "./TextInfoBlock.module.scss";
 import classNames from "classnames";
-const TextInfoBlock = ({info, title, label}) => {
-    const titleStyle = classNames(classes.title)
+const TextInfoBlock = ({block, title, label}) => {
+    const titleStyle = classNames(classes.title, {
+        [classes.infoTitle]: block === 'info',
+        [classes.linkTitle]: block === 'link'
+    })
+    const labelStyle = classNames(classes.label, {
+        [classes.infoLabel]: block === 'info',
+        [classes.linkLabel]: block === 'link'
+    })
+    const wrapStyle = classNames({
+        [classes.wrapInfo]: block === 'info',
+        [classes.wrapLink]: block === 'link'
+    })
     return (
-        <div className={classes.wrap}>
-            <div className={classes.title}>
+        <div className={wrapStyle}>
+            <div className={titleStyle}>
                 {title}
             </div>
-            <div className={classes.label}>
+            <div className={labelStyle}>
                 {label}
             </div>
         </div>

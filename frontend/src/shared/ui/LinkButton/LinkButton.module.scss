@@ -1,0 +1,16 @@
+.wrap{
+  width: 200px;
+  height: 45px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoStyle{
+  @apply border border-black text-white bg-black;
+}
+
+.linkStyle{
+  @apply text-black bg-white border border-zinc-500;
+}
