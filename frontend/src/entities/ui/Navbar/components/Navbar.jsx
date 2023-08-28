@@ -5,6 +5,7 @@ import DropDownList from "../../DropDownList/DropDownList";
 import  {removeUser} from "../../../model/store/slices/userSlice";
 import {useDispatch} from "react-redux";
 import useAuth from "../../../model/store/hooks/useAuth";
+import AuthNavBlock from "../../../../features/auth/ui/AuthNavBlock/AuthNavBlock";
 const Navbar = () => {
     const isAuth = useAuth().isAuth
     const dispatch = useDispatch()
@@ -14,18 +15,7 @@ const Navbar = () => {
             <Link to={'/documentation'}>Документация</Link>
             <Link to={'/tasks'}>Список задач</Link>
             <Link to={'/constructor'}>Конструктор задач</Link>
-            {!isAuth ?
-                        <DropDownList title={'Войти'}>
-                            <div className={classes.links}>
-                                <Link className={classes.links} to={'/sign_up'}>Регистрация</Link>
-                            </div>
-                            <div className={classes.links}>
-                                <Link className={classes.links} to={'/sign_in'}>Авторизация</Link>
-                            </div>
-                        </DropDownList>
-                :
-                <Link className={classes.links} to={'/info'} onClick={() => {dispatch(removeUser()); console.log(1)}}>Выйти</Link>
-            }
+
         </div>
     );
 };

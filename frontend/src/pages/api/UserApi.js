@@ -8,7 +8,7 @@ export default class UserApi {
     }
 
     static  async signUp(body){
-        const response = await axios.post(`http://localhost:80/api/registration`, body)
+        const response = await $api.post(`http://localhost:80/api/registration`, body)
         return response
     }
 }

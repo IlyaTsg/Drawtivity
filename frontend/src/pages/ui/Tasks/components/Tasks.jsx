@@ -1,5 +1,5 @@
 import React from 'react';
-import CenterMainBlock from "../../../../entities/ui/centerMainBlock/CenterMainBlock";
+import CenterMainBlock from "../../../../entities/ui/CenterMainBlock/CenterMainBlock";
 import TasksList from "../../../../widgets/ui/TasksList/TasksList";
 
 const Tasks = () => {

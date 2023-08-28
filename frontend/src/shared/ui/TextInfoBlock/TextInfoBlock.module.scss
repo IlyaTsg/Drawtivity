@@ -1,0 +1,13 @@
+.wrap{
+  width: 650px;
+  height: 420px;
+}
+
+.title{
+  @apply font-sans text-6xl font-bold subpixel-antialiased ;
+}
+
+.label{
+  @apply my-8 break-words text-xl text-zinc-700;
+  width: 100%;
+}

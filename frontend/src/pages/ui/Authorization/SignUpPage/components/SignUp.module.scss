@@ -2,10 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 93vh;
+  @apply bg-gray-100;
 }
 
 .form{
   width: 350px;
-  height: 600px;
 }

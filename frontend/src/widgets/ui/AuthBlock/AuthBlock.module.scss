@@ -1,0 +1,23 @@
+.wrap{
+  @apply shadow-2xl bg-white;
+  width: 500px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.auth{
+  height: 400px;
+}
+.reg{
+  height: 550px;
+}
+.header{
+  @apply font-sans font-bold text-3xl;
+}
+
+
+.helper{
+  @apply font-sans text-sm text-slate-400  break-words;
+}
