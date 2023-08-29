@@ -19,17 +19,19 @@ public class AuthController {
     }
 
     @PostMapping("/auth")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> createAuthToken(@RequestBody JwtRequest authRequest) {
         return authService.createAuthToken(authRequest);
     }
 
     @PostMapping("/registration")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> createUser(@RequestBody RegistrationUserDto registrationRequest){
         return authService.createUser(registrationRequest);
     }
 
     @GetMapping("/test")
     public String test(@PathParam("user") String user){
-        return "Hello " + user;
+        return "Redirect is successful";
     }
 }
