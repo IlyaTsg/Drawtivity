@@ -18,30 +18,36 @@ public class TaskController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> getAllTasks(){
         return taskService.getAllTasks();
     }
     @GetMapping(value="/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> getTaskById(@PathVariable("id") int id){
         return taskService.loadTaskById(id);
     }
 
     @PostMapping()
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> createTask(@RequestBody CreateTaskDto createTaskDto){
         return taskService.createTask(createTaskDto);
     }
 
     @PatchMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> updateTaskById(@PathVariable("id") Integer id, @RequestBody CreateTaskDto createTaskDto){
         return taskService.updateTaskById(id, createTaskDto);
     }
 
     @DeleteMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> deleteTaskById(@PathVariable("id") Integer id){
         return taskService.deleteTaskById(id);
     }
 
     @PostMapping("/solution")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> solutionTask(@RequestBody SolutionRequest solutionRequest){
         return taskService.solutionTask(solutionRequest);
     }
