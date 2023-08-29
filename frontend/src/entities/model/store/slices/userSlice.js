@@ -4,11 +4,15 @@ import UserApi from "../../../../pages/api/UserApi";
 export const signInThunk = createAsyncThunk(
     "user/signInThunk",
     async function(reqBody){
+        try {
             const response = await UserApi.singIn(reqBody);
             console.log(response)
-            localStorage.setItem('token', response.data.accessToken)
-            return response.data.id
-
+            localStorage.setItem('token', response.token)
+            return response.token
+        }catch (e){
+            alert('error')
+            return 'ew'
+        }
     }
 )
 
@@ -16,11 +20,15 @@ export const signUpThunk = createAsyncThunk(
     "user/signUpThunk",
     async function(reqBody){
         //console.log(reqBody)
-
+        try {
             const response = await UserApi.signUp(reqBody);
             console.log(response)
-            localStorage.setItem('token', response.data.accessToken)
-            return response.data.id
+            localStorage.setItem('token', response.token)
+            return response.token
+        }catch (e) {
+            alert('error')
+            return 'fs'
+        }
 
     }
 )
@@ -55,14 +63,14 @@ const userSlice = createSlice({
         })
         builder.addCase(signInThunk.fulfilled, (state, action) =>{
             console.log(action.payload)
-            state.id = action.payload
+            state.token = action.payload
         })
         builder.addCase(signUpThunk.pending, (state, action) =>{
             console.log(action)
         })
         builder.addCase(signUpThunk.fulfilled, (state, action) => {
             console.log(action.payload)
-            state.id = action.payload
+            state.token = action.payload
         })
     }
 })
