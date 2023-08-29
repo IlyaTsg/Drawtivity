@@ -1,16 +1,19 @@
 package com.ETU.api.dtos;
 
-public class UserDto {
+public class RegistrationUserResponse {
     private Integer user_id;
     private String firstname;
     private String lastname;
     private String email;
 
-    public UserDto(Integer user_id, String firstname, String lastname, String email) {
+    private String token;
+
+    public RegistrationUserResponse(Integer user_id, String firstname, String lastname, String email, String token) {
         this.user_id = user_id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+        this.token = token;
     }
 
     public Integer getUser_id() {
@@ -39,5 +42,12 @@ public class UserDto {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+    public void setToken(String token) {
+        this.token = token;
     }
 }
