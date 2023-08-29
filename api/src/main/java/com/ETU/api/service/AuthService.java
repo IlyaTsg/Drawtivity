@@ -3,7 +3,7 @@ package com.ETU.api.service;
 import com.ETU.api.dtos.JwtRequest;
 import com.ETU.api.dtos.JwtResponse;
 import com.ETU.api.dtos.RegistrationUserDto;
-import com.ETU.api.dtos.UserDto;
+import com.ETU.api.dtos.RegistrationUserResponse;
 import com.ETU.api.entities.User;
 import com.ETU.api.exceptions.ErrorDto;
 import com.ETU.api.utils.JwtTokenUtils;
@@ -51,6 +51,9 @@ public class AuthService {
             return new ResponseEntity<>(new ErrorDto(HttpStatus.BAD_REQUEST.value(), "User already exists"), HttpStatus.BAD_REQUEST);
         }
         User user = userService.addUser(registrationRequest);
-        return ResponseEntity.ok(new UserDto(user.getUser_id(), user.getFirstname(), user.getLastname(), user.getEmail()));
+        UserDetails userDetails = detailsService.loadUserByUsername(user.getEmail());
+        String token = jwtTokenUtils.generateToken(userDetails);
+
+        return ResponseEntity.ok(new RegistrationUserResponse(user.getUser_id(), user.getFirstname(), user.getLastname(), user.getEmail(), token));
     }
 }
