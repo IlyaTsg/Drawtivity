@@ -51,22 +51,48 @@ const Constructor = () => {
         dispatch(setPercent(event.target.value))
     }
     return (
-        <div >
+        <div className={classes.wrap}>
             <CustomForm formCl={classes.form} handlerSubmit={handleSubmit}
                         btnText={'Добавить задачу'}
                         isValid={isValid} submitHandler={addTask}>
                 <div className={classname}>
                     <div>
-                            <InputName label={'Название задачи'} errors={errors} register={register} name={'title'}/>
-                            <CustomTextArea title={'Описание задачи'} placeholder={'Описание'} register={register} errors={errors} name={'description'}/>
-                            <CustomSelect errors={errors} title={'Выберите категорию задачи'} optionName={"Категория"} register={register} name={"category"}/>
-                            <CustomSelect errors={errors} title={'Выберите тип задачи'} optionName={"Тип задачи"} register={register} name={'type'}/>
-                            <FileInput register={register} name={'image'}/>
-                            <NumberInput errors={errors} register={register} name={"deviation"} label={"Пример: 15"} inputHandler={percentAdd}/>
-                    </div>
-                    <div>
                         <ImageUploadBlock errors={errors} register={register}/>
                     </div>
+                    <div className={classes.formBlockWrapper}>
+                        <div className={classes.prom}>
+                            <div className={classes.formBlock}>
+                                    <div className={classes.formHeader}>
+                                        Конструктор для создания задач
+                                    </div>
+                                    <InputName label={'Название задачи'} errors={errors} register={register} name={'title'}/>
+                                    <CustomTextArea title={'Описание задачи'} placeholder={'Описание'} register={register} errors={errors} name={'description'}/>
+                                <div className={classes.twoBlocks}>
+                                    <div className={classes.twoElem}> <CustomSelect errors={errors}
+                                                       title={'Выберите категорию задачи'}
+                                                       optionName={"Категория"} register={register}
+                                                       name={"category"}/>
+                                    </div>
+                                    <div className={classes.twoElem}>
+                                    <CustomSelect errors={errors}
+                                                  title={'Выберите тип задачи'}
+                                                  optionName={"Тип задачи"} register={register}
+                                                  name={'type'}/>
+                                    </div>
+                                </div>
+                                <div className={classes.twoBlocks}>
+                                    <div className={classes.twoElem}>
+                                        <FileInput register={register} name={'image'}/>
+                                    </div>
+                                    <div className={classes.twoElem}><NumberInput errors={errors} register={register}
+                                                      name={"deviation"} label={"Пример: 15"}
+                                                      inputHandler={percentAdd}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </CustomForm>
         </div>

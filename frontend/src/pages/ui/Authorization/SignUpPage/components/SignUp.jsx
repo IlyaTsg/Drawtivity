@@ -7,6 +7,7 @@ import PasswordInput from "../../UI/PasswordInput/PasswordInput";
 import InputName from "../UI/InputName/InputName";
 import {signUpThunk} from "../../../../../entities/model/store/slices/userSlice";
 import {useDispatch} from "react-redux";
+import AuthBlock from "../../../../../widgets/ui/AuthBlock/AuthBlock";
 const SignUp = () => {
     const {
         register,
@@ -24,17 +25,19 @@ const SignUp = () => {
     }
     return (
         <div className={classes.wrapper}>
-            <CustomForm btnText={'Sign Up'}
-                        submitHandler={submitHandler}
-                        handlerSubmit={handleSubmit}
-                        isValid={isValid}
-                        formCl={classes.form}
-            >
-                <InputName label={'First name'} errors={errors} register={register} name={'firstname'}/>
-                <InputName label={'Second name'} errors={errors} register={register} name={'lastname'}/>
-                <InputEmail errors={errors} register={register}/>
-                <PasswordInput errors={errors} register={register}/>
-            </CustomForm>
+            <AuthBlock headerText={'Регистрация'} helperText={'Забыли пароль?'} auth={false}>
+                <CustomForm btnText={'Sign Up'}
+                            submitHandler={submitHandler}
+                            handlerSubmit={handleSubmit}
+                            isValid={isValid}
+                            formCl={classes.form}
+                >
+                    <InputName label={'First name'} errors={errors} register={register} name={'firstname'}/>
+                    <InputName label={'Second name'} errors={errors} register={register} name={'lastname'}/>
+                    <InputEmail errors={errors} register={register}/>
+                    <PasswordInput errors={errors} register={register}/>
+                </CustomForm>
+            </AuthBlock>
         </div>
     );
 };

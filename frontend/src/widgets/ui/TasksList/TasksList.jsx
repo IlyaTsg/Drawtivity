@@ -7,18 +7,32 @@ import {getTasks} from "../../../entities/model/store/slices/tasksSlice";
 
 const TasksList = () => {
 
-    const [tasks, setTasks] = useState([])
+    const [tasks, setTasks] = useState([
+        {ind: 1, title: 'Test', category: 'First', type: 'Second'},
+        {ind: 2, title: 'Test Test', category: 'Second', type: 'Third'},
+        {ind: 3, title: 'Test Test', category: 'Second', type: 'Third'},
+        {ind: 4, title: 'Test Test', category: 'Second', type: 'Third'},
+        {ind: 5, title: 'Test Test', category: 'Second', type: 'Third'},
+        {ind: 6, title: 'Test Test', category: 'Second', type: 'Third'},
+        {ind: 8, title: 'Test Test', category: 'Second', type: 'Third'},
+        {ind: 9, title: 'Test Test', category: 'Second', type: 'Third'},
+        {ind: 16, title: 'Test Test', category: 'Second', type: 'Third'},
+        {ind: 26, title: 'Test Test', category: 'Second', type: 'Third'},
+        {ind: 36, title: 'Test Test', category: 'Second', type: 'Third'},
+        {ind: 46, title: 'Test Test', category: 'Second', type: 'Third'},
+
+    ])
     const dispatch = useDispatch()
 
     const tempTasks =  useSelector(state => state.task.tasks)
     useEffect(()=>{
         dispatch(getTasks())
-        setTasks(tempTasks)
+        //setTasks(tempTasks)
     }, [])
     return (
         <div className={classes.wrapper}>
             <TaskHeader/>
-            {tempTasks.map((item, i) =>
+            {tasks.map((item, i) =>
                 <TaskItem key={i} ind={i}
                           title={item.title}
                           category={item.category}

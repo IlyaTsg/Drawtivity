@@ -1,12 +1,12 @@
 import React from 'react';
 import Form from "react-bootstrap/Form";
 import {dotsInputHandler} from "../../../entities/lib/dotsInputHandler";
-
+import classes from "./DotsInput.module.scss";
 const DotsInput = ({errors, register, handler, dispatch}) => {
     //console.log(register)
     return (
         <Form.Group className="mb-3">
-            <Form.Label>Введите координаты точек</Form.Label>
+            <Form.Label><div className={classes.label}>Введите координаты точек</div></Form.Label>
             <Form.Control
                 isInvalid={errors?.dots}
                 type='text'

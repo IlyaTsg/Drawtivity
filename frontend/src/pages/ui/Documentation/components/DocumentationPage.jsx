@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './DocumentationPage.module.scss'
-import TextBlockAndImage from "../../../../entities/ui/textBlock/TextBlockAndImage";
+import TextBlockAndImage from "../../../../entities/ui/TextBlock/TextBlockAndImage";
 const DocumentationPage = () => {
     return (
         <div className={classes.documentationWrap}>

@@ -3,7 +3,7 @@ import classes from "./TaskItem.module.scss";
 
 const TaskHeader = () => {
     return (
-        <div className={classes.itemRow}>
+        <div className={classes.headerRow}>
             <span className={classes.indClasses}>№</span>
             <div className={classes.headerRow__item}>
                 Название

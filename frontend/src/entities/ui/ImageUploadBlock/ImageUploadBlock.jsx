@@ -15,7 +15,7 @@ const ImageUploadBlock = ({errors, register}) => {
     const backgroundCss = {
         backgroundImage: `${selectedImage ?`url(${URL.createObjectURL(selectedImage)})`: `null` }`,
         backgroundRepeat:  `no-repeat`,
-        backgroundSize: `550px 350px`
+        backgroundSize: `750px 550px`
     }
     const dispatch = useDispatch()
     const [lowerDots, highDots] = calcRadius(dots, percent)
@@ -33,14 +33,17 @@ const ImageUploadBlock = ({errors, register}) => {
 
     }, [canvasRef, dots]);
     return (
-        <div className={classes.wrapper}>
+        <div >
             {selectedImage && (
                 <div>
+                    <div className={classes.header}>Ваше изображение</div>
                     <Form.Group className="mb-3">
-                        <canvas ref={canvasRef}
-                                style={backgroundCss} width={"550px"}
-                                height={"350px"}>
-                        </canvas>
+                        <div className={classes.wrapper}>
+                            <canvas ref={canvasRef}
+                                    style={backgroundCss} width={"750px"}
+                                    height={"550px"}>
+                            </canvas>
+                        </div>
                     </Form.Group>
                     <DotsInput register={register} errors={errors} handler={dotsInputHandler} dispatch={dispatch}/>
                 </div>

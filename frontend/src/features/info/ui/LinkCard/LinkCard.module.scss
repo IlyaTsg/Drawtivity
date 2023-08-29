@@ -1,0 +1,9 @@
+.wrap{
+  @apply rounded-2xl bg-white border border-r-2 border-b-2 border-e-stone-800 border-s-gray-500 border-b-stone-800;
+  @apply border-t-stone-500 ;
+  width: 510px;
+  height: 310px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -7,7 +7,7 @@ const FileInput = ({register, name}) => {
     const dispatch = useDispatch()
     return (
         <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label>Загрузите фотографию</Form.Label>
+            <Form.Label>Загрузите изображение</Form.Label>
             <Form.Control
                 type="file"
                 {...register(name, {

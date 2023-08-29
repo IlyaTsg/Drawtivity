@@ -2,10 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 96vh;
+  @apply bg-stone-200;
 }
 
 .form{
   width: 350px;
-  height: 600px;
 }

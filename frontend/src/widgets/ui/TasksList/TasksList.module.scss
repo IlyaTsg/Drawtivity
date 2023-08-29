@@ -1,5 +1,5 @@
 .wrapper{
-  background: none;
   width: 100%;
-
+  @apply border-b border-b-stone-600;
+  @apply shadow-2xl shadow-violet-300;
 }

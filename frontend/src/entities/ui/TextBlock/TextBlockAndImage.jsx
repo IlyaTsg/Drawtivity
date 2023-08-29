@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './TextBlock.module.scss'
-import CenterMainBlock from "../centerMainBlock/CenterMainBlock";
+import CenterMainBlock from "../CenterMainBlock/CenterMainBlock";
 const TextBlockAndImage = ({children}) => {
 
     //let imageData = typeof children === "object" ? children[1].props.children.props.src : null

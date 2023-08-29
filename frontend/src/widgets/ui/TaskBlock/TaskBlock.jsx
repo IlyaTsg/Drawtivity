@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import classes from './TaskBlock.module.scss'
-import TextBlockAndImage from "../../../entities/ui/textBlock/TextBlockAndImage";
+import TextBlockAndImage from "../../../entities/ui/TextBlock/TextBlockAndImage";
 import Form from "react-bootstrap/Form";
 import useImage from "../../../entities/model/store/hooks/useImage";
 import {useDispatch, useSelector} from "react-redux";
