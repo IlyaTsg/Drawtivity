@@ -1,4 +1,12 @@
 .wrapper{
   //margin-bottom: 150px;
+  @apply border border-black;
 }
 
+.header{
+  @apply font-semibold font-sans text-3xl tracking-wide uppercase  text-white;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-bottom: 15px;
+}
