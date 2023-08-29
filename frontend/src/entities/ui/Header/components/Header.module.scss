@@ -4,7 +4,9 @@
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  @apply bg-zinc-200;
+  height: 60px;
+  @apply bg-stone-200 font-sans not-italic bg-stone-800 text-white font-medium;
+
 }
 .logo{
   overflow: hidden;

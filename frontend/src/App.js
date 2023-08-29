@@ -9,7 +9,7 @@ import {Provider} from "react-redux";
 import store from "./entities/model/store";
 import Constructor from "./pages/ui/Constructor/components/Constructor";
 import EditTaskPage from "./pages/ui/EditTaskPage/components/EditTaskPage";
-import Tasks from "./pages/ui/Tasks/components/Tasks";
+import Tasks from "./pages/ui/Tasks/Сomponents/Tasks";
 import TaskPage from "./pages/ui/TaskPage/components/TaskPage";
 import DocumentationPage from "./pages/ui/Documentation/components/DocumentationPage";
 import TaskBlock from "./widgets/ui/TaskBlock/TaskBlock";

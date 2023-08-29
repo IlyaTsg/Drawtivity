@@ -1,14 +1,29 @@
 .itemRow{
-  background: none;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   width: 100%;
-  border-bottom: 1px solid #CCCCCC;
-  border-radius: 10px;
-  margin-top: 7px;
-  div{
-    background: none;
-  }
+  overflow: hidden;
+  height: 60px;
+  @apply border border-b-neutral-400;
+}
+
+.rightGray{
+  //@apply bg-gradient-to-r  from-5% from-white to-gray-300 text-stone-600;
+}
+
+.leftGray{
+  //@apply bg-gradient-to-r from-5% from-white to-stone-200 text-black;
+}
+
+.headerRow{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  height: 60px;
+  @apply bg-zinc-900 text-white font-sans text-xl font-medium;
 }
 .indClasses{
   background: none;
@@ -16,6 +31,7 @@
   text-align: left;
 }
 .itemRow__item{
+  @apply bg-white text-black font-sans text-lg;
   width: 310px;
   text-align: center;
   background: none;
