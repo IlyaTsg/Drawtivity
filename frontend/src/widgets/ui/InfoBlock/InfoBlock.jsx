@@ -5,9 +5,13 @@ import classes from "./InfoBlock.module.scss";
 
 const InfoBlock = () => {
     return (
-        <div className={classes.wrap}>
-            <DescriptionInfoBlock/>
-            <AuthNavBlock/>
+        <div>
+            <div className={classes.auth}>
+                <AuthNavBlock/>
+            </div>
+            <div className={classes.wrap}>
+                <DescriptionInfoBlock/>
+            </div>
         </div>
     );
 };

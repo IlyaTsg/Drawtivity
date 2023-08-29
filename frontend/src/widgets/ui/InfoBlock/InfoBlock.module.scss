@@ -1,9 +1,15 @@
 .wrap{
   display: flex;
-  height: 96vh;
+  height: 56vh;
   width: 100%;
+  margin-top: 30px;
   justify-content: space-around;
   padding-bottom: 25px;
-  @apply border-b border-gray-400;
-  //background: none;
+}
+
+.auth{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 150px;
 }

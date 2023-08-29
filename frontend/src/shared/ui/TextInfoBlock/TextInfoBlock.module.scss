@@ -1,5 +1,5 @@
 .wrapInfo{
-  width: 650px;
+  width: 850px;
   height: 420px;
 }
 .wrapLink{
@@ -8,6 +8,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 15px;
 }
 .title{
   @apply font-sans font-bold subpixel-antialiased ;
@@ -16,16 +17,16 @@
   @apply text-6xl
 }
 .linkTitle{
-  @apply text-xl;
+  @apply text-3xl;
 }
 .label{
   @apply my-8 break-words;
   width: 100%;
 }
 .infoLabel{
-  @apply text-xl text-zinc-600;
+  @apply text-xl text-zinc-700;
 }
 
 .linkLabel{
-  @apply text-black;
+  @apply text-black text-xl;
 }

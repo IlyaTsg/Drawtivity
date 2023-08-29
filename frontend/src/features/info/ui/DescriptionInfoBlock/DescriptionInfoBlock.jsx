@@ -4,7 +4,7 @@ import TextInfoBlock from "../../../../shared/ui/TextInfoBlock/TextInfoBlock";
 import classes from "./DescriptionInfoBlock.module.scss";
 const DescriptionInfoBlock = () => {
     return (
-        <div className={classes.wrap}>
+        <div>
             <TextInfoBlock info={'sd'}
                            title={'DrawIt - сервис онлайн решения графических задач'}
                            label={'Наш сервис является инструментом электронного ' +
@@ -15,7 +15,10 @@ const DescriptionInfoBlock = () => {
                                ' и адаптация образовательных программ.'}
                             block={'info'}
             />
-            <LinkButton text={'Регистрация'} block={'info'}/>
+            <div className={classes.wrap}>
+                <LinkButton text={'Попробовать'} block={'info'}/>
+                <LinkButton text={'Интеграции'} block={'info'}/>
+            </div>
         </div>
     );
 };
