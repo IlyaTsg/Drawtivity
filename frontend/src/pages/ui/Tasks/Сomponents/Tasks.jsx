@@ -6,9 +6,11 @@ import classes from "./Tasks.module.scss";
 const Tasks = () => {
     return (
         <div className={classes.wrap}>
-            <CenterMainBlock width={'large'}>
-               <TasksList/>
-            </CenterMainBlock>
+            <div className={classes.contentWrapper}>
+                <CenterMainBlock width={'large'}>
+                   <TasksList/>
+                </CenterMainBlock>
+            </div>
         </div>
     );
 };

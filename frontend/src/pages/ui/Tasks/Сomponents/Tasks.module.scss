@@ -4,3 +4,10 @@
   padding-top: 40px;
   @apply bg-stone-300;
 }
+
+.contentWrapper{
+  width:100%;
+  display: flex;
+  justify-content: center;
+  margin-left: 200px;
+}
