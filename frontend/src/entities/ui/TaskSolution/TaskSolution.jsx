@@ -11,13 +11,13 @@ const TaskSolution = ({setCoord}) => {
     const backgroundCss = {
         backgroundImage: `${selectedImage ?`url(${URL.createObjectURL(selectedImage)})`: `null` }`,
         backgroundRepeat:  `no-repeat`,
-        backgroundSize: `550px 350px`
+        backgroundSize: `770px 550px`
     }
     const dispatch = useDispatch()
     const clickHandler = (event) =>{
         let x = event.pageX,
             y = event.pageY;
-        setDots([...dots, (dotsParsClick(x - canvasRef.current.offsetLeft, y-canvasRef.current.offsetTop - 175))])
+        setDots([...dots, (dotsParsClick(x - canvasRef.current.offsetLeft, y-canvasRef.current.offsetTop - 275))])
         //console.log(`${x - canvasRef.current.offsetLeft}:${y-canvasRef.current.offsetTop - 175}`);
     }
     useEffect(() => {
@@ -39,8 +39,8 @@ const TaskSolution = ({setCoord}) => {
         <div>
             <form>
                 <canvas ref={canvasRef}
-                        style={backgroundCss} width={"550px"}
-                        height={"350px"} onClick={clickHandler}>
+                        style={backgroundCss} width={"770px"}
+                        height={"550px"} onClick={clickHandler}>
                 </canvas>
             </form>
         </div>

@@ -6,8 +6,8 @@ export const calcRadius = (dots, percent) => {
     //const distance = percent
     dots.map(item => {
 
-        const yL = item.y === 0 ? item.y - Number(percent) :item.y - Number(percent),
-            yH= item.y === 0 ? item.y + Number(percent) : item.y + Number(percent)
+        const yL = item.y === 0 ? item.y - Number(percent)  :item.y - Number(percent),
+            yH= item.y === 0 ? item.y + Number(percent)  : item.y + Number(percent)
         lowerDots.push({x: item.x, y: yL})
         highDots.push({x: item.x, y: yH})
     })
