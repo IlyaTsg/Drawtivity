@@ -1,0 +1,17 @@
+.wrap{
+  width:100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  @apply text-white border-t-4 border-white;
+
+}
+.last{
+  &::after{
+    content: "X";
+    position: absolute;
+    @apply font-sans font-medium text-4xl;
+    left: 170px;
+    margin-top: -12px;
+  }
+}

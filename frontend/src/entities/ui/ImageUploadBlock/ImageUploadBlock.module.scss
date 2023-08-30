@@ -1,6 +1,6 @@
 .wrapper{
   //margin-bottom: 150px;
-  @apply border border-black;
+
 }
 
 .header{
@@ -9,4 +9,9 @@
   width: 100%;
   justify-content: center;
   padding-bottom: 15px;
+}
+.image{
+  display: flex;
+  width: 850px;
+  column-gap: 30px;
 }

@@ -7,6 +7,8 @@ import {dotsInputHandler} from "../../lib/dotsInputHandler";
 import {useDispatch, useSelector} from "react-redux";
 import {calcRadius} from "../../lib/calcRadius";
 import {drawAllLines} from "../../lib/drawAllLines";
+import ImageBar from "../../../shared/Constructor/ui/ImageBar/ImageBar";
+import ImageBarX from "../../../shared/Constructor/ui/ImageBarX/ImageBarX";
 const ImageUploadBlock = ({errors, register}) => {
     const selectedImage = useImage()
     const dots = useSelector(state => state.task.coordinates)
@@ -38,12 +40,17 @@ const ImageUploadBlock = ({errors, register}) => {
                 <div>
                     <div className={classes.header}>Ваше изображение</div>
                     <Form.Group className="mb-3">
-                        <div className={classes.wrapper}>
-                            <canvas ref={canvasRef}
-                                    style={backgroundCss} width={"750px"}
-                                    height={"550px"}>
-                            </canvas>
+                        <div className={classes.image}>
+                        <ImageBar/>
+                            <div className={classes.wrapper}>
+                                <canvas ref={canvasRef}
+                                        style={backgroundCss} width={"750px"}
+                                        height={"550px"}>
+                                </canvas>
+                                <ImageBarX/>
+                            </div>
                         </div>
+
                     </Form.Group>
                     <DotsInput register={register} errors={errors} handler={dotsInputHandler} dispatch={dispatch}/>
                 </div>

@@ -1,0 +1,22 @@
+.wrap{
+  width: 55px;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-right: 5px;
+  @apply text-white border-r-4 border-r-white;
+}
+
+.first{
+  &::after{
+    content: "Y";
+    position: absolute;
+    left: 160px;
+    height: 30px;
+    margin-top: -46px;
+    @apply font-sans font-medium text-4xl;
+    padding-bottom: 5px;
+  }
+}
