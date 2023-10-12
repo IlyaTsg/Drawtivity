@@ -1,12 +1,12 @@
-package com.ETU.api.service;
+package com.etu.api.service;
 
-import com.ETU.api.dtos.JwtRequest;
-import com.ETU.api.dtos.JwtResponse;
-import com.ETU.api.dtos.RegistrationUserDto;
-import com.ETU.api.dtos.RegistrationUserResponse;
-import com.ETU.api.entities.User;
-import com.ETU.api.exceptions.ErrorDto;
-import com.ETU.api.utils.JwtTokenUtils;
+import com.etu.api.dtos.JwtRequest;
+import com.etu.api.dtos.JwtResponse;
+import com.etu.api.dtos.RegistrationUserDto;
+import com.etu.api.dtos.RegistrationUserResponse;
+import com.etu.api.entities.User;
+import com.etu.api.exceptions.ErrorDto;
+import com.etu.api.utils.JwtTokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

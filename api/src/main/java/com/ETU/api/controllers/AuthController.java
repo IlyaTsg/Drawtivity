@@ -1,13 +1,13 @@
-package com.ETU.api.controllers;
+package com.etu.api.controllers;
 
-import com.ETU.api.dtos.JwtRequest;
-import com.ETU.api.dtos.RegistrationUserDto;
-import com.ETU.api.service.AuthService;
+import com.etu.api.dtos.JwtRequest;
+import com.etu.api.dtos.RegistrationUserDto;
+import com.etu.api.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
+import jakarta.websocket.server.PathParam;
 
 @RestController
 public class AuthController {

@@ -1,4 +1,4 @@
-package com.ETU.api.exceptions;
+package com.etu.api.exceptions;
 
 import lombok.Data;
 

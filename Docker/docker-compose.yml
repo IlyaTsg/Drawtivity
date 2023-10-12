@@ -1,0 +1,14 @@
+services:
+  app:
+    image: beetlejuice21/api:latest
+    ports:
+      - 8080:8080
+    links:
+      - mysql
+  mysql:
+    image: beetlejuice21/drawtivity_db_mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: H12ksd_Yh2
+      MYSQL_USER: drawtivity_db_admin
+      MYSQL_PASSWORD: H12ksd_Yh2
+      MYSQL_DATABASE: drawtivity_db

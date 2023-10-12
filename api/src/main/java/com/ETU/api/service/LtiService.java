@@ -1,11 +1,13 @@
-package com.ETU.api.service;
+package com.etu.api.service;
 
-import com.ETU.api.dtos.LtiRegistrationResponse;
-import com.ETU.api.utils.LtiJwtTokenUtils;
+import com.etu.api.dtos.LtiLaunchRequest;
+import com.etu.api.dtos.LtiRegistrationResponse;
+import com.etu.api.utils.LtiJwtTokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Service
 public class LtiService {
@@ -40,7 +42,16 @@ public class LtiService {
         return ResponseEntity.ok(ltiRegistrationResponse);
     }
 
-    public String createLtiUserJwtToken(String subject){
-        return ltiJwtTokenUtils.generateLtiUserJwtToken(subject);
+    public RedirectView launch(LtiLaunchRequest ltiLaunchRequest)
+    {
+        // Create new LTI user
+
+        String ltiUserToken = ltiJwtTokenUtils.generateLtiUserJwtToken(ltiLaunchRequest);
+
+        String user = ltiLaunchRequest.getLogin_hint();
+
+        // Перенавправление запроса на страницу задачи
+        String externalUrl = "http://localhost:80/api/test?user="+user;
+        return new RedirectView(externalUrl);
     }
 }

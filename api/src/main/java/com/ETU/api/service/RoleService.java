@@ -1,7 +1,7 @@
-package com.ETU.api.service;
+package com.etu.api.service;
 
-import com.ETU.api.entities.Role;
-import com.ETU.api.repositories.RoleRepository;
+import com.etu.api.entities.Role;
+import com.etu.api.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

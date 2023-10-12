@@ -1,6 +1,6 @@
-package com.ETU.api.repositories;
+package com.etu.api.repositories;
 
-import com.ETU.api.entities.Point;
+import com.etu.api.entities.Point;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

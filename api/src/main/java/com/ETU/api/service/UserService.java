@@ -1,13 +1,13 @@
-package com.ETU.api.service;
+package com.etu.api.service;
 
-import com.ETU.api.dtos.RegistrationUserDto;
-import com.ETU.api.entities.User;
-import com.ETU.api.repositories.UserRepository;
+import com.etu.api.dtos.RegistrationUserDto;
+import com.etu.api.entities.User;
+import com.etu.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
