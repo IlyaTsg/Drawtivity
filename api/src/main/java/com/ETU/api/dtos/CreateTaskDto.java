@@ -1,6 +1,6 @@
-package com.ETU.api.dtos;
+package com.etu.api.dtos;
 
-import com.ETU.api.entities.Point;
+import com.etu.api.entities.Point;
 import lombok.Data;
 
 import java.util.List;

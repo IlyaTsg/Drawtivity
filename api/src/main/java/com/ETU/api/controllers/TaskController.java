@@ -1,8 +1,8 @@
-package com.ETU.api.controllers;
+package com.etu.api.controllers;
 
-import com.ETU.api.dtos.CreateTaskDto;
-import com.ETU.api.dtos.SolutionRequest;
-import com.ETU.api.service.TaskService;
+import com.etu.api.dtos.CreateTaskDto;
+import com.etu.api.dtos.SolutionRequest;
+import com.etu.api.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

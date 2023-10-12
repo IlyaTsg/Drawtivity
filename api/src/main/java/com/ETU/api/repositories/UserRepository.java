@@ -1,10 +1,10 @@
-package com.ETU.api.repositories;
+package com.etu.api.repositories;
 
-import com.ETU.api.entities.User;
-import org.springframework.data.repository.CrudRepository;
+import com.etu.api.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByEmail(String email);
 }

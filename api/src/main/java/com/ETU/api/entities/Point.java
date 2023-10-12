@@ -1,10 +1,9 @@
-package com.ETU.api.entities;
+package com.etu.api.entities;
 
+import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
 
 @Entity
 @Data

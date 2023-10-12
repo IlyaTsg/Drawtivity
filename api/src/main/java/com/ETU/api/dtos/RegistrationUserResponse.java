@@ -1,4 +1,4 @@
-package com.ETU.api.dtos;
+package com.etu.api.dtos;
 
 public class RegistrationUserResponse {
     private Integer user_id;
