@@ -1,19 +1,37 @@
 package com.etu.api.dtos;
 
 import com.etu.api.entities.Point;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
+@Schema(description = "Create task request")
 public class CreateTaskDto {
+    @Schema(type = "int", example = "4")
     private Integer owner_id;
+    @Schema(type = "string", example = "testTitle")
     private String title;
+    @Schema(type = "string", example = "testDescription")
     private String description;
+    @Schema(type = "string", example = "testCategory")
     private String category;
+    @Schema(type = "string", example = "testType")
     private String type;
+    @Schema(type = "string", example = "testImg_url")
     private String img_url;
+    @Schema(type = "float", example = "12.4")
     private Float deviation;
+    @Schema(example = "[\n" +
+            "            {\n" +
+            "                \"x\": 10.0,\n" +
+            "                \"y\": 10.0\n" +
+            "            },\n" +
+            "            {\n" +
+            "                \"x\": 15.0,\n" +
+            "                \"y\": 15.0\n" +
+            "            }]")
     private List<Point> points;
 
     public CreateTaskDto(Integer owner_id, String title, String description, String category, String type, String img_url, Float deviation, List<Point> points) {

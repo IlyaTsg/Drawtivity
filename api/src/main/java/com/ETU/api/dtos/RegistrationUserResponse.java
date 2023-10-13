@@ -1,11 +1,20 @@
 package com.etu.api.dtos;
 
-public class RegistrationUserResponse {
-    private Integer user_id;
-    private String firstname;
-    private String lastname;
-    private String email;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 
+@Data
+@Schema(description = "Registration user response")
+public class RegistrationUserResponse {
+    @Schema(type = "int", example = "35")
+    private Integer user_id;
+    @Schema(type = "string", example = "testFName")
+    private String firstname;
+    @Schema(type = "string", example = "testLName")
+    private String lastname;
+    @Schema(type = "string", example = "test@test.com")
+    private String email;
+    @Schema(type = "string", example = "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiam9obm1hZ2x5QGdtYWlsLmNvbSIsImlhdCI6MTY5NzEzMjAxNCwiZXhwIjoxNjk3MTM1NjE0fQ.cKjlgvZXOrg_98TCWoa-2aezcNS57bAex5udeknl9CE")
     private String token;
 
     public RegistrationUserResponse(Integer user_id, String firstname, String lastname, String email, String token) {

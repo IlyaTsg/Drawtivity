@@ -33,7 +33,7 @@ public class TaskService {
             return ResponseEntity.ok(new TaskDto(task.getTask_id(), task.getOwner_id(), task.getTitle(), task.getDescription(), task.getCategory(), task.getType(), task.getImg_url(), task.getDeviation(), task.getPoints()));
         }
         else{
-            return new ResponseEntity<>(new ErrorDto(HttpStatus.NO_CONTENT.value(), "Task not found"), HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Task not found"), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -71,7 +71,7 @@ public class TaskService {
     public ResponseEntity<?> updateTaskById(Integer task_id, CreateTaskDto createTaskDto){
         Task task = taskRepository.findById(task_id).orElse(null);
         if(task == null){
-            return new ResponseEntity<>(new ErrorDto(HttpStatus.NO_CONTENT.value(), "Task not found"), HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Task not found"), HttpStatus.NOT_FOUND);
         }
         task.setOwner_id(createTaskDto.getOwner_id());
         task.setTitle(createTaskDto.getTitle());
@@ -100,7 +100,7 @@ public class TaskService {
     public ResponseEntity<?> deleteTaskById(Integer task_id){
         Task task = taskRepository.findById(task_id).orElse(null);
         if(task == null){
-            return new ResponseEntity<>(new ErrorDto(HttpStatus.NO_CONTENT.value(), "Task not found"), HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Task not found"), HttpStatus.NOT_FOUND);
         }
         taskRepository.delete(task);
         return ResponseEntity.ok("Task deleted");
@@ -109,7 +109,7 @@ public class TaskService {
     public ResponseEntity<?> solutionTask(SolutionRequest solutionRequest){
         Task task = taskRepository.findById(solutionRequest.getTask_id()).orElse(null);
         if(task == null){
-            return new ResponseEntity<>(new ErrorDto(HttpStatus.NO_CONTENT.value(), "Task not found"), HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Task not found"), HttpStatus.NOT_FOUND);
         }
 
         int count_right = 0;

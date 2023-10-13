@@ -2,7 +2,7 @@ services:
   app:
     image: beetlejuice21/api:latest
     ports:
-      - 8080:8080
+      - 80:8080
     links:
       - mysql
   mysql:
