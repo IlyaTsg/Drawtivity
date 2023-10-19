@@ -1,5 +1,6 @@
-package com.ETU.api.utils;
+package com.etu.api.utils;
 
+import com.etu.api.dtos.LtiLaunchRequest;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,12 +53,19 @@ public class LtiJwtTokenUtils {
                 .compact();
     }
 
-    public String generateLtiUserJwtToken(String login_hint){
+    public String generateLtiUserJwtToken(LtiLaunchRequest ltiLaunchRequest){
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("target_link_uri", ltiLaunchRequest.getTarget_link_uri());
+        claims.put("deployment_id", ltiLaunchRequest.getDeployment_id());
+        claims.put("context", ltiLaunchRequest.getContext());
+        claims.put("tool_consumer_instance_guid", ltiLaunchRequest.getTool_consumer_instance_guid());
+
         Date issuedDate = new Date();
         Date expiredDate = new Date(issuedDate.getTime() + jwtLifetime.toMillis());
 
         return Jwts.builder()
-                .setSubject(login_hint)
+                .setSubject(ltiLaunchRequest.getLogin_hint())
+                .setClaims(claims)
                 .setIssuedAt(issuedDate)
                 .setExpiration(expiredDate)
                 .signWith(SignatureAlgorithm.HS256, secret)
