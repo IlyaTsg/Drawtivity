@@ -6,3 +6,5 @@
 2. Скачать репозиторий `git clone git@github.com:IlyaTsg/Drawtivity.git`
 3. В папке проекта запустить контейнер `docker-compose up`
 4. По-умолчанию API работает на порту 80. Порт можно поменять в файле docker-compose.yml(`- 80:8080` -> `- нужный_порт:8080`)
+
+**Документация доступна по URL: http://localhost:80/api/swagger-ui/index.html**

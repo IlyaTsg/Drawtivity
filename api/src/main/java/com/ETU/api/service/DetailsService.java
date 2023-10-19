@@ -1,15 +1,15 @@
-package com.ETU.api.service;
+package com.etu.api.service;
 
-import com.ETU.api.entities.User;
-import com.ETU.api.repositories.UserRepository;
+import com.etu.api.entities.User;
+import com.etu.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.stream.Collectors;
 

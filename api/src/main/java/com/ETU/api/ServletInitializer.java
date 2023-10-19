@@ -1,4 +1,4 @@
-package com.ETU.api;
+package com.etu.api;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

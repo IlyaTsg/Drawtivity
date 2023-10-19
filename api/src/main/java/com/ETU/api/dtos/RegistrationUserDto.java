@@ -1,12 +1,18 @@
-package com.ETU.api.dtos;
+package com.etu.api.dtos;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
+@Schema(description = "Registration user request")
 public class RegistrationUserDto {
+    @Schema(type = "string", example = "testFName")
     private String firstname;
+    @Schema(type = "string", example = "testLName")
     private String lastname;
+    @Schema(type = "string", example = "test@test.com")
     private String email;
+    @Schema(type = "string", example = "testPass")
     private String password;
 
     public RegistrationUserDto(String firstname, String lastname, String email, String password) {

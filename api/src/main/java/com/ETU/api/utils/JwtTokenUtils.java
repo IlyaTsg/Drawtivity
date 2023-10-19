@@ -1,4 +1,4 @@
-package com.ETU.api.utils;
+package com.etu.api.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
