@@ -3,7 +3,7 @@
   width: 100%;
   padding-top: 15px;
   //@apply bg-gradient-to-r to-stone-300 from-stone-600;
-  @apply bg-neutral-700;
+  @apply bg-neutral-200;
   @apply font-sans text-2xl;
 }
 
@@ -31,7 +31,8 @@
   height: 676px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top: 20px;
+  //align-items: center;
 }
 .twoBlocks{
   width: 750px;
@@ -52,12 +53,12 @@
 .form{
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
+  //justify-content: space-around;
   min-height: 600px;
 }
 
 .formHeader{
-  @apply font-semibold font-sans text-3xl tracking-wide uppercase shadow-md shadow-zinc-200;
+  @apply font-semibold font-sans text-2xl tracking-wide uppercase border-b border-zinc-300;
   display: flex;
   width: 100%;
   justify-content: center;
@@ -72,4 +73,10 @@
 .imagesNotActive{
   flex-flow: column;
   column-gap: 70px;
+}
+
+.namesBlock{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }

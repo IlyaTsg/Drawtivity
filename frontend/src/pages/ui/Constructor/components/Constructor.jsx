@@ -63,10 +63,12 @@ const Constructor = () => {
                         <div className={classes.prom}>
                             <div className={classes.formBlock}>
                                     <div className={classes.formHeader}>
-                                        Конструктор для создания задач
+                                        Конструктор создания задач
                                     </div>
-                                    <InputName label={'Название задачи'} errors={errors} register={register} name={'title'}/>
-                                    <CustomTextArea title={'Описание задачи'} placeholder={'Описание'} register={register} errors={errors} name={'description'}/>
+                                    <div className={classes.namesBlock}>
+                                        <InputName label={'Название задачи'} errors={errors} register={register} name={'title'}/>
+                                        <CustomTextArea title={'Описание задачи'} placeholder={'Описание'} register={register} errors={errors} name={'description'}/>
+                                    </div>
                                 <div className={classes.twoBlocks}>
                                     <div className={classes.twoElem}> <CustomSelect errors={errors}
                                                        title={'Выберите категорию задачи'}

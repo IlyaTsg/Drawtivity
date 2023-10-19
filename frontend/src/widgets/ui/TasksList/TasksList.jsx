@@ -9,18 +9,9 @@ const TasksList = () => {
 
     const [tasks, setTasks] = useState([
         {ind: 1, title: 'Test', category: 'First', type: 'Second'},
-        {ind: 2, title: 'Test Test', category: 'Second', type: 'Third'},
-        {ind: 3, title: 'Test Test', category: 'Second', type: 'Third'},
-        {ind: 4, title: 'Test Test', category: 'Second', type: 'Third'},
-        {ind: 5, title: 'Test Test', category: 'Second', type: 'Third'},
-        {ind: 6, title: 'Test Test', category: 'Second', type: 'Third'},
-        {ind: 8, title: 'Test Test', category: 'Second', type: 'Third'},
-        {ind: 9, title: 'Test Test', category: 'Second', type: 'Third'},
-        {ind: 16, title: 'Test Test', category: 'Second', type: 'Third'},
-        {ind: 26, title: 'Test Test', category: 'Second', type: 'Third'},
-        {ind: 36, title: 'Test Test', category: 'Second', type: 'Third'},
-        {ind: 46, title: 'Test Test', category: 'Second', type: 'Third'},
-
+        {ind: 2, title: 'Test Test1', category: 'Second', type: 'Third'},
+        {ind: 3, title: 'Test Test2', category: 'Second', type: 'Third'},
+        {ind: 4, title: 'Test Test3', category: 'First', type: 'Third'},
     ])
     const dispatch = useDispatch()
 

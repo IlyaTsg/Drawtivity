@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from "./Header.module.scss";
 import Navbar from "../../Navbar/components/Navbar";
+import AuthNavBlock from "../../../../features/auth/ui/AuthNavBlock/AuthNavBlock";
 const Header = () => {
     return (
         <div className={classes.header}>
@@ -10,6 +11,8 @@ const Header = () => {
             </div>
 
             <Navbar/>
+            <AuthNavBlock/>
+
         </div>
     );
 };

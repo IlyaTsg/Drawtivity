@@ -12,11 +12,15 @@ const AuthNavBlock = () => {
         <div className={classes.wrap}>
             {!isAuth ?
                 <div className={classes.content}>
-                    <div className={classes.first} ><Link to={'/sign_in'} target="_blank">Войти</Link></div>
-                    <div className={classes.second}><Link to={'/sign_up'} target="_blank">Регистрация</Link></div>
+                    <div className={classes.first} >
+                        <Link to={'/sign_in'} target="_blank">Войти</Link>
+                    </div>
+                    <div className={classes.second}>
+                        <Link to={'/sign_up'} target="_blank">Регистрация</Link>
+                    </div>
                 </div>
                 :
-                <Link to={'/info'} onClick={() => {dispatch(removeUser()); console.log(1)}}>Выйти</Link>
+                <Link to={'/info'} onClick={() => {dispatch(removeUser())}}>Выйти</Link>
             }
         </div>
     );

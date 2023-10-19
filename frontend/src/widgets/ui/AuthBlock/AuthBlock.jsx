@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './AuthBlock.module.scss'
 import classNames from "classnames";
+
 const AuthBlock = ({headerText, helperText, auth,...props}) => {
     const wrapCl = classNames(classes.wrap, {
         [classes.auth]: auth,
