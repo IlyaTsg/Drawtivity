@@ -29,7 +29,6 @@ public class AuthController {
     }
 
     @PostMapping("/auth")
-    @CrossOrigin(origins = "http://localhost:3000")
     @Operation(summary = "Authorization", description = "Get authorization token")
     @ApiResponse(responseCode = "200", content = @Content(
             schema = @Schema(implementation = JwtResponse.class)))
@@ -40,7 +39,6 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    @CrossOrigin(origins = "http://localhost:3000")
     @Operation(summary = "Registration", description = "Create new user and get token")
     @ApiResponse(responseCode = "200", content = @Content(
             schema = @Schema(implementation = RegistrationUserResponse.class)))

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/tasks")
 @Tag(name = "task-controller")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TaskController {
     private final TaskService taskService;
 

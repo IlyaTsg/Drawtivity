@@ -17,9 +17,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
+
+import java.util.Arrays;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -41,12 +44,6 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-//                        .requestMatchers(
-//                                mvc.pattern("/auth"),
-//                                mvc.pattern("/registration"),
-//                                mvc.pattern("/swagger-ui/**"),
-//                                mvc.pattern("/lti/**")).permitAll()
-//                        .anyRequest().authenticated()
                         .requestMatchers(mvc.pattern("/tasks/**")).authenticated()
                         .anyRequest().permitAll())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
@@ -79,12 +76,11 @@ public class SecurityConfig {
     }
 
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:3000");
-            }
-        };
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }
