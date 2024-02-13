@@ -1,5 +1,6 @@
 package com.etu.api.service;
 
+import com.etu.api.dtos.JwtRequest;
 import com.etu.api.dtos.RegistrationUserDto;
 import com.etu.api.entities.User;
 import com.etu.api.repositories.UserRepository;
@@ -21,6 +22,15 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.roleService = roleService;
+    }
+
+    /**
+     * Получение данных пользователя
+     * @param email
+     * @return User
+     */
+    public User getUser(String email){
+        return userRepository.findByEmail(email).orElse(null);
     }
 
     @Transactional

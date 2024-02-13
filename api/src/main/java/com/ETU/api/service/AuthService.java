@@ -41,7 +41,9 @@ public class AuthService {
 
         UserDetails userDetails = detailsService.loadUserByUsername(authRequest.getEmail());
         String token = jwtTokenUtils.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token));
+        User user = userService.getUser(authRequest.getEmail());
+
+        return ResponseEntity.ok(new RegistrationUserResponse(user.getUser_id(), user.getFirstname(), user.getLastname(), user.getEmail(), token));
     }
 
     public ResponseEntity<?> createUser(@RequestBody RegistrationUserDto registrationRequest){
