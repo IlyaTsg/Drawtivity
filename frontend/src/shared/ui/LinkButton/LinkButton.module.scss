@@ -1,4 +1,4 @@
-.wrap{
+.wrap {
   width: 200px;
   height: 55px;
 
@@ -7,10 +7,16 @@
   align-items: center;
 }
 
-.infoStyle{
-  @apply border border-black text-white bg-black text-xl;
+.infoStyle {
+  @apply border border-black text-white bg-black text-xl ;
+  a {
+    @apply hover:text-white;
+  }
 }
 
-.linkStyle{
+.linkStyle {
   @apply text-black bg-white border border-zinc-500 text-xl;
+  a {
+    @apply hover:text-black;
+  }
 }

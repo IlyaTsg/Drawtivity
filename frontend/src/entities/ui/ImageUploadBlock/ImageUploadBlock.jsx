@@ -9,6 +9,8 @@ import {calcRadius} from "../../lib/calcRadius";
 import {drawAllLines} from "../../lib/drawAllLines";
 import ImageBar from "../../../shared/Constructor/ui/ImageBar/ImageBar";
 import ImageBarX from "../../../shared/Constructor/ui/ImageBarX/ImageBarX";
+import {dotsParsClick} from "../../lib/dotsParsClick";
+import {setCoordinates} from "../../model/store/slices/tasksSlice";
 const ImageUploadBlock = ({errors, register}) => {
     const selectedImage = useImage()
     const dots = useSelector(state => state.task.coordinates)
@@ -21,6 +23,15 @@ const ImageUploadBlock = ({errors, register}) => {
     }
     const dispatch = useDispatch()
     const [lowerDots, highDots] = calcRadius(dots, percent)
+
+    const clickHandler = (event) =>{
+        let x = event.pageX,
+            y = event.pageY;
+        //setDots([...dots, (dotsParsClick(x - canvasRef.current.offsetLeft, y-canvasRef.current.offsetTop - 275))])
+        dispatch(setCoordinates([...dots, (dotsParsClick(x - canvasRef.current.offsetLeft, y-canvasRef.current.offsetTop - 275))]))
+        //console.log(`${x - canvasRef.current.offsetLeft}:${y-canvasRef.current.offsetTop - 175}`);
+    }
+
     useEffect(() => {
         if(canvasRef.current){
             const context = canvasRef.current.getContext("2d");
@@ -45,7 +56,7 @@ const ImageUploadBlock = ({errors, register}) => {
                             <div className={classes.wrapper}>
                                 <canvas ref={canvasRef}
                                         style={backgroundCss} width={"750px"}
-                                        height={"550px"}>
+                                        height={"550px"} onClick={clickHandler}>
                                 </canvas>
                                 <ImageBarX/>
                             </div>

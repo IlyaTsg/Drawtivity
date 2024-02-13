@@ -1,0 +1,11 @@
+.image{
+  display: flex;
+  width: 850px;
+  column-gap: 30px;
+  @apply bg-white;
+}
+.wrapSol{
+  @apply bg-white;
+  width: 100%;
+  height: 100%;
+}

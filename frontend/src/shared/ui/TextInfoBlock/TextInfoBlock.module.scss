@@ -1,32 +1,38 @@
-.wrapInfo{
+.wrapInfo {
   width: 850px;
-  height: 420px;
+  height: 350px;
 }
-.wrapLink{
-  height: 75%;
+
+.wrapLink {
+  height: 65%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 15px;
+  padding: 15px 15px 0 15px;
 }
-.title{
+
+.title {
   @apply font-sans font-bold subpixel-antialiased ;
 }
-.infoTitle{
+
+.infoTitle {
   @apply text-6xl
 }
-.linkTitle{
+
+.linkTitle {
   @apply text-3xl;
 }
-.label{
+
+.label {
   @apply my-8 break-words;
   width: 100%;
 }
-.infoLabel{
+
+.infoLabel {
   @apply text-xl text-zinc-700;
 }
 
-.linkLabel{
-  @apply text-black text-xl;
+.linkLabel {
+  @apply text-black text-base;
 }

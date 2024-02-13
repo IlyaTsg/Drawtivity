@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from "./CenterMainBlock.module.scss";
 import classNames from "classnames";
-const CenterMainBlock = ({children, width = 'medium'}) => {
+const CenterMainBlock = ({children, width = 'task'}) => {
     const classname = classNames(classes.info, {
         [classes.medium]: width === 'medium',
         [classes.large]: width === 'large',

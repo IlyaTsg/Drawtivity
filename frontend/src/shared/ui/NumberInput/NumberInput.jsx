@@ -5,7 +5,7 @@ const NumberInput = ({name, errors, register, label, inputHandler}) => {
     return (
         <Form.Group className="mb-3">
             <div className={classes.wrapper}>
-                <Form.Label>Процент отклонения от правильных точек:</Form.Label>
+                <Form.Label>Процент отклонения:</Form.Label>
                 <Form.Control
                     isInvalid={errors?.firstName}
                     type='number'

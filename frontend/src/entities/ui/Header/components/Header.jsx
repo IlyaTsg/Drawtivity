@@ -1,20 +1,22 @@
 import React from 'react';
-import classes from "./Header.module.scss";
-import Navbar from "../../Navbar/components/Navbar";
-import AuthNavBlock from "../../../../features/auth/ui/AuthNavBlock/AuthNavBlock";
+import classes from './Header.module.scss';
+import Navbar from '../../Navbar/components/Navbar';
+import AuthNavBlock from '../../../../features/auth/ui/AuthNavBlock/AuthNavBlock';
+import useAuth from '../../../model/store/hooks/useAuth';
+
 const Header = () => {
-    return (
-        <div className={classes.header}>
-            <div className={classes.logo}>
-                {// <img src={require('../../../../logo.jpg')} alt={'Logo'} />
-                }
-            </div>
+  const isAuth = useAuth().isAuth;
+  return (
+    <div className={classes.header}>
+      <div className={classes.logo}>
+        DrawIt
+      </div>
 
-            <Navbar/>
-            <AuthNavBlock/>
+      <Navbar isAuth={isAuth} />
+      <AuthNavBlock isAuth={isAuth} />
 
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Header;

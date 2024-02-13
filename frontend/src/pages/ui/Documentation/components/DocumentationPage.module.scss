@@ -1,4 +1,7 @@
-.documentationWrap{
-  display: flex;
-  justify-content: center;
+.documentationWrap {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.3fr 2fr;
 }

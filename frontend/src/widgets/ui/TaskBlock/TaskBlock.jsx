@@ -1,41 +1,46 @@
-import React, {useEffect, useRef, useState} from 'react';
-import classes from './TaskBlock.module.scss'
-import TextBlockAndImage from "../../../entities/ui/TextBlock/TextBlockAndImage";
-import Form from "react-bootstrap/Form";
-import useImage from "../../../entities/model/store/hooks/useImage";
-import {useDispatch, useSelector} from "react-redux";
-import {calcRadius} from "../../../entities/lib/calcRadius";
-import {drawAllLines} from "../../../entities/lib/drawAllLines";
-import TaskSolution from "../../../entities/ui/TaskSolution/TaskSolution";
-import Button from "react-bootstrap/Button";
-import {createSolution} from "../../../entities/model/store/slices/tasksSlice";
-const TaskBlock = () => {
-    const task = useSelector(state => state.task.actualTask)
-    const [newCoord, setNewCoord] = useState()
-    const dispatch = useDispatch()
-    let data ={
+import React, {useEffect, useState} from 'react';
+import classes from './TaskBlock.module.scss';
+import {useDispatch, useSelector} from 'react-redux';
+import TaskSolution from '../../../entities/ui/TaskSolution/TaskSolution';
+import {createSolution} from '../../../entities/model/store/slices/tasksSlice';
+import SubmitButton from '../../../shared/ui/SubmitButton/SubmitButton';
 
-    }
-    const value = useSelector(state => state.task.percentVal)
-    const id = useSelector(state => state.task.id)
-    useEffect(()=>{
-        data = {
-            id: id,
-            points: newCoord
-        }
-    }, [newCoord])
-    return (
-        <div className={classes.wrapper}>
-            <div>
-                <TaskSolution setCoord={setNewCoord}/>
-                <Button onClick={() => dispatch(createSolution(data))}>Проверить</Button>
-            </div>
-            <TextBlockAndImage>
-                {task.description ? task.description : ''}
-            </TextBlockAndImage>
-            {value ? <div>{value}</div> : null}
+const TaskBlock = () => {
+  const task = useSelector(state => state.task.actualTask);
+  const [newCoord, setNewCoord] = useState();
+  const dispatch = useDispatch();
+  let data = {};
+  const value = useSelector(state => state.task.percentVal);
+  const id = useSelector(state => state.actualTask);
+  useEffect(() => {
+    data = {
+      id: id,
+      points: newCoord,
+    };
+    console.log(data);
+  }, [newCoord]);
+
+  const clickHandler = () => {
+    dispatch(createSolution());
+    console.log('hello');
+  };
+  return (
+    <div className={classes.wrapper}>
+      <div className={classes.test}>
+        <TaskSolution setCoord={setNewCoord} />
+        <div>
+          {task.description ? task.description : 'Тестовый блок с описанием задачиfdvg fdg dfgdgdfgdfgdfgdfgfdgdf  fddfgdf dfg df gdfg d gd gdfdfd fd fd fd d dfd d хзхзхзхз'}
         </div>
-    );
+        <SubmitButton
+          handler={clickHandler}
+          text={'Проверить'}
+        >
+          Проверить
+        </SubmitButton>
+      </div>
+      {value ? <div>{value}</div> : <div>Итоговая оценка: 5</div>}
+    </div>
+  );
 };
 
 export default TaskBlock;

@@ -1,29 +1,35 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-import classes from "./AuthNavBlock.module.scss";
-import {removeUser} from "../../../../entities/model/store/slices/userSlice";
-import useAuth from "../../../../entities/model/store/hooks/useAuth";
-import {useDispatch} from "react-redux";
+import { Link } from 'react-router-dom'
+import classes from './AuthNavBlock.module.scss'
+import { removeUser } from '../../../../entities/model/store/slices/userSlice'
+import { useDispatch } from 'react-redux'
 
-const AuthNavBlock = () => {
-    const isAuth = useAuth().isAuth
-    const dispatch = useDispatch()
-    return (
-        <div className={classes.wrap}>
-            {!isAuth ?
-                <div className={classes.content}>
-                    <div className={classes.first} >
-                        <Link to={'/sign_in'} target="_blank">Войти</Link>
-                    </div>
-                    <div className={classes.second}>
-                        <Link to={'/sign_up'} target="_blank">Регистрация</Link>
-                    </div>
-                </div>
-                :
-                <Link to={'/info'} onClick={() => {dispatch(removeUser())}}>Выйти</Link>
-            }
-        </div>
-    );
-};
+const AuthNavBlock = ({ isAuth }) => {
 
-export default AuthNavBlock;
+  const dispatch = useDispatch()
+
+  const exitHandler = () => {
+    dispatch(removeUser())
+  }
+  return (
+    <div className={classes.wrap}>
+      {
+        isAuth
+          ?
+          <Link to={'/info'} onClick={exitHandler} className={'hover:text-white'}>
+            Выйти
+          </Link>
+          :
+          <div className={classes.content}>
+            <div className={classes.first}>
+              <Link to={'/sign_in'} className={'hover:text-black'}>Войти</Link>
+            </div>
+            <div className={classes.second}>
+              <Link to={'/sign_up'} className={'hover:text-white'}>Регистрация</Link>
+            </div>
+          </div>
+      }
+    </div>
+  )
+}
+
+export default AuthNavBlock

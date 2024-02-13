@@ -1,13 +1,7 @@
-.wrap{
-  height: 93.8vh;
+.wrap {
+  height: calc(100vh - 70px);
   width: 100%;
-  padding-top: 40px;
-  @apply bg-stone-300;
-}
-
-.contentWrapper{
-  width:100%;
+  padding-top: 20px;
   display: flex;
   justify-content: center;
-  margin-left: 200px;
 }

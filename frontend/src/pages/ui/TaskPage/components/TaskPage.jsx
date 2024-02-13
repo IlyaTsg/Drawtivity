@@ -5,9 +5,7 @@ import classes from "./TaskPage.module.scss";
 const TaskPage = () => {
     return (
         <div className={classes.wrap}>
-            <CenterMainBlock width={'task'}>
-                <TaskBlock/>
-            </CenterMainBlock>
+            <TaskBlock/>
         </div>
     );
 };

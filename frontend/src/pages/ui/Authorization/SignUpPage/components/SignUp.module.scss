@@ -1,11 +1,10 @@
-.wrapper{
+.wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 93.8vh;
-  @apply bg-stone-200;
+  height: calc(100vh - 70px);
 }
 
-.form{
+.form {
   width: 350px;
 }

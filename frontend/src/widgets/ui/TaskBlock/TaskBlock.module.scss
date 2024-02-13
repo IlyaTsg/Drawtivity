@@ -1,3 +1,22 @@
 .wrapper{
-  width: 790px
+  width: 1200px;
+  min-height: 870px;
+  @apply bg-white rounded-xl border-2 border-black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.test{
+  //width: 100%;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.text {
+  word-wrap: break-word;
 }

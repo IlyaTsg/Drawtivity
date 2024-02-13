@@ -1,11 +1,12 @@
-.wrapper{
+.wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-left: -400px;
+
 }
 
-.info{
+.info {
   display: flex;
   justify-content: flex-start;
   //margin-right: 80px;
@@ -13,13 +14,16 @@
   border: 1px solid #CCCCCC;
   background: white;
 }
-.medium{
+
+.medium {
   width: 650px;
 }
-.large{
+
+.large {
   width: 1450px;
   margin-left: -45px;
 }
-.task{
+
+.task {
   width: 350px
 }

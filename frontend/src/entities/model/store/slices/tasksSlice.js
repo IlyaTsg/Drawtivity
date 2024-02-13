@@ -22,7 +22,7 @@ export const getActualTask = createAsyncThunk(
     "task/getActualTask",
     async (id)=>{
         const task = await TaskApi.getActualTask(id)
-
+        console.log(task)
         return task
     }
 )
@@ -71,11 +71,11 @@ const tasksSlice = createSlice({
         },
     },
     extraReducers: builder => {
-        builder.addCase(getTasks.fulfilled, (state, action)=>{
+        builder.addCase(getTasks.fulfilled, (state, action) =>{
             state.tasks = action.payload
         })
         builder.addCase(getActualTask.fulfilled, (state, action) =>{
-            state.actualTask = action.payload
+            state.actualTask = action.payload.task_id
         })
         builder.addCase(createSolution.fulfilled, (state, action)=>{
             state.percentVal = action.payload

@@ -1,18 +1,22 @@
-.header{
+.header {
   display: flex;
   flex-flow: row;
   align-items: center;
   justify-content: space-around;
   width: 100%;
   height: 70px;
+  position: sticky;
+  top: 0;
   @apply bg-stone-200 font-sans not-italic bg-stone-800 text-white font-medium;
 
 }
-.logo{
+
+.logo {
   overflow: hidden;
   height: 30px;
-  margin-top: 5px;
+  //margin-top: 5px;
+  margin-bottom: 5px;
   width: 20%;
-  @apply border border-gray-500;
+  @apply text-white italic text-2xl font-bold;
 }
 
