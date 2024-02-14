@@ -1,7 +1,9 @@
 import {drawLine} from './drawLine';
+import {dotsPars} from './dotsPars';
 
 export const drawLines = (context, dots, lineColor, percent) => {
-  for (let i = 0; i < dots.length - 1; i++) {
-    drawLine(context, dots[i].x, dots[i].y, dots[i + 1].x, dots[i + 1].y, lineColor, percent);
+  const dotsArr = typeof dots === 'string' ? dotsPars(dots) : dots;
+  for (let i = 0; i < dotsArr.length - 1; i++) {
+    drawLine(context, dotsArr[i].x, dotsArr[i].y, dotsArr[i + 1].x, dotsArr[i + 1].y, lineColor, percent);
   }
 };

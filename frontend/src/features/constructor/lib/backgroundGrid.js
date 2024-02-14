@@ -31,8 +31,8 @@ export const createGrid = (context) => {
           }
         context.stroke();
       }
-    /*const colShift = 5, rowShift = 15;
-    context.font = '13px Arial bold';
+    const colShift = 5, rowShift = 15;
+    context.font = '9px Arial bold';
     context.fillStyle = 'black';
     let col = 0;
     while (col + colShift < context.canvas.width) {
@@ -49,7 +49,7 @@ export const createGrid = (context) => {
     while (row + rowShift < context.canvas.height) {
       context.fillText(275 - row, 0 + 720, row + rowShift);
       row += 50;
-    }*/
+    }
   }
 
   handler();

@@ -8,8 +8,8 @@ const DotsInput = ({register, handler, dispatch}) => {
   const dots = useSelector(state => state.task.coordinates);
   const [dotsStr, setDotsStr] = useState('');
   useEffect(() => {
-    let str = dots.reduce((str, item) => str + ` ${item.x}: ${item.y}`, '');
-    setDotsStr(str);
+    //let str = dots.reduce((str, item) => str + ` ${item.x}: ${item.y}`, '');
+    //setDotsStr(str);
   }, [dots]);
 
   return (
@@ -19,8 +19,9 @@ const DotsInput = ({register, handler, dispatch}) => {
       </Form.Label>
       <Form.Control
         type="text"
+        as="textarea" rows={2}
         placeholder="0:0 11:33"
-        value={dotsStr}
+        value={dots.toString()}
         {...register('dots', {
           required: 'Поле обязательно для заполнения',
           pattern: {

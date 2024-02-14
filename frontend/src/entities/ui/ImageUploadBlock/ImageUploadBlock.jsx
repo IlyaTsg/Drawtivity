@@ -5,13 +5,12 @@ import DotsInput from '../../../shared/ui/DotsInput/DotsInput';
 import Form from 'react-bootstrap/Form';
 import {dotsInputHandler} from '../../lib/dotsInputHandler';
 import {useDispatch, useSelector} from 'react-redux';
-import {calcRadius} from '../../lib/calcRadius';
 import {drawAllLines} from '../../lib/drawAllLines';
 import ImageBar from '../../../shared/Constructor/ui/ImageBar/ImageBar';
 import ImageBarX from '../../../shared/Constructor/ui/ImageBarX/ImageBarX';
-import {dotsParsClick} from '../../lib/dotsParsClick';
 import {setCoordinates} from '../../model/store/slices/tasksSlice';
 import {cleanAll, createGrid} from '../../../features/constructor/lib/backgroundGrid';
+
 
 const ImageUploadBlock = ({register}) => {
   const canvasRef = useRef(null);
@@ -26,12 +25,14 @@ const ImageUploadBlock = ({register}) => {
     backgroundSize: `750px 550px`,
   };
   const dispatch = useDispatch();
-  const [lowerDots, highDots] = calcRadius(dots, percent);
   let context = canvasRef.current !== null ? canvasRef.current.getContext('2d') : null;
   const clickHandler = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     let x = event.pageX, y = event.pageY;
     //setDots([...dots, (dotsParsClick(x - canvasRef.current.offsetLeft, y-canvasRef.current.offsetTop - 275))])
-    dispatch(setCoordinates([...dots, (dotsParsClick(x - canvasRef.current.offsetLeft, (y - canvasRef.current.offsetTop - 275)))]));
+    console.log([dots.toString() + ` ${x - canvasRef.current.offsetLeft}:${y - canvasRef.current.offsetTop - 275}`], 76);
+    dispatch(setCoordinates(dots.toString() + ` ${x - canvasRef.current.offsetLeft}:${y - canvasRef.current.offsetTop - 275}`));
     //console.log(`${x - canvasRef.current.offsetLeft}:${y-canvasRef.current.offsetTop - 175}`);
   };
 
@@ -43,20 +44,16 @@ const ImageUploadBlock = ({register}) => {
         context.drawImage(selectedImage.name, 0, 0);
       };
       //if (isNetting) createGrid(context);
-      drawAllLines(context, dots, lowerDots, highDots, lineColor, percent);
-    }
-  }, [dots, lineColor, context]);
-  useEffect(() => {
-    if (canvasRef.current && context) {
-      if (isNetting) {
-        createGrid(context);
-        drawAllLines(context, dots, lowerDots, highDots, lineColor);
-      } else {
-        cleanAll(context);
-        drawAllLines(context, dots, lowerDots, highDots, lineColor);
+      if (canvasRef.current && context) {
+        if (isNetting)
+          createGrid(context);
+        else cleanAll(context);
+
+        drawAllLines(context, dots, lineColor, percent);
       }
     }
-  }, [isNetting, context]);
+  }, [dots, lineColor, context, isNetting]);
+
   return (<div>
     {selectedImage && (<div>
       <div className={classes.header}>Ваше изображение</div>
