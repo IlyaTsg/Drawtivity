@@ -1,14 +1,13 @@
-.wrapper{
-  width: 1200px;
+.wrapper {
+  width: 1400px;
   min-height: 870px;
-  @apply bg-white rounded-xl border-2 border-black;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center;
 }
 
-.test{
+.test {
   //width: 100%;
   padding-top: 20px;
   display: flex;
@@ -17,6 +16,7 @@
   align-items: center;
 
 }
+
 .text {
   word-wrap: break-word;
 }

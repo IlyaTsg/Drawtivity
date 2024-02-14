@@ -47,7 +47,7 @@ export const createGrid = (context) => {
     context.fillStyle = 'black';
     let row = 0;
     while (row + rowShift < context.canvas.height) {
-      context.fillText(275 - row, 0 + 720, row + rowShift);
+      context.fillText(-275 + row, 0 + 720, row + rowShift);
       row += 50;
     }
   }
