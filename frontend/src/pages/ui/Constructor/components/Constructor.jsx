@@ -1,134 +1,183 @@
-import React from 'react';
 import classes from './Constructor.module.scss';
-import CustomForm from '../../Authorization/UI/Form/CustomForm';
-import {useForm} from 'react-hook-form';
-import InputName from '../../Authorization/SignUpPage/UI/InputName/InputName';
-import CustomTextArea from '../../Authorization/SignUpPage/UI/CustomTextArea/CustomTextArea';
+import {Controller, useForm} from 'react-hook-form';
 import NumberInput from '../../../../shared/ui/NumberInput/NumberInput';
 import FileInput from '../../../../shared/ui/FileInput/FileInput';
-import CustomSelect from '../../../../shared/ui/CustomSelect/CustomSelect';
-import ImageUploadBlock from '../../../../entities/ui/ImageUploadBlock/ImageUploadBlock';
-import classNames from 'classnames';
 import useImage from '../../../../entities/model/store/hooks/useImage';
 import {useDispatch, useSelector} from 'react-redux';
-import {createTask, getTasks, setPercent} from '../../../../entities/model/store/slices/tasksSlice';
-import {signInThunk} from '../../../../entities/model/store/slices/userSlice';
-import Button from '@mui/material/Button';
+import {
+  createTask,
+  getTasks,
+  setIsNetting,
+  setLineColor,
+  setPercent,
+} from '../../../../entities/model/store/slices/tasksSlice';
+import TaskCreate from '../../../../widgets/constructor/ui/TaskCreate';
+import Header from '../../../../entities/constructor/ui/Header';
+import CreateTask from '../../../../features/constructor/ui/CreateTask';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Checkbox,
+  FormControl, FormControlLabel, FormGroup,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material';
+import {Sketch} from '@uiw/react-color';
+import {useState} from 'react';
 
 const Constructor = () => {
   const selectedImage = useImage();
   const dispatch = useDispatch();
-  const classname = classNames(classes.wrapper, {
-    [classes.imagesActive]: selectedImage.payload !== null,
-    [classes.imagesNotActive]: selectedImage.payload === null || selectedImage === '',
-  });
-  const {
-    register,
-    getValues,
-    formState: {
-      errors,
-      isValid,
-    },
-    handleSubmit,
-    reset,
-  } = useForm({
-    mode: 'onChange',
-    defaultValues: {
-      title: '',
-    },
-  });
 
-  const image = useSelector(state => state.task.image);
+  const {
+    control, register, handleSubmit, formState, getFieldState, getValues,
+  } = useForm({
+    defaultValues: {
+      title: '', category: '', type: '', description: '', color: '', isNetting: false,
+    },
+  });
+  const [color, setColor] = useState(getValues('color').hex);
+  //const image = useSelector(state => state.task.image);
   const coordinates = useSelector(state => state.task.coordinates);
   const id = useSelector(state => state.user.id);
 
   const addTask = (data) => {
-    const task = data;
-    //task["image"] = image
-    task['img_url'] = 'test';
-    task['points'] = coordinates;
-    task['owner_id'] = id;
-    //console.log(JSON.stringify(data))
-    dispatch(createTask(task));
+    console.log(data);
+    console.log(control);
+    const tempTask = {
+      'owner_id': 5,
+      'title': data.title,
+      'description': data.description,
+      'category': data.category,
+      'type': data.type,
+      'img_url': 'testImg_url12',
+      'deviation': +data.deviation,
+      'points': coordinates,
+    };
+    dispatch(createTask(tempTask));
     dispatch(getTasks());
   };
   const percentAdd = (event) => {
     dispatch(setPercent(event.target.value));
   };
-  return (
-    <div className={classes.wrap}>
-      <CustomForm formCl={classes.form} handlerSubmit={handleSubmit}
-                  isValid={isValid} submitHandler={addTask}>
-        <div className={classname}>
-          <div>
-            <ImageUploadBlock errors={errors} register={register} />
-          </div>
-          <div className={classes.formBlockWrapper}>
-            <div className={classes.prom}>
-              <div className={classes.formBlock}>
-                <div className={classes.formHeader}>
-                  Конструктор создания задач
-                </div>
-                <div className={classes.namesBlock}>
-                  <div className={classes.twoElem}>
-                    <InputName
-                      label={'Название задачи'} errors={errors} register={register} name={'title'} />
-                  </div>
-                  <div className={classes.twoElem}>
-                    <CustomTextArea
-                      title={'Описание задачи'} placeholder={'Описание'} register={register}
-                      errors={errors} name={'description'} />
-                  </div>
-                </div>
-                <div className={classes.twoBlocks}>
-                  <div className={classes.twoElem}>
-                    <CustomSelect
-                      errors={errors}
-                      title={'Выберите категорию задачи'}
-                      optionName={'Категория'} register={register}
-                      name={'category'} />
-                  </div>
-                  <div className={classes.twoElem}>
-                    <CustomSelect
-                      errors={errors}
-                      title={'Выберите тип задачи'}
-                      optionName={'Тип задачи'} register={register}
-                      name={'type'} />
-                  </div>
-                </div>
-                <div className={classes.twoBlocks}>
-                  <div className={classes.twoElem}>
-                    <FileInput register={register} name={'image'} />
-                  </div>
-                  <div className={classes.twoElem}>
-                    <NumberInput
-                      errors={errors} register={register}
-                      name={'deviation'} label={'Пример: 15'}
-                      inputHandler={percentAdd} />
-                  </div>
-                </div>
-                <div className={classes.button}>
-                  <Button
-                    size="large"
-                    variant="contained"
-                    sx={{
-                      color: 'white',
-                      background: 'black',
-                      borderColor: 'black',
-                    }}
-                    onClick={handleSubmit(addTask)}
-                  >
-                    Добавить задачу
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </CustomForm>
-    </div>
-  );
+  return (<form className={classes.constructorPage} onSubmit={handleSubmit(addTask)}>
+    <Header />
+    <Box display={'flex'} width={'100%'} justifyContent={'space-around'} mt={2} mb={3}>
+      <Controller
+        name="title"
+        control={control}
+        render={({field}) => <TextField label={'Название задачи'}  {...field} sx={{width: '400px'}} />}
+      />
+      <Controller
+        name="description"
+        control={control}
+        render={({field}) => <TextField
+          label={'Описание задачи'}
+          {...field}
+          sx={{width: '400px'}}
+          multiline
+          rows={3} />}
+      />
+    </Box>
+    <Box display={'flex'} width={'100%'} justifyContent={'space-around'} mt={2} mb={3}>
+      <Controller
+        name="category"
+        control={control}
+        render={({field}) => (<FormControl sx={{width: '400px'}}>
+          <InputLabel id="demo-simple-select-label">Категория</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Категория"
+            {...field}
+          >
+            {['Математика', 'Медицина', 'География'].map(item => <MenuItem value={item}
+                                                                           key={item}>{item}</MenuItem>)}
+          </Select>
+        </FormControl>)}
+      />
+      <Controller
+        name="type"
+        control={control}
+        render={({field}) => (<FormControl sx={{width: '400px'}}>
+          <InputLabel id="demo-simple-select-label">Тип</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Тип"
+            {...field}
+          >
+            {['Площадь', 'Точки'].map(item => <MenuItem value={item} key={item}>{item}</MenuItem>)}
+          </Select>
+        </FormControl>)}
+      />
+    </Box>
+    <Box display={'flex'} width={'100%'} justifyContent={'space-around'}>
+      <FileInput
+        register={register}
+        name={'image'}
+      />
+      <Controller
+        name="color"
+        control={control}
+        render={({field}) => (
+          <Box sx={{width: '400px', mt: 3}}>
+            <Accordion sx={{
+              width: '400px',
+              boxShadow: 'none',
+              borderRadius: '4px',
+              border: '1px solid #ced4da',
+            }}>
+              <AccordionSummary
+                expandIcon={<ArrowDownwardIcon />}
+                aria-controls="panel1-content"
+                id="panel2-header"
+              >
+                <Typography>Цвет основной линии:</Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{width: '400px', display: 'flex', justifyContent: 'center'}}>
+                <Sketch
+                  {...field}
+                  onChange={(value) => dispatch(setLineColor(value.hex))}
+                  style={{width: 390}}
+                />
+              </AccordionDetails>
+            </Accordion>
+          </Box>)}
+      />
+    </Box>
+    <Box display={'flex'} width={'100%'} justifyContent={'space-around'} mt={3}>
+      <NumberInput
+        register={register}
+        name={'deviation'}
+        label={'Пример: 15'}
+        inputHandler={percentAdd}
+      />
+      <Controller
+        name="isNetting"
+        control={control}
+        render={({field}) => (
+          <Box>
+            <Typography variant={'h7'}>Отображение сетки координат на изображении:</Typography>
+            <FormGroup {...field} sx={{width: '400px', pr: 20}}
+                       onClick={() => dispatch(setIsNetting(!getValues('isNetting')))}
+            >
+              <FormControlLabel required control={<Checkbox />} label="Наличие сетки"
+                                labelPlacement="start" />
+            </FormGroup>
+          </Box>
+        )}
+      />
+    </Box>
+    <TaskCreate register={register} lineColor={getValues('color').hex} />
+    <CreateTask handleSubmit={handleSubmit(addTask)} />
+  </form>);
 };
 
 export default Constructor;

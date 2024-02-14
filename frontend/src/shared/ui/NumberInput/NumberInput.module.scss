@@ -1,17 +1,18 @@
-.wrapper{
+.wrapper {
   display: flex;
   flex-flow: column;
   align-items: center;
 }
 
-.num_input{
-  max-width: 220px;
+.num_input {
+  width: 400px;
   height: 42px;
   padding-left: 6px;
   background: white;
   border: 1px solid #CCCCCC;
   border-radius: 8px;
-  &:focus{
+
+  &:focus {
     outline: none;
     border: 2px solid cornflowerblue;
     //background: cornflowerblue;

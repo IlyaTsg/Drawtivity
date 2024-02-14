@@ -1,23 +1,50 @@
-.wrapper{
-  //margin-bottom: 150px;
+.wrapper {
+  --wM: 1px; /* Толщина линии */
+  --xM: 10px; /* Отступ по ширине */
+  --yM: 10px; /* Отступ по высоте */
+  --cM: #ccc; /* Цвет линии */
 
+  --wB: 1px; /* Толщина линии */
+  --xB: 100px; /* Отступ по ширине */
+  --yB: 55px; /* Отступ по высоте */
+  --cB: #000; /* Цвет линии */
+
+  background-position: -1px 0;
+  background-image: linear-gradient(90deg, var(--cB) var(--wB), transparent var(--wB)),
+  linear-gradient(0deg, var(--cB) var(--wB), transparent var(--wB)),
+  linear-gradient(90deg, var(--cM) var(--wM), transparent var(--wM)),
+  linear-gradient(0deg, var(--cM) var(--wM), transparent var(--wM));
+  background-size: var(--xB) 100%, 100% var(--yB),
+  var(--xM) 100%, 100% var(--yM);
+
+  width: 750px;
+  height: 550px;
+  border: 1px solid red;
+  box-sizing: border-box;
+  z-index: 500;
 }
 
-.header{
+.header {
   @apply font-semibold font-sans text-3xl tracking-wide uppercase  text-black;
   display: flex;
   width: 100%;
   justify-content: center;
   padding-bottom: 15px;
 }
-.image{
+
+.image {
   display: flex;
   width: 850px;
   column-gap: 30px;
   @apply bg-white;
 }
-.wrapSol{
+
+.wrapSol {
   @apply bg-white;
   width: 100%;
   height: 100%;
+}
+
+.canvasLayout {
+  opacity: 0.85;
 }

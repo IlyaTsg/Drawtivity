@@ -4,7 +4,6 @@ import {useSelector} from 'react-redux';
 
 const FilterTable = ({filters, dispatch}) => {
   const tasks = useSelector(state => state.task.tasks);
-  console.log(dispatch, filters, 34);
   return (
     <Box display={'flex'} width={'100%'} justifyContent={'flex-end'} mb={3}>
       <TextField

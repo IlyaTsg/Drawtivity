@@ -17,12 +17,10 @@ const TaskBlock = () => {
       id: id,
       points: newCoord,
     };
-    console.log(data);
   }, [newCoord]);
 
   const clickHandler = () => {
     dispatch(createSolution());
-    console.log('hello');
   };
   return (
     <div className={classes.wrapper}>
