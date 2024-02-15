@@ -113,7 +113,7 @@ public class TaskService {
         }
 
         int count_right = 0;
-        for(int j=0; j<task.getPoints().size();j++){
+        for(int j=0; j<task.getPoints().size(); j++){
             for (Point solutionPoint : solutionRequest.getPoints()) {
                 double x_d = (solutionPoint.getX() - task.getPoints().get(j).getX()) * (solutionPoint.getX() - task.getPoints().get(j).getX());
                 double y_d = (solutionPoint.getY() - task.getPoints().get(j).getY()) * (solutionPoint.getY() - task.getPoints().get(j).getY());
@@ -124,6 +124,8 @@ public class TaskService {
                 }
             }
         }
-        return ResponseEntity.ok((float)count_right/(float)(task.getPoints().size())*100);
+        Float result = (float)count_right/(float)(task.getPoints().size())*100;
+        if (result.isNaN()) result = 0F;
+        return ResponseEntity.ok(result);
     }
 }
