@@ -39,16 +39,24 @@ const tasksSlice = createSlice({
       state.type = action.type;
       state.image = action.image;
       state.percent = action.percent;
-    }, setImage(state, action) {
+    },
+    setImage(state, action) {
       state.image = action.payload;
-    }, setCoordinates(state, action) {
+    },
+    setCoordinates(state, action) {
       state.coordinates = action.payload;
-    }, setPercent(state, action) {
+    },
+    setPercent(state, action) {
       state.percent = action.payload;
-    }, setIsNetting(state, action) {
+    },
+    setIsNetting(state, action) {
       state.isNetting = action.payload;
-    }, setLineColor(state, action) {
+    },
+    setLineColor(state, action) {
       state.lineColor = action.payload;
+    },
+    setType(state, action) {
+      state.type = action.payload;
     },
   }, extraReducers: builder => {
     builder.addCase(getTasks.fulfilled, (state, action) => {
@@ -68,4 +76,4 @@ const tasksSlice = createSlice({
 });
 
 export default tasksSlice.reducer;
-export const {setTask, setImage, setCoordinates, setPercent, setIsNetting, setLineColor} = tasksSlice.actions;
+export const {setTask, setImage, setCoordinates, setPercent, setIsNetting, setLineColor, setType} = tasksSlice.actions;

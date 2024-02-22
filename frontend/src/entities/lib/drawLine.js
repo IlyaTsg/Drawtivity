@@ -1,65 +1,3 @@
-function calculateDistance(x1, y1, x2, y2) {
-  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-}
-
-function normalizeVector(vector) {
-  const length = Math.sqrt(vector.m ** 2 + 1);
-  return {
-    dx: vector.m / length,
-    dy: 1 / length,
-  };
-}
-
-function getParallelLineEquation(x1, y1, x2, y2) {
-  // Вычислить угловой коэффициент
-  const m = (y2 - y1) / (x2 - x1);
-
-  // Вычислить свободный член
-  const b = y1 - m * x1;
-
-  // Вернуть уравнение прямой в виде объекта
-  return {m, b};
-}
-
-function getParallelLinePoints(x1, y1, x2, y2, R) {
-  const distance = calculateDistance(x1, y1, x2, y2);
-
-  let normalizedVector;
-  if (Math.abs(y2 - y1) < 1e-5) {
-    // Если y1 и y2 близки
-    normalizedVector = {dx: 0, dy: R};
-  } else {
-    // Нормализовать вектор направления
-    normalizedVector = {dx: x2 - x1, dy: y2 - y1};
-  }
-
-  // Если x1 и x2 близки, корректируем направление
-  if (Math.abs(x2 - x1) < 1e-5) {
-    normalizedVector = {dx: R, dy: 0};
-  }
-
-  // Нормализовать вектор направления
-  const length = Math.sqrt(normalizedVector.dx ** 2 + normalizedVector.dy ** 2);
-  normalizedVector.dx /= length;
-  normalizedVector.dy /= length;
-
-  // Вычислить координаты начальной и конечной точек на расстоянии R
-  const startX = x1;
-  const startY = y1;
-
-  const endX = x2;
-  const endY = y2;
-
-  const parallelStartX = startX + R * normalizedVector.dy;
-  const parallelStartY = startY - R * normalizedVector.dx;
-
-  const parallelEndX = endX + R * normalizedVector.dy;
-  const parallelEndY = endY - R * normalizedVector.dx;
-  return {
-    start: {x: parallelStartX, y: parallelStartY}, end: {x: parallelEndX, y: parallelEndY},
-  };
-}
-
 // Пример использования:
 function getPerpendicularLinePoints(x1, y1, x2, y2, R) {
   let normalizedVector;
@@ -120,7 +58,7 @@ export const drawLine = (context, x1, y1, x2, y2, lineColor, r = 1) => {
   context.stroke();
   context.closePath();
   context.beginPath();
-  console.log(parallelLineWithDistance);
+  //console.log(parallelLineWithDistance);
   //const parallelLinePointsWithDistance = getParallelLinePointsWithDistance(parallelLineAbove, x1, x2, r);
 
   context.moveTo(parallelLineWithDistance.start.x,

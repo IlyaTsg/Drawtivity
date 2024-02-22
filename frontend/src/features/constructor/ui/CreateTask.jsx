@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button';
-import React from 'react';
+
 
 const CreateTask = ({handleSubmit}) => {
   return (
@@ -12,10 +12,6 @@ const CreateTask = ({handleSubmit}) => {
         borderColor: 'black',
         width: '230px',
         margin: '0 auto',
-      }}
-      onClick={(event) => {
-        event.preventDefault();
-        handleSubmit();
       }}
       onSubmit={(event) => {
         event.preventDefault();

@@ -1,14 +1,15 @@
 .wrap {
   width: 200px;
-  height: 55px;
+  height: 60px;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 3px;
 }
 
 .infoStyle {
-  @apply border border-black text-white bg-black text-xl ;
+  @apply border border-black text-white bg-black text-xl p-1;
   a {
     @apply hover:text-white;
   }
