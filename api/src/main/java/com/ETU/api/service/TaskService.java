@@ -8,6 +8,7 @@ import com.etu.api.entities.Task;
 import com.etu.api.exceptions.ErrorDto;
 import com.etu.api.repositories.PointReposiroty;
 import com.etu.api.repositories.TaskRepository;
+import com.etu.api.utils.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,16 +22,19 @@ import java.util.List;
 public class TaskService {
     private final TaskRepository taskRepository;
     private final PointReposiroty pointReposiroty;
+    private final ImageUtils imageUtils;
 
     @Autowired
-    public TaskService(TaskRepository taskRepository, PointReposiroty pointReposiroty) {
+    public TaskService(TaskRepository taskRepository, PointReposiroty pointReposiroty, ImageUtils imageUtils) {
         this.taskRepository = taskRepository;
         this.pointReposiroty = pointReposiroty;
+        this.imageUtils = imageUtils;
     }
+
     public ResponseEntity<?> loadTaskById(Integer task_id){
         Task task = taskRepository.findById(task_id).orElse(null);
         if(task != null){
-            return ResponseEntity.ok(new TaskDto(task.getTask_id(), task.getOwner_id(), task.getTitle(), task.getDescription(), task.getCategory(), task.getType(), task.getImg_url(), task.getDeviation(), task.getPoints()));
+            return ResponseEntity.ok(new TaskDto(task.getTask_id(), task.getOwner_id(), task.getTitle(), task.getDescription(), task.getCategory(), task.getType(), imageUtils.convertBlobToBase64(task.getImage()), task.getDeviation(), task.getPoints()));
         }
         else{
             return new ResponseEntity<>(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Task not found"), HttpStatus.NOT_FOUND);
@@ -52,7 +56,7 @@ public class TaskService {
                 createTaskDto.getDescription(),
                 createTaskDto.getCategory(),
                 createTaskDto.getType(),
-                createTaskDto.getImg_url(),
+                imageUtils.convertBase64ToBlob(createTaskDto.getImage()),
                 createTaskDto.getDeviation(),
                 null
         );
@@ -78,7 +82,7 @@ public class TaskService {
         task.setDescription(createTaskDto.getDescription());
         task.setCategory(createTaskDto.getCategory());
         task.setType(createTaskDto.getType());
-        task.setImg_url(createTaskDto.getImg_url());
+        task.setImage(imageUtils.convertBase64ToBlob(createTaskDto.getImage()));
         task.setDeviation(createTaskDto.getDeviation());
 
         // Для обновления точек доастаем текущие точки задачи

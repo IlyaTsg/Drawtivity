@@ -2,7 +2,7 @@ package com.etu.api.dtos;
 
 import com.etu.api.entities.Point;
 import com.etu.api.entities.Task;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
+import com.etu.api.utils.ImageUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -24,8 +24,8 @@ public class TaskDto {
     private String category;
     @Schema(type = "string", example = "testType")
     private String type;
-    @Schema(type = "string", example = "testImg_url")
-    private String img_url;
+    @Schema(type = "string", example = "iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAALUlEQVR4nGJ5dk6eARV8ZD+EJsLEQAQYjIpY/vAfQxNqMHegmXV0VgQIAAD//3RABnK8byShAAAAAElFTkSuQmCC")
+    private String image;
     @Schema(type = "float", example = "12.4")
     private Float deviation;
     @Schema(example = "[\n" +
@@ -39,14 +39,14 @@ public class TaskDto {
             "            }]")
     private List<Point> points;
 
-    public TaskDto(Integer task_id, Integer owner_id, String title, String description, String category, String type, String img_url, Float deviation, List<Point> points) {
+    public TaskDto(Integer task_id, Integer owner_id, String title, String description, String category, String type, String image, Float deviation, List<Point> points) {
         this.task_id = task_id;
         this.owner_id = owner_id;
         this.title = title;
         this.description = description;
         this.category = category;
         this.type = type;
-        this.img_url = img_url;
+        this.image = image;
         this.deviation = deviation;
         this.points = points;
     }
@@ -58,7 +58,7 @@ public class TaskDto {
         this.description = task.getDescription();
         this.category = task.getCategory();
         this.type = task.getType();
-        this.img_url = task.getImg_url();
+        this.image = new ImageUtils().convertBlobToBase64(task.getImage());
         this.deviation = task.getDeviation();
         this.points = task.getPoints();
     }
@@ -105,11 +105,11 @@ public class TaskDto {
         this.type = type;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public String getImage() {
+        return image;
     }
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Float getDeviation() {

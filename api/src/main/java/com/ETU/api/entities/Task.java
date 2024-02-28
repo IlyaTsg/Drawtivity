@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
+import java.sql.Blob;
 
 @Entity
 @Data
@@ -25,8 +26,9 @@ public class Task {
     private String category;
     @Column(name = "type")
     private String type;
-    @Column(name = "img_url")
-    private String img_url;
+    @Column(name = "image")
+    @Lob
+    private Blob image;
     @Column(name = "deviation")
     private Float deviation;
 
@@ -36,14 +38,14 @@ public class Task {
     public Task() {
     }
 
-    public Task(Integer task_id, Integer owner_id, String title, String description, String category, String type, String img_url, Float deviation, List<Point> points) {
+    public Task(Integer task_id, Integer owner_id, String title, String description, String category, String type, Blob image, Float deviation, List<Point> points) {
         this.task_id = task_id;
         this.owner_id = owner_id;
         this.title = title;
         this.description = description;
         this.category = category;
         this.type = type;
-        this.img_url = img_url;
+        this.image = image;
         this.deviation = deviation;
         this.points = points;
     }
@@ -90,11 +92,11 @@ public class Task {
         this.type = type;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public Blob getImage() {
+        return image;
     }
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImage(Blob image) {
+        this.image = image;
     }
 
     public Float getDeviation() {
