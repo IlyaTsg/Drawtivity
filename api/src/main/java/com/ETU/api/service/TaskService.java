@@ -9,6 +9,7 @@ import com.etu.api.exceptions.ErrorDto;
 import com.etu.api.repositories.PointReposiroty;
 import com.etu.api.repositories.TaskRepository;
 import com.etu.api.utils.ImageUtils;
+import com.etu.api.utils.TaskUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TaskService {
@@ -24,11 +26,14 @@ public class TaskService {
     private final PointReposiroty pointReposiroty;
     private final ImageUtils imageUtils;
 
+    private final TaskUtils taskUtils;
+
     @Autowired
-    public TaskService(TaskRepository taskRepository, PointReposiroty pointReposiroty, ImageUtils imageUtils) {
+    public TaskService(TaskRepository taskRepository, PointReposiroty pointReposiroty, ImageUtils imageUtils, TaskUtils taskUtils) {
         this.taskRepository = taskRepository;
         this.pointReposiroty = pointReposiroty;
         this.imageUtils = imageUtils;
+        this.taskUtils = taskUtils;
     }
 
     public ResponseEntity<?> loadTaskById(Integer task_id){
@@ -116,20 +121,13 @@ public class TaskService {
             return new ResponseEntity<>(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Task not found"), HttpStatus.NOT_FOUND);
         }
 
-        int count_right = 0;
-        for(int j=0; j<task.getPoints().size(); j++){
-            for (Point solutionPoint : solutionRequest.getPoints()) {
-                double x_d = (solutionPoint.getX() - task.getPoints().get(j).getX()) * (solutionPoint.getX() - task.getPoints().get(j).getX());
-                double y_d = (solutionPoint.getY() - task.getPoints().get(j).getY()) * (solutionPoint.getY() - task.getPoints().get(j).getY());
-                double r_d = task.getDeviation() * task.getDeviation();
-                if (x_d + y_d <= r_d) {
-                    count_right += 1;
-                    break;
-                }
-            }
+        double result = 0D;
+        if (Objects.equals(task.getType(), "Linear")){
+            result = taskUtils.linearTaskSolution(task, solutionRequest.getPoints());
+        } else if (Objects.equals(task.getType(), "Overlap")) {
+            result = taskUtils.overlapTaskSolution(task, solutionRequest.getPoints());
         }
-        Float result = (float)count_right/(float)(task.getPoints().size())*100;
-        if (result.isNaN()) result = 0F;
+
         return ResponseEntity.ok(result);
     }
 }
