@@ -1,15 +1,21 @@
 package com.etu.api.service;
 
-import com.etu.api.dtos.JwtRequest;
-import com.etu.api.dtos.RegistrationUserDto;
+import com.etu.api.dtos.user.UserRegDto;
+import com.etu.api.dtos.user.UserRoleUpdReq;
+import com.etu.api.entities.Role;
 import com.etu.api.entities.User;
+import com.etu.api.exceptions.ErrorDto;
 import com.etu.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -33,15 +39,35 @@ public class UserService {
         return userRepository.findByEmail(email).orElse(null);
     }
 
+    /** Обновление ролей пользователя */
     @Transactional
-    public User addUser(RegistrationUserDto registrationUserDto){
+    public ResponseEntity<?> updateRoleByUserId(Integer user_id, UserRoleUpdReq userRoleUpdReq) {
+        User user = userRepository.findById(user_id).orElse(null);
+        if (user != null) {
+            // Находим роли по именам из запроса
+            List<Role> roles = userRoleUpdReq.getRoles().stream()
+                    .map(roleService::findByName)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get).toList();
+            if (!roles.isEmpty()) {
+                user.setRoles(roles);
+                userRepository.save(user);
+            }
+            return ResponseEntity.ok("User roles updated successfully.");
+        } else {
+            return new ResponseEntity<>(new ErrorDto(HttpStatus.NOT_FOUND.value(), "User not found"), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Transactional
+    public User addUser(UserRegDto userRegDto){
         // Добавить exception если user с таким email уже есть
         User user = new User(
                 null,
-                registrationUserDto.getFirstname(),
-                registrationUserDto.getLastname(),
-                registrationUserDto.getEmail(),
-                passwordEncoder.encode(registrationUserDto.getPassword()),
+                userRegDto.getFirstname(),
+                userRegDto.getLastname(),
+                userRegDto.getEmail(),
+                passwordEncoder.encode(userRegDto.getPassword()),
                 List.of(roleService.findByName("ROLE_USER").get())
         );
         return userRepository.save(user);

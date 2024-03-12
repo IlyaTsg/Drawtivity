@@ -1,11 +1,11 @@
-package com.etu.api.dtos;
+package com.etu.api.dtos.user;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
 @Schema(description = "Registration user request")
-public class RegistrationUserDto {
+public class UserRegDto {
     @Schema(type = "string", example = "testFName")
     private String firstname;
     @Schema(type = "string", example = "testLName")
@@ -15,7 +15,7 @@ public class RegistrationUserDto {
     @Schema(type = "string", example = "testPass")
     private String password;
 
-    public RegistrationUserDto(String firstname, String lastname, String email, String password) {
+    public UserRegDto(String firstname, String lastname, String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;

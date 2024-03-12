@@ -1,9 +1,9 @@
 package com.etu.api.service;
 
 import com.etu.api.dtos.JwtRequest;
-import com.etu.api.dtos.JwtResponse;
-import com.etu.api.dtos.RegistrationUserDto;
-import com.etu.api.dtos.RegistrationUserResponse;
+import com.etu.api.dtos.user.UserRegDto;
+import com.etu.api.dtos.user.UserDto;
+import com.etu.api.entities.Role;
 import com.etu.api.entities.User;
 import com.etu.api.exceptions.ErrorDto;
 import com.etu.api.utils.JwtTokenUtils;
@@ -43,10 +43,10 @@ public class AuthService {
         String token = jwtTokenUtils.generateToken(userDetails);
         User user = userService.getUser(authRequest.getEmail());
 
-        return ResponseEntity.ok(new RegistrationUserResponse(user.getUser_id(), user.getFirstname(), user.getLastname(), user.getEmail(), token));
+        return ResponseEntity.ok(new UserDto(user.getUser_id(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getRoles().stream().map(Role::getName).toList(), token));
     }
 
-    public ResponseEntity<?> createUser(@RequestBody RegistrationUserDto registrationRequest){
+    public ResponseEntity<?> createUser(@RequestBody UserRegDto registrationRequest){
         // Проверка на существование пользователя
         // Лучше перенести в UserService
         if(detailsService.findByEmail(registrationRequest.getEmail()).isPresent()){
@@ -56,6 +56,6 @@ public class AuthService {
         UserDetails userDetails = detailsService.loadUserByUsername(user.getEmail());
         String token = jwtTokenUtils.generateToken(userDetails);
 
-        return ResponseEntity.ok(new RegistrationUserResponse(user.getUser_id(), user.getFirstname(), user.getLastname(), user.getEmail(), token));
+        return ResponseEntity.ok(new UserDto(user.getUser_id(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getRoles().stream().map(Role::getName).toList(), token));
     }
 }

@@ -1,6 +1,6 @@
 package com.etu.api;
 
-import com.etu.api.dtos.RegistrationUserDto;
+import com.etu.api.dtos.user.UserRegDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class ControllerTest {
 
     @Test
     public void testCors() throws Exception{
-        RegistrationUserDto user = new RegistrationUserDto("John", "Doe", "john@gmail.com", "123");
+        UserRegDto user = new UserRegDto("John", "Doe", "john@gmail.com", "123");
         ObjectMapper objectMapper = new ObjectMapper();
         String requestBody = objectMapper.writeValueAsString(user);
 
