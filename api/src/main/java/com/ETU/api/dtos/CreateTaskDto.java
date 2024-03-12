@@ -17,7 +17,7 @@ public class CreateTaskDto {
     private String description;
     @Schema(type = "string", example = "testCategory")
     private String category;
-    @Schema(type = "string", example = "testType")
+    @Schema(type = "string", example = "Linear", description = "Может быть тип Linear или Overlap")
     private String type;
     @Schema(type = "string", example = "iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAALUlEQVR4nGJ5dk6eARV8ZD")
     private String image;
