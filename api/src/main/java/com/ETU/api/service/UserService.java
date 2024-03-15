@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,7 +51,7 @@ public class UserService {
                     .filter(Optional::isPresent)
                     .map(Optional::get).toList();
             if (!roles.isEmpty()) {
-                user.setRoles(roles);
+                user.setRoles(new ArrayList<>(roles));
                 userRepository.save(user);
             }
             return ResponseEntity.ok("User roles updated successfully.");
