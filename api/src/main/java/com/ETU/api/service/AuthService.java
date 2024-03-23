@@ -2,7 +2,7 @@ package com.etu.api.service;
 
 import com.etu.api.dtos.JwtRequest;
 import com.etu.api.dtos.user.UserRegDto;
-import com.etu.api.dtos.user.UserDto;
+import com.etu.api.dtos.user.UserRegResp;
 import com.etu.api.entities.Role;
 import com.etu.api.entities.User;
 import com.etu.api.exceptions.ErrorDto;
@@ -43,7 +43,7 @@ public class AuthService {
         String token = jwtTokenUtils.generateToken(userDetails);
         User user = userService.getUser(authRequest.getEmail());
 
-        return ResponseEntity.ok(new UserDto(user.getUser_id(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getRoles().stream().map(Role::getName).toList(), token));
+        return ResponseEntity.ok(new UserRegResp(user.getUser_id(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getRoles().stream().map(Role::getName).toList(), token));
     }
 
     public ResponseEntity<?> createUser(@RequestBody UserRegDto registrationRequest){
@@ -56,6 +56,6 @@ public class AuthService {
         UserDetails userDetails = detailsService.loadUserByUsername(user.getEmail());
         String token = jwtTokenUtils.generateToken(userDetails);
 
-        return ResponseEntity.ok(new UserDto(user.getUser_id(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getRoles().stream().map(Role::getName).toList(), token));
+        return ResponseEntity.ok(new UserRegResp(user.getUser_id(), user.getFirstname(), user.getLastname(), user.getEmail(), user.getRoles().stream().map(Role::getName).toList(), token));
     }
 }

@@ -1,10 +1,12 @@
 package com.etu.api.controllers;
 
 import com.etu.api.dtos.TaskDto;
+import com.etu.api.dtos.user.UserDto;
 import com.etu.api.dtos.user.UserRoleUpdReq;
 import com.etu.api.exceptions.ErrorDto;
 import com.etu.api.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -22,6 +24,14 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping
+    @Operation(summary = "Get all users", description = "Get all users")
+    @ApiResponse(responseCode = "200", content = @Content(
+            array = @ArraySchema(schema = @Schema(implementation = UserDto.class))))
+    public ResponseEntity<?> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @PatchMapping("/{id}/roles")

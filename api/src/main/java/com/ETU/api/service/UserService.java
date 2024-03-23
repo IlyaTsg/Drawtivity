@@ -1,5 +1,7 @@
 package com.etu.api.service;
 
+import com.etu.api.dtos.user.UserDto;
+import com.etu.api.dtos.user.UserRegResp;
 import com.etu.api.dtos.user.UserRegDto;
 import com.etu.api.dtos.user.UserRoleUpdReq;
 import com.etu.api.entities.Role;
@@ -16,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -38,6 +39,13 @@ public class UserService {
      */
     public User getUser(String email){
         return userRepository.findByEmail(email).orElse(null);
+    }
+
+    public ResponseEntity<?> getAllUsers(){
+        List<UserDto> users = userRepository.findAll().stream()
+                .map(UserDto::new)
+                .toList();
+        return ResponseEntity.ok(users);
     }
 
     /** Обновление ролей пользователя */

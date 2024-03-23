@@ -1,15 +1,13 @@
 package com.etu.api.dtos.user;
 
-import com.etu.api.entities.Role;
-import com.etu.api.entities.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-@Schema(description = "Схема пользователя")
-public class UserDto {
+@Schema(description = "Registration user response")
+public class UserRegResp {
     @Schema(type = "int", example = "35")
     private Integer user_id;
     @Schema(type = "string", example = "testFName")
@@ -20,21 +18,16 @@ public class UserDto {
     private String email;
     @Schema(example = "[\n\"ROLE_USER\"\n]")
     private List<String> roles;
+    @Schema(type = "string", example = "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiam9obm1hZ2x5QGdtYWlsLmNvbSIsImlhdCI6MTY5NzEzMjAxNCwiZXhwIjoxNjk3MTM1NjE0fQ.cKjlgvZXOrg_98TCWoa-2aezcNS57bAex5udeknl9CE")
+    private String token;
 
-    public UserDto(Integer user_id, String firstname, String lastname, String email, List<String> roles, String token) {
+    public UserRegResp(Integer user_id, String firstname, String lastname, String email, List<String> roles, String token) {
         this.user_id = user_id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.roles = roles;
-    }
-
-    public UserDto(User user) {
-        this.user_id = user.getUser_id();
-        this.firstname = user.getFirstname();
-        this.lastname = user.getLastname();
-        this.email = user.getEmail();
-        this.roles = user.getRoles().stream().map(Role::getName).toList();
+        this.token = token;
     }
 
     public Integer getUser_id() {
@@ -70,5 +63,12 @@ public class UserDto {
     }
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    public String getToken() {
+        return token;
+    }
+    public void setToken(String token) {
+        this.token = token;
     }
 }

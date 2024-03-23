@@ -2,7 +2,7 @@ package com.etu.api.controllers;
 
 import com.etu.api.dtos.JwtRequest;
 import com.etu.api.dtos.user.UserRegDto;
-import com.etu.api.dtos.user.UserDto;
+import com.etu.api.dtos.user.UserRegResp;
 import com.etu.api.exceptions.ErrorDto;
 import com.etu.api.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,7 +28,7 @@ public class AuthController {
     @PostMapping("/auth")
     @Operation(summary = "Authorization", description = "Get authorization token")
     @ApiResponse(responseCode = "200", content = @Content(
-            schema = @Schema(implementation = UserDto.class)))
+            schema = @Schema(implementation = UserRegResp.class)))
     @ApiResponse(responseCode = "401", content = @Content(
             schema = @Schema(implementation = ErrorDto.class)))
     public ResponseEntity<?> createAuthToken(@RequestBody JwtRequest authRequest) {
@@ -38,7 +38,7 @@ public class AuthController {
     @PostMapping("/registration")
     @Operation(summary = "Registration", description = "Create new user and get token")
     @ApiResponse(responseCode = "200", content = @Content(
-            schema = @Schema(implementation = UserDto.class)))
+            schema = @Schema(implementation = UserRegResp.class)))
     @ApiResponse(responseCode = "400", content = @Content(
             schema = @Schema(implementation = ErrorDto.class)))
     public ResponseEntity<?> createUser(@RequestBody UserRegDto registrationRequest){
