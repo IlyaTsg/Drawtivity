@@ -39,7 +39,17 @@ public class TaskService {
     public ResponseEntity<?> loadTaskById(Integer task_id){
         Task task = taskRepository.findById(task_id).orElse(null);
         if(task != null){
-            return ResponseEntity.ok(new TaskDto(task.getTask_id(), task.getOwner_id(), task.getTitle(), task.getDescription(), task.getCategory(), task.getType(), imageUtils.convertBlobToBase64(task.getImage()), task.getDeviation(), task.getPoints()));
+            return ResponseEntity.ok(new TaskDto(task.getTask_id(),
+                    task.getOwner_id(),
+                    task.getTitle(),
+                    task.getDescription(),
+                    task.getCategory(),
+                    task.getType(),
+                    imageUtils.convertBlobToBase64(task.getImage()),
+                    task.getDeviation(),
+                    task.getPoints(),
+                    task.getLine_color(),
+                    task.getFill_color()));
         }
         else{
             return new ResponseEntity<>(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Task not found"), HttpStatus.NOT_FOUND);
@@ -63,7 +73,9 @@ public class TaskService {
                 createTaskDto.getType(),
                 imageUtils.convertBase64ToBlob(createTaskDto.getImage()),
                 createTaskDto.getDeviation(),
-                null
+                null,
+                createTaskDto.getLine_color(),
+                createTaskDto.getFill_color()
         );
         for (Point point: createTaskDto.getPoints()) {
             point.setTask(task);
@@ -89,6 +101,8 @@ public class TaskService {
         task.setType(createTaskDto.getType());
         task.setImage(imageUtils.convertBase64ToBlob(createTaskDto.getImage()));
         task.setDeviation(createTaskDto.getDeviation());
+        task.setLine_color(createTaskDto.getLine_color());
+        task.setFill_color(createTaskDto.getFill_color());
 
         // Для обновления точек доастаем текущие точки задачи
         // Удаляем их

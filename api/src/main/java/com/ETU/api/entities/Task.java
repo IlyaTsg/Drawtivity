@@ -31,14 +31,17 @@ public class Task {
     private Blob image;
     @Column(name = "deviation")
     private Float deviation;
-
+    @Column(name = "line_color")
+    private String line_color;
+    @Column(name = "fill_color")
+    private String fill_color;
     @OneToMany(mappedBy = "task",cascade=CascadeType.ALL)
     private List<Point> points;
 
     public Task() {
     }
 
-    public Task(Integer task_id, Integer owner_id, String title, String description, String category, String type, Blob image, Float deviation, List<Point> points) {
+    public Task(Integer task_id, Integer owner_id, String title, String description, String category, String type, Blob image, Float deviation, List<Point> points, String line_color, String fill_color) {
         this.task_id = task_id;
         this.owner_id = owner_id;
         this.title = title;
@@ -48,6 +51,8 @@ public class Task {
         this.image = image;
         this.deviation = deviation;
         this.points = points;
+        this.line_color = line_color;
+        this.fill_color = fill_color;
     }
 
     public Integer getTask_id() {
@@ -104,6 +109,20 @@ public class Task {
     }
     public void setDeviation(Float deviation) {
         this.deviation = deviation;
+    }
+
+    public String getLine_color() {
+        return line_color;
+    }
+    public void setLine_color(String line_color) {
+        this.line_color = line_color;
+    }
+
+    public String getFill_color() {
+        return fill_color;
+    }
+    public void setFill_color(String fill_color) {
+        this.fill_color = fill_color;
     }
 
     public List<Point> getPoints() {

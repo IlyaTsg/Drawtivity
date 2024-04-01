@@ -23,6 +23,11 @@ public class CreateTaskDto {
     private String image;
     @Schema(type = "float", example = "12.4")
     private Float deviation;
+    @Schema(type = "string", example = "#FF0000")
+    private String line_color;
+    @Schema(type = "string", example = "#FF0000")
+    private String fill_color;
+
     @Schema(example = "[\n" +
             "            {\n" +
             "                \"x\": 10.0,\n" +
@@ -34,7 +39,7 @@ public class CreateTaskDto {
             "            }]")
     private List<Point> points;
 
-    public CreateTaskDto(Integer owner_id, String title, String description, String category, String type, String image, Float deviation, List<Point> points) {
+    public CreateTaskDto(Integer owner_id, String title, String description, String category, String type, String image, Float deviation, List<Point> points, String line_color, String fill_color) {
         this.owner_id = owner_id;
         this.title = title;
         this.description = description;
@@ -43,6 +48,8 @@ public class CreateTaskDto {
         this.image = image;
         this.deviation = deviation;
         this.points = points;
+        this.line_color = line_color;
+        this.fill_color = fill_color;
     }
 
     public Integer getOwner_id() {
@@ -92,6 +99,20 @@ public class CreateTaskDto {
     }
     public void setDeviation(Float deviation) {
         this.deviation = deviation;
+    }
+
+    public String getLine_color() {
+        return line_color;
+    }
+    public void setLine_color(String line_color) {
+        this.line_color = line_color;
+    }
+
+    public String getFill_color() {
+        return fill_color;
+    }
+    public void setFill_color(String fill_color) {
+        this.fill_color = fill_color;
     }
 
     public List<Point> getPoints() {
