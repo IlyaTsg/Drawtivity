@@ -8,6 +8,8 @@ import com.etu.api.entities.Task;
 import com.etu.api.exceptions.ErrorDto;
 import com.etu.api.repositories.PointReposiroty;
 import com.etu.api.repositories.TaskRepository;
+import com.etu.api.utils.ImageUtils;
+import com.etu.api.utils.TaskUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,21 +18,38 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TaskService {
     private final TaskRepository taskRepository;
     private final PointReposiroty pointReposiroty;
+    private final ImageUtils imageUtils;
+
+    private final TaskUtils taskUtils;
 
     @Autowired
-    public TaskService(TaskRepository taskRepository, PointReposiroty pointReposiroty) {
+    public TaskService(TaskRepository taskRepository, PointReposiroty pointReposiroty, ImageUtils imageUtils, TaskUtils taskUtils) {
         this.taskRepository = taskRepository;
         this.pointReposiroty = pointReposiroty;
+        this.imageUtils = imageUtils;
+        this.taskUtils = taskUtils;
     }
+
     public ResponseEntity<?> loadTaskById(Integer task_id){
         Task task = taskRepository.findById(task_id).orElse(null);
         if(task != null){
-            return ResponseEntity.ok(new TaskDto(task.getTask_id(), task.getOwner_id(), task.getTitle(), task.getDescription(), task.getCategory(), task.getType(), task.getImg_url(), task.getDeviation(), task.getPoints()));
+            return ResponseEntity.ok(new TaskDto(task.getTask_id(),
+                    task.getOwner_id(),
+                    task.getTitle(),
+                    task.getDescription(),
+                    task.getCategory(),
+                    task.getType(),
+                    imageUtils.convertBlobToBase64(task.getImage()),
+                    task.getDeviation(),
+                    task.getPoints(),
+                    task.getLine_color(),
+                    task.getFill_color()));
         }
         else{
             return new ResponseEntity<>(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Task not found"), HttpStatus.NOT_FOUND);
@@ -52,9 +71,11 @@ public class TaskService {
                 createTaskDto.getDescription(),
                 createTaskDto.getCategory(),
                 createTaskDto.getType(),
-                createTaskDto.getImg_url(),
+                imageUtils.convertBase64ToBlob(createTaskDto.getImage()),
                 createTaskDto.getDeviation(),
-                null
+                null,
+                createTaskDto.getLine_color(),
+                createTaskDto.getFill_color()
         );
         for (Point point: createTaskDto.getPoints()) {
             point.setTask(task);
@@ -78,8 +99,10 @@ public class TaskService {
         task.setDescription(createTaskDto.getDescription());
         task.setCategory(createTaskDto.getCategory());
         task.setType(createTaskDto.getType());
-        task.setImg_url(createTaskDto.getImg_url());
+        task.setImage(imageUtils.convertBase64ToBlob(createTaskDto.getImage()));
         task.setDeviation(createTaskDto.getDeviation());
+        task.setLine_color(createTaskDto.getLine_color());
+        task.setFill_color(createTaskDto.getFill_color());
 
         // Для обновления точек доастаем текущие точки задачи
         // Удаляем их
@@ -112,18 +135,13 @@ public class TaskService {
             return new ResponseEntity<>(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Task not found"), HttpStatus.NOT_FOUND);
         }
 
-        int count_right = 0;
-        for(int j=0; j<task.getPoints().size();j++){
-            for (Point solutionPoint : solutionRequest.getPoints()) {
-                double x_d = (solutionPoint.getX() - task.getPoints().get(j).getX()) * (solutionPoint.getX() - task.getPoints().get(j).getX());
-                double y_d = (solutionPoint.getY() - task.getPoints().get(j).getY()) * (solutionPoint.getY() - task.getPoints().get(j).getY());
-                double r_d = task.getDeviation() * task.getDeviation();
-                if (x_d + y_d <= r_d) {
-                    count_right += 1;
-                    break;
-                }
-            }
+        double result = 0D;
+        if (Objects.equals(task.getType(), "Linear")){
+            result = taskUtils.linearTaskSolution(task, solutionRequest.getPoints());
+        } else if (Objects.equals(task.getType(), "Overlap")) {
+            result = taskUtils.overlapTaskSolution(task, solutionRequest.getPoints());
         }
-        return ResponseEntity.ok((float)count_right/(float)(task.getPoints().size())*100);
+
+        return ResponseEntity.ok(result);
     }
 }

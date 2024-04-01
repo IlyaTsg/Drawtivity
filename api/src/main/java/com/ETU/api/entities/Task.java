@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
+import java.sql.Blob;
 
 @Entity
 @Data
@@ -25,27 +26,33 @@ public class Task {
     private String category;
     @Column(name = "type")
     private String type;
-    @Column(name = "img_url")
-    private String img_url;
+    @Column(name = "image")
+    @Lob
+    private Blob image;
     @Column(name = "deviation")
     private Float deviation;
-
+    @Column(name = "line_color")
+    private String line_color;
+    @Column(name = "fill_color")
+    private String fill_color;
     @OneToMany(mappedBy = "task",cascade=CascadeType.ALL)
     private List<Point> points;
 
     public Task() {
     }
 
-    public Task(Integer task_id, Integer owner_id, String title, String description, String category, String type, String img_url, Float deviation, List<Point> points) {
+    public Task(Integer task_id, Integer owner_id, String title, String description, String category, String type, Blob image, Float deviation, List<Point> points, String line_color, String fill_color) {
         this.task_id = task_id;
         this.owner_id = owner_id;
         this.title = title;
         this.description = description;
         this.category = category;
         this.type = type;
-        this.img_url = img_url;
+        this.image = image;
         this.deviation = deviation;
         this.points = points;
+        this.line_color = line_color;
+        this.fill_color = fill_color;
     }
 
     public Integer getTask_id() {
@@ -90,11 +97,11 @@ public class Task {
         this.type = type;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public Blob getImage() {
+        return image;
     }
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImage(Blob image) {
+        this.image = image;
     }
 
     public Float getDeviation() {
@@ -102,6 +109,20 @@ public class Task {
     }
     public void setDeviation(Float deviation) {
         this.deviation = deviation;
+    }
+
+    public String getLine_color() {
+        return line_color;
+    }
+    public void setLine_color(String line_color) {
+        this.line_color = line_color;
+    }
+
+    public String getFill_color() {
+        return fill_color;
+    }
+    public void setFill_color(String fill_color) {
+        this.fill_color = fill_color;
     }
 
     public List<Point> getPoints() {

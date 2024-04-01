@@ -28,8 +28,6 @@ public class TaskController {
     }
 
     @GetMapping
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"Authorization", "Origin"},
-            exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials"})
     @Operation(summary = "Get all tasks", description = "Get all tasks")
     @ApiResponse(responseCode = "200", content = @Content(
             array = @ArraySchema(schema = @Schema(implementation = TaskDto.class))))
@@ -38,8 +36,6 @@ public class TaskController {
     }
 
     @GetMapping(value="/{id}")
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"Authorization", "Origin"},
-            exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials"})
     @Operation(summary = "Get task by id", description = "Get task by id")
     @ApiResponse(responseCode = "200", content = @Content(
             schema = @Schema(implementation = TaskDto.class)))
@@ -50,8 +46,6 @@ public class TaskController {
     }
 
     @PostMapping()
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"Authorization", "Origin"},
-            exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials"})
     @Operation(summary = "Create task", description = "Create task")
     @ApiResponse(responseCode = "200", content = @Content(
             schema = @Schema(implementation = TaskDto.class)))
@@ -60,8 +54,6 @@ public class TaskController {
     }
 
     @PatchMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"Authorization", "Origin"},
-            exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials"})
     @Operation(summary = "Update task by id", description = "Update task by id")
     @ApiResponse(responseCode = "200", content = @Content(
             schema = @Schema(implementation = TaskDto.class)))
@@ -72,8 +64,6 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"Authorization", "Origin"},
-            exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials"})
     @Operation(summary = "Delete task by id", description = "Delete task by id")
     @ApiResponse(responseCode = "200", content = @Content(
             schema = @Schema(example = "Task deleted")))
@@ -84,8 +74,6 @@ public class TaskController {
     }
 
     @PostMapping("/solution")
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"Authorization", "Origin"},
-            exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials"})
     @Operation(summary = "Solve the task by id", description = "Solve the task by id")
     @ApiResponse(responseCode = "200", content = @Content(
             schema = @Schema(example = "75")))

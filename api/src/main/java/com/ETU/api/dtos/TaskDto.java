@@ -2,7 +2,7 @@ package com.etu.api.dtos;
 
 import com.etu.api.entities.Point;
 import com.etu.api.entities.Task;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
+import com.etu.api.utils.ImageUtils;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -22,12 +22,17 @@ public class TaskDto {
     private String description;
     @Schema(type = "string", example = "testCategory")
     private String category;
-    @Schema(type = "string", example = "testType")
+    @Schema(type = "string", example = "Linear", description = "Может быть тип Linear или Overlap")
     private String type;
-    @Schema(type = "string", example = "testImg_url")
-    private String img_url;
+    @Schema(type = "string", example = "iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAALUlEQVR4nGJ5dk6eARV8ZD+EJsLEQAQYjIpY/vAfQxNqMHegmXV0VgQIAAD//3RABnK8byShAAAAAElFTkSuQmCC")
+    private String image;
     @Schema(type = "float", example = "12.4")
     private Float deviation;
+
+    @Schema(type = "string", example = "#FF0000")
+    private String line_color;
+    @Schema(type = "string", example = "#FF0000")
+    private String fill_color;
     @Schema(example = "[\n" +
             "            {\n" +
             "                \"x\": 10.0,\n" +
@@ -39,16 +44,18 @@ public class TaskDto {
             "            }]")
     private List<Point> points;
 
-    public TaskDto(Integer task_id, Integer owner_id, String title, String description, String category, String type, String img_url, Float deviation, List<Point> points) {
+    public TaskDto(Integer task_id, Integer owner_id, String title, String description, String category, String type, String image, Float deviation, List<Point> points, String line_color, String fill_color) {
         this.task_id = task_id;
         this.owner_id = owner_id;
         this.title = title;
         this.description = description;
         this.category = category;
         this.type = type;
-        this.img_url = img_url;
+        this.image = image;
         this.deviation = deviation;
         this.points = points;
+        this.line_color = line_color;
+        this.fill_color = fill_color;
     }
 
     public TaskDto(Task task){
@@ -58,9 +65,11 @@ public class TaskDto {
         this.description = task.getDescription();
         this.category = task.getCategory();
         this.type = task.getType();
-        this.img_url = task.getImg_url();
+        this.image = new ImageUtils().convertBlobToBase64(task.getImage());
         this.deviation = task.getDeviation();
         this.points = task.getPoints();
+        this.line_color = task.getLine_color();
+        this.fill_color = task.getFill_color();
     }
 
     public Integer getTask_id() {
@@ -105,11 +114,11 @@ public class TaskDto {
         this.type = type;
     }
 
-    public String getImg_url() {
-        return img_url;
+    public String getImage() {
+        return image;
     }
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Float getDeviation() {
@@ -117,6 +126,20 @@ public class TaskDto {
     }
     public void setDeviation(Float deviation) {
         this.deviation = deviation;
+    }
+
+    public String getLine_color() {
+        return line_color;
+    }
+    public void setLine_color(String line_color) {
+        this.line_color = line_color;
+    }
+
+    public String getFill_color() {
+        return fill_color;
+    }
+    public void setFill_color(String fill_color) {
+        this.fill_color = fill_color;
     }
 
     public List<Point> getPoints() {

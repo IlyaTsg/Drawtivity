@@ -24,22 +24,16 @@ public class LtiController {
     }
 
     @PostMapping("/registration")
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"Authorization", "Origin"},
-            exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials"})
     public ResponseEntity<LtiRegistrationResponse> registration(){
         return ltiService.createLtiRegistration();
     }
     
     @PostMapping("/launch")
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"Authorization", "Origin"},
-            exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials"})
     public RedirectView launch(@RequestBody LtiLaunchRequest ltiLaunchRequest){
         return ltiService.launch(ltiLaunchRequest);
     }
 
     @PostMapping("/solution")
-    @CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"Authorization", "Origin"},
-            exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials"})
     public ResponseEntity<?> solutionTask(@PathParam("user") String user, @RequestBody SolutionRequest solutionRequest){
         return taskService.solutionTask(solutionRequest);
     }

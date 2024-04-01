@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -32,12 +33,11 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Collection<Role> roles;
+    private List<Role> roles;
 
-    public User() {
-    }
+    public User() {}
 
-    public User(Integer user_id, String firstname, String lastname, String email, String password, Collection<Role> roles) {
+    public User(Integer user_id, String firstname, String lastname, String email, String password, List<Role> roles) {
         this.user_id = user_id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -81,10 +81,10 @@ public class User {
         this.password = password;
     }
 
-    public Collection<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 }
