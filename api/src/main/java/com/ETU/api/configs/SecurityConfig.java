@@ -45,6 +45,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(mvc.pattern("/tasks/**")).authenticated()
+                        .requestMatchers(mvc.pattern("/grades/**")).authenticated()
                         .requestMatchers(mvc.pattern("/users/**")).hasRole("ADMIN")
                         .anyRequest().permitAll())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))

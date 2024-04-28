@@ -77,6 +77,8 @@ public class TaskController {
     @Operation(summary = "Solve the task by id", description = "Solve the task by id")
     @ApiResponse(responseCode = "200", content = @Content(
             schema = @Schema(example = "75")))
+    @ApiResponse(responseCode = "403", content = @Content(
+            schema = @Schema(implementation = ErrorDto.class)))
     @ApiResponse(responseCode = "404", content = @Content(
             schema = @Schema(implementation = ErrorDto.class)))
     public ResponseEntity<?> solutionTask(@RequestBody SolutionRequest solutionRequest){

@@ -32,13 +32,13 @@ public class UserService {
         this.roleService = roleService;
     }
 
-    /**
-     * Получение данных пользователя
-     * @param email
-     * @return User
-     */
+    /** Получение данных пользователя по email*/
     public User getUser(String email){
         return userRepository.findByEmail(email).orElse(null);
+    }
+
+    public User getUserById(Integer id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     public ResponseEntity<?> getAllUsers(){

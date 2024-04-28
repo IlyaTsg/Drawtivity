@@ -3,8 +3,10 @@ package com.etu.api.service;
 import com.etu.api.dtos.CreateTaskDto;
 import com.etu.api.dtos.SolutionRequest;
 import com.etu.api.dtos.TaskDto;
+import com.etu.api.entities.Grade;
 import com.etu.api.entities.Point;
 import com.etu.api.entities.Task;
+import com.etu.api.entities.User;
 import com.etu.api.exceptions.ErrorDto;
 import com.etu.api.repositories.PointReposiroty;
 import com.etu.api.repositories.TaskRepository;
@@ -13,9 +15,12 @@ import com.etu.api.utils.TaskUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,14 +29,17 @@ import java.util.Objects;
 public class TaskService {
     private final TaskRepository taskRepository;
     private final PointReposiroty pointReposiroty;
+    private final GradeService gradeService;
+    private final UserService userService;
     private final ImageUtils imageUtils;
-
     private final TaskUtils taskUtils;
 
     @Autowired
-    public TaskService(TaskRepository taskRepository, PointReposiroty pointReposiroty, ImageUtils imageUtils, TaskUtils taskUtils) {
+    public TaskService(TaskRepository taskRepository, PointReposiroty pointReposiroty, GradeService gradeService, UserService userService, ImageUtils imageUtils, TaskUtils taskUtils) {
         this.taskRepository = taskRepository;
         this.pointReposiroty = pointReposiroty;
+        this.gradeService = gradeService;
+        this.userService = userService;
         this.imageUtils = imageUtils;
         this.taskUtils = taskUtils;
     }
@@ -142,6 +150,30 @@ public class TaskService {
             result = taskUtils.overlapTaskSolution(task, solutionRequest.getPoints());
         }
 
+        // Достаем пользователя текущей сессии
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userService.getUser(email);
+
+        // Сохраняем оценку пользователя
+        // TODO Исправить функции решения задач, чтобы возвращали Float
+        try {
+            /** TODO
+             * Пока что удаляем текущую оценку и добавялем новую
+             * Нужно сделать количество попыток для задачи и пользователя
+             * Скорее всего хранить их также в Grades
+             */
+            Grade grade = gradeService.getGrade(user, task);
+            if (grade != null) {
+                gradeService.deleteGrade(grade);
+            }
+
+            gradeService.addGrade(new Grade(user, task, (float) result));
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ErrorDto(HttpStatus.FORBIDDEN.value(), "Task already solved"), HttpStatus.FORBIDDEN);
+        }
+
+
+        // TODO Тут стоит возвращать Grade
         return ResponseEntity.ok(result);
     }
 }
