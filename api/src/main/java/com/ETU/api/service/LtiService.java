@@ -1,57 +1,78 @@
 package com.etu.api.service;
 
-import com.etu.api.dtos.LtiLaunchRequest;
-import com.etu.api.dtos.LtiRegistrationResponse;
-import com.etu.api.utils.LtiJwtTokenUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.imsglobal.lti2.objects.consumer.ToolConsumer;
+import org.imsglobal.lti2.objects.provider.SecurityContract;
+import org.imsglobal.lti2.objects.provider.ToolProfile;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.view.RedirectView;
 
 @Service
 public class LtiService {
-    private final LtiJwtTokenUtils ltiJwtTokenUtils;
+    @Value("${lti.default_base_url}")
+    private String default_base_url;
+    @Value("${lti.secure_base_url}")
+    private String secure_base_url;
+    @Value("${lti.basic_lti_launch_path}")
+    private String basic_lti_launch_path;
 
-    @Value("${lti.grant_type}")
-    private String grant_type;
-    @Value("${lti.client_assertion_type}")
-    private String client_assertion_type;
-    @Value("${lti.redirect_uri}")
-    private String redirect_uri;
-    @Value("${lti.state}")
-    private String state;
-    @Value("${lti.response_type}")
-    private String response_type;
-    @Value("${lti.scope}")
-    private String scope;
-    @Value("${lti.login_hint}")
-    private String login_hint;
-
-    @Autowired
-    public LtiService(LtiJwtTokenUtils ltiJwtTokenUtils) {
-        this.ltiJwtTokenUtils = ltiJwtTokenUtils;
+    public ToolProfile getToolProfile() {
+        ToolProfile toolProfile = new ToolProfile();
+        toolProfile.setBase_url_choice(getBaseUrlChoices());
+        toolProfile.setResource_handler(getResourceHandler());
+        return toolProfile;
     }
 
-    public ResponseEntity<LtiRegistrationResponse> createLtiRegistration(){
-        // Построение токена по которому Moodle определит, что запрос пришел от нужного Tool Provider
-        String client_assertion = ltiJwtTokenUtils.generateLtiJwtToken();
+    private ArrayNode getBaseUrlChoices() {
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayNode choices = mapper.createArrayNode();
 
-        LtiRegistrationResponse ltiRegistrationResponse = new LtiRegistrationResponse(grant_type, client_assertion_type, client_assertion, redirect_uri, state, response_type, scope, login_hint);
+        ObjectNode baseUrlChoice = mapper.createObjectNode();
+        baseUrlChoice.put("default_base_url", default_base_url);
+        baseUrlChoice.put("secure_base_url", secure_base_url);
 
-        return ResponseEntity.ok(ltiRegistrationResponse);
+        baseUrlChoice.put("selector", "DefaultSelector");
+
+        choices.add(baseUrlChoice);
+        return choices;
     }
 
-    public RedirectView launch(LtiLaunchRequest ltiLaunchRequest)
-    {
-        // Create new LTI user
+    private ArrayNode getResourceHandler() {
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayNode resourceHandler = mapper.createArrayNode();
 
-        String ltiUserToken = ltiJwtTokenUtils.generateLtiUserJwtToken(ltiLaunchRequest);
+        ObjectNode resource = mapper.createObjectNode();
 
-        String user = ltiLaunchRequest.getLogin_hint();
+        ArrayNode messageList = mapper.createArrayNode();
+        ObjectNode message = mapper.createObjectNode();
+        message.put("message_type", ToolConsumer.LtiCapability.BASICLTI_LAUNCH);
+        message.put("path", basic_lti_launch_path);
+        ArrayNode parameterList = mapper.createArrayNode();
+        ObjectNode parameter = mapper.createObjectNode();
+        parameter.put("name", "test_course_task");
+        parameter.put("variable", ToolConsumer.LtiCapability.CO_TITLE);
+        parameterList.add(parameter);
+        message.put("parameter", parameterList);
+        messageList.add(message);
 
-        // Перенавправление запроса на страницу задачи
-        String externalUrl = "http://localhost:80/api/test?user="+user;
-        return new RedirectView(externalUrl);
+        resource.put("message", messageList);
+        resource.put("name", getValue("Drawitivity LTI"));
+
+        resourceHandler.add(resource);
+        return resourceHandler;
+    }
+
+    private ObjectNode getValue(String value) {
+        ObjectNode valueNode = new ObjectMapper().createObjectNode();
+        valueNode.put("default_value", value);
+        return valueNode;
+    }
+
+    public SecurityContract getSecurityContract() {
+        SecurityContract contract = new SecurityContract();
+        contract.setShared_secret("secret");
+        return contract;
     }
 }

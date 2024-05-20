@@ -1,6 +1,10 @@
 package com.etu.api.configs;
 
 import com.etu.api.service.DetailsService;
+import org.imsglobal.lti.launch.LtiOauthSigner;
+import org.imsglobal.lti.launch.LtiOauthVerifier;
+import org.imsglobal.lti.launch.LtiSigner;
+import org.imsglobal.lti.launch.LtiVerifier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -78,9 +82,15 @@ public class SecurityConfig {
     }
 
     @Bean
+    public LtiSigner ltiSigner() {
+        return new LtiOauthSigner();
+    }
+
+    @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+//        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("*"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

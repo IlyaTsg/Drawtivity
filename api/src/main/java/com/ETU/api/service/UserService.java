@@ -49,6 +49,7 @@ public class UserService {
     }
 
     /** Обновление ролей пользователя */
+    // TODO перенести в сервис РОЛЕЙ
     @Transactional
     public ResponseEntity<?> updateRoleByUserId(Integer user_id, UserRoleUpdReq userRoleUpdReq) {
         User user = userRepository.findById(user_id).orElse(null);
