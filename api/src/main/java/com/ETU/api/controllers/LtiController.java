@@ -1,6 +1,6 @@
 package com.etu.api.controllers;
 
-import com.etu.api.dtos.SolutionRequest;
+import com.etu.api.dtos.lti.LtiSolutionRequest;
 import com.etu.api.dtos.lti.ToolRegRequest;
 import com.etu.api.entities.Task;
 import com.etu.api.exceptions.ErrorDto;
@@ -120,7 +120,7 @@ public class LtiController {
             }
         }
 
-        LtiVerificationResult result = ltiVerifier.verifyParameters(params, request.getRequestURL().toString(), "POST", "secret");
+        LtiVerificationResult result = ltiVerifier.verifyParameters(params, request.getRequestURL().toString(), "POST", ltiService.getSecret());
         System.out.println("LTI launch message: " + result.getMessage());
         System.out.println("LTI error message: " + result.getError());
         System.out.println("LTI result message: " + result.getLtiLaunchResult());
@@ -138,18 +138,20 @@ public class LtiController {
             schema = @Schema(example = "75")))
     @ApiResponse(responseCode = "404", content = @Content(
             schema = @Schema(implementation = ErrorDto.class)))
-    public ResponseEntity<?> taskSolution(@RequestBody SolutionRequest solutionRequest) {
-        Task task = taskRepository.findById(solutionRequest.getTask_id()).orElse(null);
+    public ResponseEntity<?> taskSolution(@RequestBody LtiSolutionRequest ltiSolutionRequest) {
+        Task task = taskRepository.findById(ltiSolutionRequest.getTask_id()).orElse(null);
         if (task == null) {
             return new ResponseEntity<>(new ErrorDto(HttpStatus.NOT_FOUND.value(), "Task not found"), HttpStatus.NOT_FOUND);
         }
 
         double result = 0D;
         if (Objects.equals(task.getType(), "Linear")) {
-            result = taskUtils.linearTaskSolution(task, solutionRequest.getPoints());
+            result = taskUtils.linearTaskSolution(task, ltiSolutionRequest.getPoints());
         } else if (Objects.equals(task.getType(), "Overlap")) {
-            result = taskUtils.overlapTaskSolution(task, solutionRequest.getPoints());
+            result = taskUtils.overlapTaskSolution(task, ltiSolutionRequest.getPoints());
         }
+
+        ltiService.sendGrade(ltiSolutionRequest.getOutcome_service_url(), ltiSolutionRequest.getOauth_consumer_key(), ltiSolutionRequest.getLis_result_sourcedid(), Double.toString(result / 100));
 
         return ResponseEntity.ok(result);
     }

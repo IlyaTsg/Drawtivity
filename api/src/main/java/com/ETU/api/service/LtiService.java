@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.imsglobal.lti2.objects.consumer.ToolConsumer;
 import org.imsglobal.lti2.objects.provider.SecurityContract;
 import org.imsglobal.lti2.objects.provider.ToolProfile;
+import org.imsglobal.pox.IMSPOXRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,18 @@ public class LtiService {
     private String secure_base_url;
     @Value("${lti.basic_lti_launch_path}")
     private String basic_lti_launch_path;
+    @Value("${lti.secret}")
+    private String secret;
+
+    public void sendGrade(String outcome_service_url, String oauth_consumer_key, String lis_result_sourcedid, String score) {
+        try {
+            IMSPOXRequest.sendReplaceResult(outcome_service_url, oauth_consumer_key, secret, lis_result_sourcedid, score);
+            System.out.println("Grade sent successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to send grade");
+        }
+    }
 
     public ToolProfile getToolProfile() {
         ToolProfile toolProfile = new ToolProfile();
@@ -72,7 +85,11 @@ public class LtiService {
 
     public SecurityContract getSecurityContract() {
         SecurityContract contract = new SecurityContract();
-        contract.setShared_secret("secret");
+        contract.setShared_secret(secret);
         return contract;
+    }
+
+    public String getSecret() {
+        return secret;
     }
 }
