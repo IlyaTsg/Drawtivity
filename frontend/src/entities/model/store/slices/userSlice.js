@@ -1,5 +1,6 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import UserApi from '../../../../pages/api/UserApi';
+import { redirect } from 'react-router-dom';
 
 export const signInThunk = createAsyncThunk(
   'user/signInThunk',
@@ -21,7 +22,6 @@ export const signUpThunk = createAsyncThunk(
     //console.log(reqBody)
     try {
       const response = await UserApi.signUp(reqBody);
-      localStorage.setItem('token', response.token);
       return response.token;
     } catch (e) {
       alert('error');
@@ -38,6 +38,7 @@ const initialState = {
   firstname: '',
   lastname: '',
   id: null,
+  isLoading: false,
 };
 
 const userSlice = createSlice({
@@ -58,10 +59,12 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(signInThunk.pending, state => {
-
+      state.isLoading = false;
     });
     builder.addCase(signInThunk.fulfilled, (state, action) => {
       state.token = action.payload;
+      localStorage.setItem('token', action.payload);
+      state.isLoading = true;
     });
     builder.addCase(signUpThunk.pending, (state, action) => {
 
@@ -69,9 +72,10 @@ const userSlice = createSlice({
     builder.addCase(signUpThunk.fulfilled, (state, action) => {
       state.token = action.payload.token;
       state.id = action.payload.user_id;
+      redirect('/tasks');
     });
   },
 });
 
 export default userSlice.reducer;
-export const {removeUser, setUser} = userSlice.actions;
+export const { removeUser, setUser } = userSlice.actions;

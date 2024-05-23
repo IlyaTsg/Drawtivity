@@ -1,13 +1,13 @@
-import { useForm } from 'react-hook-form'
-import classes from './SignUp.module.scss'
-import CustomForm from '../../UI/Form/CustomForm'
-import InputEmail from '../../UI/InputEmail/InputEmail'
-import PasswordInput from '../../UI/PasswordInput/PasswordInput'
-import InputName from '../UI/InputName/InputName'
-import { removeUser, signUpThunk } from '../../../../../entities/model/store/slices/userSlice'
-import { useDispatch } from 'react-redux'
-import AuthBlock from '../../../../../widgets/ui/AuthBlock/AuthBlock'
-import { useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form';
+import classes from './SignUp.module.scss';
+import CustomForm from '../../UI/Form/CustomForm';
+import InputEmail from '../../UI/InputEmail/InputEmail';
+import PasswordInput from '../../UI/PasswordInput/PasswordInput';
+import InputName from '../UI/InputName/InputName';
+import { removeUser, signUpThunk } from '../../../../../entities/model/store/slices/userSlice';
+import { useDispatch } from 'react-redux';
+import AuthBlock from '../../../../../widgets/ui/AuthBlock/AuthBlock';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const {
@@ -17,15 +17,17 @@ const SignUp = () => {
     },
     handleSubmit,
     reset,
-  } = useForm({ mode: 'onChange' })
-  const dispatch = useDispatch()
-  const nav = useNavigate()
+  } = useForm({ mode: 'onChange' });
+  const dispatch = useDispatch();
+  const nav = useNavigate();
 
   const submitHandler = (data) => {
-    dispatch(signUpThunk(data))
-    nav('/tasks')
-    reset()
-  }
+    dispatch(signUpThunk(data));
+    setTimeout(() => {
+      reset();
+      nav('/tasks');
+    }, 400);
+  };
   return (
     <div className={classes.wrapper}>
       <AuthBlock
@@ -57,7 +59,7 @@ const SignUp = () => {
         </CustomForm>
       </AuthBlock>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

@@ -1,7 +1,7 @@
 // Пример использования:
 function getPerpendicularLinePoints(x1, y1, x2, y2, R) {
   let normalizedVector;
-  normalizedVector = {dx: x2 - x1, dy: y2 - y1};
+  normalizedVector = { dx: x2 - x1, dy: y2 - y1 };
 
   // Нормализовать вектор направления
   const length = Math.sqrt(normalizedVector.dx ** 2 + normalizedVector.dy ** 2);
@@ -30,7 +30,10 @@ function getPerpendicularLinePoints(x1, y1, x2, y2, R) {
   if (x1 === x2) {
     perpendicularEndY = endY + R;
   }*/
-  return {start: {x: perpendicularStartX, y: perpendicularStartY}, end: {x: perpendicularEndX, y: perpendicularEndY}};
+  return {
+    start: { x: perpendicularStartX, y: perpendicularStartY },
+    end: { x: perpendicularEndX, y: perpendicularEndY },
+  };
 }
 
 function getRadians(degrees) {
@@ -38,6 +41,8 @@ function getRadians(degrees) {
 }
 
 export const drawLine = (context, x1, y1, x2, y2, lineColor, r = 1) => {
+  console.log('draw line', context, x1, y1, x2, y2, lineColor, r);
+
   const parallelLineWithDistance = getPerpendicularLinePoints(x1, y1, x2, y2, r);
   const parallelLineWithDistanceL = getPerpendicularLinePoints(x1, y1, x2, y2, -r);
   context.beginPath();

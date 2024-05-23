@@ -1,13 +1,13 @@
-import React from 'react'
-import CustomForm from '../../UI/Form/CustomForm'
-import { useForm } from 'react-hook-form'
-import classes from './SignIn.module.scss'
-import InputEmail from '../../UI/InputEmail/InputEmail'
-import PasswordInput from '../../UI/PasswordInput/PasswordInput'
-import { signInThunk } from '../../../../../entities/model/store/slices/userSlice'
-import { useDispatch } from 'react-redux'
-import AuthBlock from '../../../../../widgets/ui/AuthBlock/AuthBlock'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import CustomForm from '../../UI/Form/CustomForm';
+import { useForm } from 'react-hook-form';
+import classes from './SignIn.module.scss';
+import InputEmail from '../../UI/InputEmail/InputEmail';
+import PasswordInput from '../../UI/PasswordInput/PasswordInput';
+import { signInThunk } from '../../../../../entities/model/store/slices/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import AuthBlock from '../../../../../widgets/ui/AuthBlock/AuthBlock';
+import { redirect, useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const {
@@ -19,15 +19,18 @@ const SignIn = () => {
     },
     handleSubmit,
     reset,
-  } = useForm({ mode: 'onChange' })
-  const dispatch = useDispatch()
-  const nav = useNavigate()
+  } = useForm({ mode: 'onChange' });
+  const dispatch = useDispatch();
+  const nav = useNavigate();
 
   const submitHandler = (data) => {
-    dispatch(signInThunk(data))
-    reset()
-    nav('/tasks')
-  }
+    dispatch(signInThunk(data));
+    setTimeout(() => {
+      reset();
+      nav('/tasks');
+    }, 400);
+  };
+
   return (
     <div className={classes.wrapper}>
       <AuthBlock headerText={'Авторизация'} helperText={''} auth={true}>
@@ -43,7 +46,7 @@ const SignIn = () => {
         </CustomForm>
       </AuthBlock>
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;
