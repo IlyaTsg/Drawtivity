@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './Header.module.scss';
 import Navbar from '../../Navbar/components/Navbar';
 import AuthNavBlock from '../../../../features/auth/ui/AuthNavBlock/AuthNavBlock';
 import useAuth from '../../../model/store/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import { TaskApi } from '../../../../pages/api/TaskApi';
 
 const Header = () => {
   const isAuth = useAuth().isAuth;
+
   return (
     <div className={classes.header}>
       <div className={classes.logo}>

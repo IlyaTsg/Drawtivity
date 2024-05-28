@@ -1,15 +1,16 @@
 .wrapper {
-  width: 1400px;
-  min-height: 870px;
+  width: 1500px;
+  padding-top: 20px;
+  min-height: calc(100% - 170px);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .test {
   //width: 100%;
-  padding-top: 20px;
+  //padding-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

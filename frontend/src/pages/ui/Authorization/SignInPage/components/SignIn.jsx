@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CustomForm from '../../UI/Form/CustomForm';
 import { useForm } from 'react-hook-form';
 import classes from './SignIn.module.scss';
 import InputEmail from '../../UI/InputEmail/InputEmail';
 import PasswordInput from '../../UI/PasswordInput/PasswordInput';
 import { signInThunk } from '../../../../../entities/model/store/slices/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import AuthBlock from '../../../../../widgets/ui/AuthBlock/AuthBlock';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const {

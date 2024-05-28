@@ -1,12 +1,12 @@
-import {useEffect, useReducer} from 'react';
+import { useEffect, useReducer } from 'react';
 import classes from './TasksList.module.scss';
 import TaskItem from '../TaskItem/TaskItem';
 import TaskHeader from '../TaskItem/TaskHeader';
-import {useDispatch, useSelector} from 'react-redux';
-import {getTasks} from '../../../entities/model/store/slices/tasksSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTasks } from '../../../entities/model/store/slices/tasksSlice';
 import FilterTable from '../../../features/filter-table/ui/FilterTable';
-import {useFiltered} from '../../../features/filter-table/hooks/useFiltered';
-import {Typography} from '@mui/material';
+import { useFiltered } from '../../../features/filter-table/hooks/useFiltered';
+import { Typography } from '@mui/material';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -36,7 +36,7 @@ const TasksList = () => {
   const dispatch = useDispatch();
   const tempTasks = useSelector(state => state.task.tasks);
 
-  const [filters, setFilters] = useReducer(reducer, {inpState: '', typeSt: '', category: ''});
+  const [filters, setFilters] = useReducer(reducer, { inpState: '', typeSt: '', category: '' });
   const filtered = useFiltered(tempTasks, filters.typeSt, filters.category, filters.inpState);
 
   useEffect(() => {
@@ -50,8 +50,8 @@ const TasksList = () => {
       {filtered.length > 0 ? filtered.map((item, i) =>
           <>
             <TaskItem
-              key={i}
-              ind={i}
+              key={item.task_id}
+              ind={item.task_id}
               title={item.title}
               category={item.category}
               type={item.type}

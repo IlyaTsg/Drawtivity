@@ -1,13 +1,13 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import {useDispatch} from 'react-redux';
-import {setImage} from '../../../entities/model/store/slices/tasksSlice';
+import { useDispatch } from 'react-redux';
+import { setImage } from '../../../entities/model/store/slices/tasksSlice';
 
-const FileInput = ({register, name}) => {
+const FileInput = ({ register, name }) => {
   //const [selectedImage, setSelectedImage] = useState(null);
   const dispatch = useDispatch();
   return (
-    <Form.Group controlId="formFile" className="mb-3" style={{width: 400}}>
+    <Form.Group controlId="formFile" className="mb-3" style={{ width: 400 }}>
       <Form.Label>Загрузите изображение</Form.Label>
       <Form.Control
         type="file"
@@ -19,9 +19,14 @@ const FileInput = ({register, name}) => {
           },
         })}
         onChange={(event) => {
-          if (event.target.files.length > 0)
-            dispatch(setImage(event.target.files[0]));
-          else
+          if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = function() {
+              dispatch(setImage(reader.result.replace('data:', '').replace(/^.+,/, '')));
+            };
+          } else
             dispatch(setImage(null));
         }
         } />

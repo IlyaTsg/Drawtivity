@@ -1,20 +1,20 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import useImage from '../../model/store/hooks/useImage';
 import classes from './ImageUploadBlock.module.scss';
 import DotsInput from '../../../shared/ui/DotsInput/DotsInput';
 import Form from 'react-bootstrap/Form';
-import {dotsInputHandler} from '../../lib/dotsInputHandler';
-import {useDispatch, useSelector} from 'react-redux';
-import {drawAllLines} from '../../lib/drawAllLines';
+import { dotsInputHandler } from '../../lib/dotsInputHandler';
+import { useDispatch, useSelector } from 'react-redux';
+import { drawAllLines } from '../../lib/drawAllLines';
 import ImageBar from '../../../shared/Constructor/ui/ImageBar/ImageBar';
 import ImageBarX from '../../../shared/Constructor/ui/ImageBarX/ImageBarX';
-import {setCoordinates} from '../../model/store/slices/tasksSlice';
-import {cleanAll, createGrid} from '../../../features/constructor/lib/backgroundGrid';
-import {Box} from '@mui/material';
+import { setCoordinates } from '../../model/store/slices/tasksSlice';
+import { cleanAll, createGrid } from '../../../features/constructor/lib/backgroundGrid';
+import { Box } from '@mui/material';
 import SubmitButton from '../../../shared/ui/SubmitButton/SubmitButton';
 
 
-const ImageUploadBlock = ({register}) => {
+const ImageUploadBlock = ({ register }) => {
     const canvasRef = useRef(null);
     const selectedImage = useImage();
     const dots = useSelector(state => state.task.coordinates);
@@ -43,6 +43,7 @@ const ImageUploadBlock = ({register}) => {
           context.drawImage(selectedImage.name, 0, 0);
         };
       }
+
     }, []);
     useEffect(() => {
       //console.log(2);
@@ -52,7 +53,7 @@ const ImageUploadBlock = ({register}) => {
           createGrid(context);
         else cleanAll(context);
 
-        drawAllLines(context, dots, lineColor, percent, type);
+        drawAllLines(context, dots, lineColor, percent, type ? type : 'Точки');
       }
 
     }, [dots, lineColor, context, isNetting]);
@@ -65,12 +66,25 @@ const ImageUploadBlock = ({register}) => {
       }
 
     }, [type]);
+    useEffect(() => {
+      //console.log(2);
+      //if (isNetting) createGrid(context);
+      if (canvasRef.current && context) {
+        if (isNetting)
+          createGrid(context);
+        else cleanAll(context);
+
+        drawAllLines(context, dots, lineColor, percent, type ? type : 'Точки');
+      }
+
+    }, [percent]);
 
     const backgroundCss = {
-      backgroundImage: `${selectedImage ? `url(${URL.createObjectURL(selectedImage)})` : `null`}`,
+      backgroundImage: `${selectedImage ? `url(data:image/png;base64,${selectedImage})` : `null`}`,
       backgroundRepeat: `no-repeat`,
       backgroundSize: `750px 550px`,
     };
+
     return (<div>
       {selectedImage && (<div>
         <div className={classes.header}>Ваше изображение</div>

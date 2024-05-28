@@ -1,10 +1,11 @@
 import Button from '@mui/material/Button';
 
 
-const CreateTask = ({handleSubmit}) => {
+const CreateTask = ({ handleSubmit }) => {
   return (
     <Button
       size="large"
+      type={'submit'}
       variant="contained"
       sx={{
         color: 'white',

@@ -40,8 +40,12 @@ function getRadians(degrees) {
   return (Math.PI / 180) * degrees;
 }
 
+export const drawPoint = (context, x1, y1, lineColor) => {
+  context.beginPath();
+  context.arc(x1, y1, 1, 0, 2 * Math.PI);
+  context.stroke();
+};
 export const drawLine = (context, x1, y1, x2, y2, lineColor, r = 1) => {
-  console.log('draw line', context, x1, y1, x2, y2, lineColor, r);
 
   const parallelLineWithDistance = getPerpendicularLinePoints(x1, y1, x2, y2, r);
   const parallelLineWithDistanceL = getPerpendicularLinePoints(x1, y1, x2, y2, -r);
@@ -93,4 +97,24 @@ export const drawLine = (context, x1, y1, x2, y2, lineColor, r = 1) => {
 
   context.closePath();
 
+};
+
+export const drawSolutionLine = (context, x1, y1, x2, y2, lineColor) => {
+  context.beginPath();
+  context.moveTo(x1, y1 + 275);
+  context.lineTo(x2, y2 + 275);
+
+  context.lineWidth = 3;
+  context.lineJoin = 'round';
+  context.miterLimit = 1;
+// taking a purple pen and coloring the line
+  context.strokeStyle = lineColor;
+  context.stroke();
+  context.closePath();
+  context.beginPath();
+  context.arc(x2, y2 + 275, 1, 0, getRadians(360));
+  //context.strokeRect(x2, y2 + 275, r, r);
+  context.stroke();
+
+  context.closePath();
 };

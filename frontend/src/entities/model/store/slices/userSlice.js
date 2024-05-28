@@ -8,7 +8,7 @@ export const signInThunk = createAsyncThunk(
     try {
       const response = await UserApi.singIn(reqBody);
       localStorage.setItem('token', response.token);
-      return response.token;
+      return response;
     } catch (e) {
       alert('error');
       return 'ew';
@@ -22,7 +22,7 @@ export const signUpThunk = createAsyncThunk(
     //console.log(reqBody)
     try {
       const response = await UserApi.signUp(reqBody);
-      return response.token;
+      return response;
     } catch (e) {
       alert('error');
       return 'fs';
@@ -62,8 +62,9 @@ const userSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(signInThunk.fulfilled, (state, action) => {
-      state.token = action.payload;
-      localStorage.setItem('token', action.payload);
+      state.token = action.payload.token;
+      state.id = action.payload.user_id;
+      localStorage.setItem('token', action.payload.token);
       state.isLoading = true;
     });
     builder.addCase(signUpThunk.pending, (state, action) => {
@@ -72,6 +73,7 @@ const userSlice = createSlice({
     builder.addCase(signUpThunk.fulfilled, (state, action) => {
       state.token = action.payload.token;
       state.id = action.payload.user_id;
+      localStorage.setItem('token', action.payload.token);
       redirect('/tasks');
     });
   },
