@@ -26,18 +26,4 @@ public class SolutionRequest {
         this.task_id = task_id;
         this.points = points;
     }
-
-    public Integer getTask_id() {
-        return task_id;
-    }
-    public void setTask_id(Integer task_id) {
-        this.task_id = task_id;
-    }
-
-    public List<Point> getPoints() {
-        return points;
-    }
-    public void setPoints(List<Point> points) {
-        this.points = points;
-    }
 }

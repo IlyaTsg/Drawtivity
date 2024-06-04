@@ -29,33 +29,4 @@ public class Point {
         this.x = x;
         this.y = y;
     }
-
-    public Integer getPoint_id() {
-        return point_id;
-    }
-    public void setPoint_id(Integer point_id) {
-        this.point_id = point_id;
-    }
-
-    public Float getX() {
-        return x;
-    }
-    public void setX(Float x) {
-        this.x = x;
-    }
-
-    public Float getY() {
-        return y;
-    }
-    public void setY(Float y) {
-        this.y = y;
-    }
-
-    public Task getTask() {
-        return task;
-    }
-
-    public void setTask(Task task) {
-        this.task = task;
-    }
 }

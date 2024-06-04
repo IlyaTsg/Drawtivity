@@ -2,115 +2,102 @@ package com.etu.api.utils;
 
 import com.etu.api.entities.Point;
 import com.etu.api.entities.Task;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.awt.*;
+import java.awt.geom.Area;
+import java.awt.geom.PathIterator;
+import java.util.List;
 
 @Component
 public class TaskUtils {
-    /** Поиск процента заполнения многоугольника вторым многоугольником */
+    /**
+     * Поиск совпадения двух многоугольников
+     *
+     * @param task           задача, с точками которой происходит сравнение
+     * @param solutionPoints точки второго многоугольника
+     * @return процент совпадения
+     */
     public double overlapTaskSolution(Task task, List<Point> solutionPoints) {
+        // Принимаем, что перед вызовом функции проверено присутствие задачи в БД
         List<Point> taskPoints = task.getPoints();
-        if (taskPoints.isEmpty()) {
-            return 0D;
-        }
-        // Находим пересечение
-        List<Point> intersection = findIntersection(taskPoints, solutionPoints);
-        if (intersection.isEmpty()) {
-            return 0D;
+
+        // Создаем Java-полигоны из исходных точек
+        Polygon polygon1 = new Polygon();
+        taskPoints.forEach(point -> polygon1.addPoint(point.getX().intValue(), point.getY().intValue()));
+        Polygon polygon2 = new Polygon();
+        solutionPoints.forEach(point -> polygon2.addPoint(point.getX().intValue(), point.getY().intValue()));
+
+        // Для большего набора функций с многоугольниками создаем Java-обалсти
+        Area area1 = new Area(polygon1);
+        Area area2 = new Area(polygon2);
+
+        // Находим область перечечения
+        Area intersectionArea = new Area(area1);
+        intersectionArea.intersect(area2);
+
+        // Рассчитываем площади
+        double area1Size = calculateArea(area1);
+        double area2Size = calculateArea(area2);
+        double intersectionAreaSize = calculateArea(intersectionArea);
+
+        // Если выделена вся область пересечения совпадает с первой областью
+        // И область выделения больше области пересечения
+        // То сравниваем области пересечения и выделения
+        // Тем самым накладываем штраф на лишнее выделение
+        if (intersectionAreaSize != 0 && area1Size == intersectionAreaSize && area2Size > intersectionAreaSize) {
+            return (intersectionAreaSize / area2Size) * 100.0;
         }
 
-        // Находим площадь пересечения
-        double intersectionArea = calculateArea(intersection);
-        double modelArea = calculateArea(taskPoints);
-        // Находим процент совпадения площади пересечения и площади образцового многоугольника
-        Double matchPercentage = (intersectionArea / modelArea) * 100; // Процент совпадения
-        if (matchPercentage.isNaN()) matchPercentage = 0D;
-        return matchPercentage;
+        // Сравнивем области пересечения и первой
+        return (intersectionAreaSize / area1Size) * 100.0;
     }
 
-    /** Поиск пересечения многоугольников */
-    private List<Point> findIntersection(List<Point> firstArea, List<Point> secondArea){
-        // По умолчанию принимаем, что точки многоугольников расположены в нужном порядке
+    /**
+     * Расчет площади области
+     *
+     * @param area область
+     * @return значение площади
+     */
+    public static double calculateArea(Area area) {
+        double areaSize = 0.0;
+        PathIterator iterator = area.getPathIterator(null);
+        double[] coords = new double[6];
+        double startX = 0.0, startY = 0.0;
+        double prevX = 0.0, prevY = 0.0;
 
-        List<Point> intersection = new ArrayList<>();
+        while (!iterator.isDone()) {
+            int type = iterator.currentSegment(coords);
 
-        // Находим все точки пересечения многоугольников и заносим их в результат
-        // Проход по всем ребрам первого многоугольника
-        for(int i=0; i<firstArea.size(); i++){
-            int next_i = (i+1)%firstArea.size();
-            // Проход по всем ребрам второго многоугольника
-            for(int j=0; j<secondArea.size(); j++){
-                int next_j = (j+1)% firstArea.size();
-                List<Point> a = List.of(firstArea.get(i), firstArea.get(next_i));
-                List<Point> b = List.of(secondArea.get(j), secondArea.get(next_j));
-                Point interPoint = cross(a, b);
-
-                if(interPoint!=null){
-                    intersection.add(interPoint);
+            switch (type) {
+                case PathIterator.SEG_MOVETO -> {
+                    startX = coords[0];
+                    startY = coords[1];
+                    prevX = startX;
+                    prevY = startY;
                 }
+                case PathIterator.SEG_LINETO -> {
+                    areaSize += (prevX * coords[1] - coords[0] * prevY);
+                    prevX = coords[0];
+                    prevY = coords[1];
+                }
+                case PathIterator.SEG_CLOSE -> areaSize += (prevX * startY - startX * prevY);
             }
+            iterator.next();
         }
-
-        return intersection;
+        return Math.abs(areaSize / 2.0);
     }
 
-    /** Поиск точки пересечения двух отрезков */
-    private Point cross(List<Point> first, List<Point> second){
-        double a = first.get(0).getY() - first.get(1).getY();
-        double b = first.get(1).getX() - first.get(0).getX();
-        double c = first.get(0).getX()* first.get(1).getY() - first.get(1).getX()* first.get(0).getY();
-        double k = second.get(0).getY() - second.get(1).getY();
-        double l = second.get(1).getX() - second.get(0).getX();
-        double m = second.get(0).getX()* second.get(1).getY() - second.get(1).getX()* second.get(0).getY();
-
-        Double y = (k*c-m*a)/(a*l-k*b);
-        Double x = (-b*y-c)/a;
-
-        if(y.isNaN() || y.isInfinite()){
-            return null;
-        } else if (x.isNaN() || x.isInfinite()) {
-            return null;
-        }
-
-        double maxAX = Arrays.stream(new double[]{first.get(0).getX(), first.get(1).getX()}).max().orElse(Double.NaN);
-        double minAX = Arrays.stream(new double[]{first.get(0).getX(), first.get(1).getX()}).min().orElse(Double.NaN);
-        double maxAY = Arrays.stream(new double[]{first.get(0).getY(), first.get(1).getY()}).max().orElse(Double.NaN);
-        double minAY = Arrays.stream(new double[]{first.get(0).getY(), first.get(1).getY()}).min().orElse(Double.NaN);
-
-        double maxBX = Arrays.stream(new double[]{second.get(0).getX(), second.get(1).getX()}).max().orElse(Double.NaN);
-        double minBX = Arrays.stream(new double[]{second.get(0).getX(), second.get(1).getX()}).min().orElse(Double.NaN);
-        double maxBY = Arrays.stream(new double[]{second.get(0).getY(), second.get(1).getY()}).max().orElse(Double.NaN);
-        double minBY = Arrays.stream(new double[]{second.get(0).getY(), second.get(1).getY()}).min().orElse(Double.NaN);
-
-        // Если точка лежит в пределах первого отрезка
-        if(minAX<=x && x<=maxAX && minAY<=y && y<=maxAY) {
-            // Если точка лежит в пределах второго отрезка
-            if(minBX<=x && x<=maxBX && minBY<=y && y<=maxBY){
-                return new Point(0, x.floatValue(), y.floatValue());
-            }
-        }
-
-        return null;
-    }
-
-    /** Поиск площади многоугольника*/
-    private double calculateArea(List<Point> points){
-        int n = points.size();
-        double area = 0;
-
-        for (int i = 0; i < n; i++) {
-            int j = (i + 1) % n;
-            area += (points.get(j).getX() - points.get(i).getX()) * (points.get(i).getY() + points.get(j).getY());
-        }
-
-        return Math.abs(area / 2);
-    }
-
-    public double linearTaskSolution(Task task, List<Point> solutionPoints){
+    /**
+     * Поиск совпадения двух ломаных линий
+     *
+     * @param task           задача, с точками которой происходит сравнение
+     * @param solutionPoints точки второй ломаной линии
+     * @return процент совпадения
+     */
+    public double linearTaskSolution(Task task, List<Point> solutionPoints) {
         int count_right = 0;
-        for(int j=0; j<task.getPoints().size(); j++){
+        for (int j = 0; j < task.getPoints().size(); j++) {
             for (Point solutionPoint : solutionPoints) {
                 double x_d = (solutionPoint.getX() - task.getPoints().get(j).getX()) * (solutionPoint.getX() - task.getPoints().get(j).getX());
                 double y_d = (solutionPoint.getY() - task.getPoints().get(j).getY()) * (solutionPoint.getY() - task.getPoints().get(j).getY());
@@ -121,7 +108,7 @@ public class TaskUtils {
                 }
             }
         }
-        Double result = (double)count_right/(double)(task.getPoints().size())*100;
+        Double result = (double) count_right / (double) (solutionPoints.size()) * 100;
         if (result.isNaN()) result = 0D;
         return result;
     }

@@ -8,6 +8,7 @@ import com.etu.api.repositories.TaskRepository;
 import com.etu.api.service.LtiService;
 import com.etu.api.utils.TaskUtils;
 import com.etu.api.utils.lti.JsonReader;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -106,21 +107,21 @@ public class LtiController {
             schema = @Schema(example = "Lti veirification success!")))
     @ApiResponse(responseCode = "403", content = @Content(
             schema = @Schema(example = "Lti verification failed!")))
-    public ResponseEntity<?> launchVerification(HttpServletRequest request) throws LtiVerificationException {
+    public ResponseEntity<?> launchVerification(@RequestBody JsonNode request) throws LtiVerificationException {
         LtiVerifier ltiVerifier = new LtiOauthVerifier();
 
         // Переводим все парметры запроса в Map для верификации
         Map<String, String> params = new HashMap<>();
-        Enumeration<String> parameterNames = request.getParameterNames();
-        while (parameterNames.hasMoreElements()) {
-            String paramName = parameterNames.nextElement();
-            String paramValue = request.getParameter(paramName);
+        Iterator<String> parameterNames = request.fieldNames();
+        for (Iterator<String> it = parameterNames; it.hasNext(); ) {
+            String paramName = it.next();
+            String paramValue = request.get(paramName).textValue();
             if (paramValue != null) {
                 params.put(paramName, paramValue.trim());
             }
         }
 
-        LtiVerificationResult result = ltiVerifier.verifyParameters(params, request.getRequestURL().toString(), "POST", ltiService.getSecret());
+        LtiVerificationResult result = ltiVerifier.verifyParameters(params, "http://localhost:4000/send-message", "POST", ltiService.getSecret());
         System.out.println("LTI launch message: " + result.getMessage());
         System.out.println("LTI error message: " + result.getError());
         System.out.println("LTI result message: " + result.getLtiLaunchResult());
