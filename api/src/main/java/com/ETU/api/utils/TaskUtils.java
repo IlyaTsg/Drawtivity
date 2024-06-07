@@ -1,7 +1,7 @@
-package com.etu.api.utils;
+package com.ETU.api.utils;
 
-import com.etu.api.entities.Point;
-import com.etu.api.entities.Task;
+import com.ETU.api.entities.Point;
+import com.ETU.api.entities.Task;
 import org.springframework.stereotype.Component;
 
 import java.awt.*;

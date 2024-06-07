@@ -1,6 +1,6 @@
-package com.etu.api.repositories;
+package com.ETU.api.repositories;
 
-import com.etu.api.entities.LtiUser;
+import com.ETU.api.entities.LtiUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

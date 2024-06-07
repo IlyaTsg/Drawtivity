@@ -1,13 +1,12 @@
-package com.etu.api.service;
+package com.ETU.api.service;
 
-import com.etu.api.dtos.user.UserDto;
-import com.etu.api.dtos.user.UserRegResp;
-import com.etu.api.dtos.user.UserRegDto;
-import com.etu.api.dtos.user.UserRoleUpdReq;
-import com.etu.api.entities.Role;
-import com.etu.api.entities.User;
-import com.etu.api.exceptions.ErrorDto;
-import com.etu.api.repositories.UserRepository;
+import com.ETU.api.dtos.user.UserDto;
+import com.ETU.api.dtos.user.UserRegDto;
+import com.ETU.api.dtos.user.UserRoleUpdReq;
+import com.ETU.api.entities.Role;
+import com.ETU.api.entities.User;
+import com.ETU.api.exceptions.ErrorDto;
+import com.ETU.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

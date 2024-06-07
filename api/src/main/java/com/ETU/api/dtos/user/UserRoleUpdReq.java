@@ -1,4 +1,4 @@
-package com.etu.api.dtos.user;
+package com.ETU.api.dtos.user;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

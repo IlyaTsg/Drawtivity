@@ -1,15 +1,14 @@
-package com.etu.api.service;
+package com.ETU.api.service;
 
-import com.etu.api.entities.Grade;
-import com.etu.api.entities.Task;
-import com.etu.api.entities.User;
-import com.etu.api.repositories.GradeRepository;
-import com.etu.api.repositories.TaskRepository;
-import com.etu.api.repositories.UserRepository;
+import com.ETU.api.entities.Grade;
+import com.ETU.api.entities.Task;
+import com.ETU.api.entities.User;
+import com.ETU.api.repositories.GradeRepository;
+import com.ETU.api.repositories.TaskRepository;
+import com.ETU.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Component

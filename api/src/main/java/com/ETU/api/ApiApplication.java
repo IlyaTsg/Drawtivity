@@ -1,4 +1,4 @@
-package com.etu.api;
+package com.ETU.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

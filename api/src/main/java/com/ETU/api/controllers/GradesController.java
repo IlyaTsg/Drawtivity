@@ -1,11 +1,11 @@
-package com.etu.api.controllers;
+package com.ETU.api.controllers;
 
-import com.etu.api.dtos.grade.GradeDto;
-import com.etu.api.entities.Grade;
-import com.etu.api.entities.User;
-import com.etu.api.exceptions.ErrorDto;
-import com.etu.api.service.GradeService;
-import com.etu.api.service.UserService;
+import com.ETU.api.dtos.grade.GradeDto;
+import com.ETU.api.entities.Grade;
+import com.ETU.api.entities.User;
+import com.ETU.api.exceptions.ErrorDto;
+import com.ETU.api.service.GradeService;
+import com.ETU.api.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

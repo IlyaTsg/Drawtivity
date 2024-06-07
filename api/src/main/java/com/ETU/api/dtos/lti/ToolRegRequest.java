@@ -1,4 +1,4 @@
-package com.etu.api.dtos.lti;
+package com.ETU.api.dtos.lti;
 
 import lombok.Data;
 

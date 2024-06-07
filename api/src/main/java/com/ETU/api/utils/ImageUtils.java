@@ -1,4 +1,4 @@
-package com.etu.api.utils;
+package com.ETU.api.utils;
 
 import org.springframework.stereotype.Component;
 

@@ -1,11 +1,10 @@
-package com.etu.api.entities;
+package com.ETU.api.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 
-import java.util.Collection;
 import java.util.List;
 
 @Entity

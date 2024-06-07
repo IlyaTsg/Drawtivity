@@ -1,4 +1,4 @@
-package com.etu.api.service;
+package com.ETU.api.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;

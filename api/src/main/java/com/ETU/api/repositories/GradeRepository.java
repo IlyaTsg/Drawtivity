@@ -1,8 +1,8 @@
-package com.etu.api.repositories;
+package com.ETU.api.repositories;
 
-import com.etu.api.entities.Grade;
-import com.etu.api.entities.Task;
-import com.etu.api.entities.User;
+import com.ETU.api.entities.Grade;
+import com.ETU.api.entities.Task;
+import com.ETU.api.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

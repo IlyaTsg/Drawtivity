@@ -1,6 +1,6 @@
-package com.etu.api.dtos.lti;
+package com.ETU.api.dtos.lti;
 
-import com.etu.api.entities.Point;
+import com.ETU.api.entities.Point;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

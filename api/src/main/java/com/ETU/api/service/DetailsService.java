@@ -1,7 +1,7 @@
-package com.etu.api.service;
+package com.ETU.api.service;
 
-import com.etu.api.entities.User;
-import com.etu.api.repositories.UserRepository;
+import com.ETU.api.entities.User;
+import com.ETU.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

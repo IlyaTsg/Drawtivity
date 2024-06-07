@@ -1,10 +1,10 @@
-package com.etu.api.controllers;
+package com.ETU.api.controllers;
 
-import com.etu.api.dtos.JwtRequest;
-import com.etu.api.dtos.user.UserRegDto;
-import com.etu.api.dtos.user.UserRegResp;
-import com.etu.api.exceptions.ErrorDto;
-import com.etu.api.service.AuthService;
+import com.ETU.api.dtos.JwtRequest;
+import com.ETU.api.dtos.user.UserRegDto;
+import com.ETU.api.dtos.user.UserRegResp;
+import com.ETU.api.exceptions.ErrorDto;
+import com.ETU.api.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

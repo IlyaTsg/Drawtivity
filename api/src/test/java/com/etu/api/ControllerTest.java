@@ -1,13 +1,12 @@
-package com.etu.api;
+package com.ETU.api;
 
-import com.etu.api.dtos.user.UserRegDto;
-import com.etu.api.entities.Grade;
-import com.etu.api.entities.Task;
-import com.etu.api.entities.User;
-import com.etu.api.repositories.GradeRepository;
-import com.etu.api.repositories.TaskRepository;
-import com.etu.api.repositories.UserRepository;
-import com.etu.api.service.GradeService;
+import com.ETU.api.dtos.user.UserRegDto;
+import com.ETU.api.entities.Grade;
+import com.ETU.api.entities.Task;
+import com.ETU.api.entities.User;
+import com.ETU.api.repositories.GradeRepository;
+import com.ETU.api.repositories.TaskRepository;
+import com.ETU.api.repositories.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

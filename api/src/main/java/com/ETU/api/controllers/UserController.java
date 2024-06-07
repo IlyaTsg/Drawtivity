@@ -1,10 +1,9 @@
-package com.etu.api.controllers;
+package com.ETU.api.controllers;
 
-import com.etu.api.dtos.TaskDto;
-import com.etu.api.dtos.user.UserDto;
-import com.etu.api.dtos.user.UserRoleUpdReq;
-import com.etu.api.exceptions.ErrorDto;
-import com.etu.api.service.UserService;
+import com.ETU.api.dtos.user.UserDto;
+import com.ETU.api.dtos.user.UserRoleUpdReq;
+import com.ETU.api.exceptions.ErrorDto;
+import com.ETU.api.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

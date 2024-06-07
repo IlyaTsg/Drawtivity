@@ -1,4 +1,4 @@
-package com.etu.api.entities;
+package com.ETU.api.entities;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;

@@ -1,11 +1,10 @@
-package com.etu.api.controllers;
+package com.ETU.api.controllers;
 
-import com.etu.api.dtos.CreateTaskDto;
-import com.etu.api.dtos.JwtResponse;
-import com.etu.api.dtos.SolutionRequest;
-import com.etu.api.dtos.TaskDto;
-import com.etu.api.exceptions.ErrorDto;
-import com.etu.api.service.TaskService;
+import com.ETU.api.dtos.CreateTaskDto;
+import com.ETU.api.dtos.SolutionRequest;
+import com.ETU.api.dtos.TaskDto;
+import com.ETU.api.exceptions.ErrorDto;
+import com.ETU.api.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

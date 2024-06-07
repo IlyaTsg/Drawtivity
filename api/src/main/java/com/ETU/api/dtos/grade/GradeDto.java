@@ -1,6 +1,6 @@
-package com.etu.api.dtos.grade;
+package com.ETU.api.dtos.grade;
 
-import com.etu.api.entities.Grade;
+import com.ETU.api.entities.Grade;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

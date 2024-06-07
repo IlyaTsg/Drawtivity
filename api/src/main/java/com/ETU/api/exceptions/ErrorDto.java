@@ -1,4 +1,4 @@
-package com.etu.api.exceptions;
+package com.ETU.api.exceptions;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

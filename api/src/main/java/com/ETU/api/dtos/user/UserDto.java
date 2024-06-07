@@ -1,7 +1,7 @@
-package com.etu.api.dtos.user;
+package com.ETU.api.dtos.user;
 
-import com.etu.api.entities.Role;
-import com.etu.api.entities.User;
+import com.ETU.api.entities.Role;
+import com.ETU.api.entities.User;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

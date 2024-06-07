@@ -1,6 +1,6 @@
-package com.etu.api.configs;
+package com.ETU.api.configs;
 
-import com.etu.api.utils.JwtTokenUtils;
+import com.ETU.api.utils.JwtTokenUtils;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import lombok.extern.slf4j.Slf4j;

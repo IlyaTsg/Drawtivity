@@ -1,4 +1,4 @@
-package com.etu.api.utils.lti;
+package com.ETU.api.utils.lti;
 
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
