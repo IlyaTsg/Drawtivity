@@ -17,6 +17,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 17.08.2023
+ */
 @Service
 public class AuthService {
     private final DetailsService detailsService;

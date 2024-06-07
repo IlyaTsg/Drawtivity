@@ -23,6 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 19.08.2023
+ */
 @Service
 public class TaskService {
     private final TaskRepository taskRepository;

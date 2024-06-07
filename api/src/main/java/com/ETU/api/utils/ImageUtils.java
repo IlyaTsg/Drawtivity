@@ -6,6 +6,10 @@ import javax.sql.rowset.serial.SerialBlob;
 import java.sql.Blob;
 import java.util.Base64;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 28.02.2024
+ */
 @Component
 public class ImageUtils {
     public Blob convertBase64ToBlob(String base64) {

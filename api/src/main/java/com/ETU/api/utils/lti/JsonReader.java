@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 20.05.2024
+ */
 public class JsonReader {
 
     public static <T> T readJsonFromUrl(String url, Class<T> claz) throws IOException {

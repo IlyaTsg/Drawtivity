@@ -18,6 +18,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 17.08.2023
+ */
 @Component
 @Slf4j
 public class JwtRequestFilter extends OncePerRequestFilter {

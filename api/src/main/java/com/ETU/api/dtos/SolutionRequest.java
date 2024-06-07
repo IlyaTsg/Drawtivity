@@ -6,6 +6,10 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 19.08.2023
+ */
 @Data
 @Schema(description = "Task solution request")
 public class SolutionRequest {

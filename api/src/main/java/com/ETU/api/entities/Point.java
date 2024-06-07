@@ -5,6 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 17.08.2023
+ */
 @Entity
 @Data
 @Table(name = "points")

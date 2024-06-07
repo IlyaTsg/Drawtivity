@@ -15,6 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 17.08.2023
+ */
 @RestController
 @RequestMapping("/tasks")
 @Tag(name = "task-controller")

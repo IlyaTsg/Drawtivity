@@ -4,6 +4,10 @@ import com.ETU.api.entities.Grade;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 29.04.2024
+ */
 @Data
 @Schema(description = "Оценка")
 public class GradeDto {

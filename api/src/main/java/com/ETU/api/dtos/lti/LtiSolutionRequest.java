@@ -6,6 +6,10 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 22.05.2024
+ */
 @Data
 @Schema(description = "Проверка задачи от LTI пользователя")
 public class LtiSolutionRequest {

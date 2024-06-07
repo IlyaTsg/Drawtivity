@@ -9,6 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 29.04.2024
+ */
 @Repository
 public interface GradeRepository extends JpaRepository<Grade, Integer> {
     @Query("SELECT g FROM Grade g WHERE g.user = :user AND g.task = :task")

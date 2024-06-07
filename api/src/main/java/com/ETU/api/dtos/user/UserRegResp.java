@@ -5,6 +5,10 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 23.03.2024
+ */
 @Data
 @Schema(description = "Registration user response")
 public class UserRegResp {

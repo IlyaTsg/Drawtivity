@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 17.08.2023
+ */
 @Service
 public class UserService {
     private final PasswordEncoder passwordEncoder;

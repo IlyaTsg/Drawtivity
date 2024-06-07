@@ -9,6 +9,10 @@ import java.awt.geom.Area;
 import java.awt.geom.PathIterator;
 import java.util.List;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 06.03.2024
+ */
 @Component
 public class TaskUtils {
     /**

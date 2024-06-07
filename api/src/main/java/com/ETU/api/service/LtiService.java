@@ -10,6 +10,10 @@ import org.imsglobal.pox.IMSPOXRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 26.08.2023
+ */
 @Service
 public class LtiService {
     @Value("${lti.default_base_url}")

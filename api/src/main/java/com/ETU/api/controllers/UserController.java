@@ -14,6 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 15.03.2024
+ */
 @RestController
 @RequestMapping("/users")
 @Tag(name = "user-controller", description = "Доступно только для пользователей с ролью ROLE_ADMIN. В дальнейшем некоторые маппинги буду доступны и ROLE_USER, например обновление собственных значений")

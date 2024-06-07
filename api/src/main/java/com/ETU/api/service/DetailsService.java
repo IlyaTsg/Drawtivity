@@ -13,6 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 17.08.2023
+ */
 @Service
 public class DetailsService implements UserDetailsService{
     private final UserRepository userRepository;

@@ -6,6 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 19.08.2023
+ */
 public interface PointReposiroty extends JpaRepository<Point, Integer> {
     @Query("SELECT p FROM Point p WHERE p.task.id = :task_id")
     List<Point> findByTaskId(Integer task_id);

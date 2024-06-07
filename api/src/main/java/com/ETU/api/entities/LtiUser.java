@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 12.10.2023
+ */
 @Entity
 @Data
 @Table(name="lti_user")

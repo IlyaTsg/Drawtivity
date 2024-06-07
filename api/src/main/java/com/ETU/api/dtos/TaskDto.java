@@ -8,6 +8,10 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 17.08.2023
+ */
 @Data
 @Schema(description = "Task response")
 public class TaskDto {

@@ -33,6 +33,10 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.*;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 26.08.2023
+ */
 @Tag(name = "lti-controller")
 @RestController
 @RequestMapping("/lti")

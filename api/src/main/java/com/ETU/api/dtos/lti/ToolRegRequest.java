@@ -2,6 +2,10 @@ package com.ETU.api.dtos.lti;
 
 import lombok.Data;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 20.05.2023
+ */
 @Data
 public class ToolRegRequest {
     private String endpoint;

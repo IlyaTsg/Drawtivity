@@ -28,6 +28,10 @@ import java.util.Arrays;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 17.08.2023
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {

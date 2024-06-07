@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 17.08.2023
+ */
 @Service
 public class RoleService {
     private final RoleRepository roleRepository;

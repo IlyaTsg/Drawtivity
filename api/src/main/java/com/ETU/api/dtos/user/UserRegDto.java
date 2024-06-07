@@ -3,6 +3,10 @@ package com.ETU.api.dtos.user;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 12.03.2024
+ */
 @Data
 @Schema(description = "Registration user request")
 public class UserRegDto {

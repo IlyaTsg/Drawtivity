@@ -15,6 +15,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 17.08.2023
+ */
 @Component
 public class JwtTokenUtils {
     @Value("${jwt.secret}")

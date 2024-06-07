@@ -1,0 +1,13 @@
+com.ETU.api
+com.ETU.api.configs
+com.ETU.api.controllers
+com.ETU.api.dtos
+com.ETU.api.dtos.grade
+com.ETU.api.dtos.lti
+com.ETU.api.dtos.user
+com.ETU.api.entities
+com.ETU.api.exceptions
+com.ETU.api.repositories
+com.ETU.api.service
+com.ETU.api.utils
+com.ETU.api.utils.lti

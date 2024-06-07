@@ -11,6 +11,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 29.04.2024
+ */
 @Component
 public class GradeService {
     private final GradeRepository gradeRepository;

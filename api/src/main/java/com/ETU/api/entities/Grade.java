@@ -3,6 +3,10 @@ package com.ETU.api.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 29.04.2024
+ */
 @Data
 @Entity
 @Table(name = "grades")

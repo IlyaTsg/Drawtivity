@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 29.04.2024
+ */
 @RestController
 @RequestMapping("/grades")
 @Tag(name = "grades-controller")

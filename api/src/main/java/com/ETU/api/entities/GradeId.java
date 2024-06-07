@@ -7,6 +7,10 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 29.04.2024
+ */
 @Data
 @Embeddable
 public class GradeId implements Serializable {

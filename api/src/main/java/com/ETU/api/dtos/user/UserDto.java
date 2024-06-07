@@ -7,6 +7,10 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 12.03.2024
+ */
 @Data
 @Schema(description = "Схема пользователя")
 public class UserDto {

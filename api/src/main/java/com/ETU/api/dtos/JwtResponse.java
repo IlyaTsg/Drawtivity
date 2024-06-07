@@ -3,6 +3,10 @@ package com.ETU.api.dtos;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * @author Ilya Tsygankov
+ * @created 17.08.2023
+ */
 @Data
 @Schema(description = "JWT response")
 public class JwtResponse {
